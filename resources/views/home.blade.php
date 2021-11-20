@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2 class="text-muted">Hola mundo</h2>
+
+<h3>Hola Mundo en laravel</h3>
+      
 @endsection
