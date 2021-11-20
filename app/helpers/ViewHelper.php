@@ -2,20 +2,28 @@
 
 namespace App\helpers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\View as ViewMake;
 
+/**
+ *
+ */
 class ViewHelper
 {
+
     /**
-     *
+     * @var RedirectHelper
      */
-    private function __construct() {}
+    private RedirectHelper $redirectHelper;
 
     /**
      *
      */
-    private function __clone(): void {}
+    private function __construct() {
+        // Set the redirect helper using singleton pattern
+        $this->redirectHelper = RedirectHelper::getInstance();
+    }
 
     /**
      * @var ViewHelper|null
@@ -41,7 +49,8 @@ class ViewHelper
      * @param mixed $data Data to pass to the view
      * @return View
      */
-    public function get(string $name, mixed $data):  View {
+    public function get(string $name, mixed $data):  View
+    {
         // Get view
         $view = ViewMake::make($name);
 
@@ -56,6 +65,24 @@ class ViewHelper
 
         // Returns view
         return $view;
+    }
+
+    /**
+     * Render view with data or redirect to home route
+     * if not contains any of the roles
+     *
+     * @param string $name Name of the view
+     * @param array|string $roles Roles to check
+     * @param mixed $data Data to pass to the view
+     * @return RedirectResponse|View
+     */
+    public function render(string $name, array|string $roles, mixed $data): RedirectResponse | View {
+        // We check if the user contains any of the roles
+        return $this->redirectHelper->redirect($roles, function() use ($name, $data) {
+            // If the user contains the required roles,
+            // render to the given page
+            return $this->get($name, $data);
+        });
     }
 
 }
