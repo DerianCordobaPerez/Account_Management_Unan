@@ -36,7 +36,14 @@ class RedirectHelper
         return static::$instance;
     }
 
-    public function redirect(array | string $roles, Closure $closure)
+    /**
+     * Redirect to given url if not contains any roles
+     *
+     * @param array|string $roles
+     * @param Closure $closure
+     * @return mixed
+     */
+    public function redirect(array | string $roles, Closure $closure): mixed
     {
         // If the user not contains the required roles, redirect to the home page
         if(!auth()->user()->authorize($roles) || !auth()->user()->isAdmin())
