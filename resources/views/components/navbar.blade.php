@@ -62,7 +62,20 @@
                         <li><a class="dropdown-item" href="#">option 4</a></li>
                     </ul>
                 </li>
+
+                <li class="nav-item me-2">
+                    <a class="nav-link text-dark" href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="bi bi-power"></i>
+                        Cerrar sesión
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
             </ul>
+
         </div>
     </div>
 </nav>
