@@ -24,8 +24,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // Require auth middleware except for the home page
-        $this->middleware('auth')->except('home');
+        // Require auth middleware
+        $this->middleware('auth');
 
         // Inject the view helper
         $this->viewHelper = ViewHelper::getInstance();
