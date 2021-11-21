@@ -15,10 +15,18 @@
             <div class="mx-4 collapse navbar-collapse d-flex align-items-end flex-column" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                     <li class="nav-item me-2 option_nav_bar ">
-                        <a class="nav-link text-dark" aria-current="true"href="#"><i class="bi bi-house"></i> Inicio</a>
+                        <a class="nav-link text-dark" aria-current="true"href="{{route('home')}}"><i class="bi bi-house"></i> Inicio</a>
                     </li>
 
-                    <!-- Option 1 dropdown -->
+                    @guest
+
+                    <li class="nav-item me-2 option_nav_bar ">
+                        <a class="nav-link text-dark" aria-current="true"href="{{route('login')}}"><i class="bi bi-house"></i> Iniciar Sesion</a>
+                    </li>
+                    @endguest
+
+                    @auth
+                           <!-- Option 1 dropdown -->
                     <li class="nav-item dropdown option_nav_bar">
                         <a class="nav-link text-dark" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -59,6 +67,8 @@
                             <li><a class="dropdown-item" href="#">option 4</a></li>
                         </ul>
                     </li>
+                    @endauth
+
                 </ul>
             </div>
         </div>
