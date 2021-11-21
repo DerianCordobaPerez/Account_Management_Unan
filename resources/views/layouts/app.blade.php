@@ -20,6 +20,7 @@
 
         <!-- Main -->
         <main class="container py-4">
+            @include('components.alert')
             @yield('content')
         </main>
 

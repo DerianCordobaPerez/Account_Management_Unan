@@ -47,7 +47,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    public function authorize(array | string $roles): bool {
+    public function authorize(array|string $roles): bool {
         return $this->hasRoles($roles);
     }
 
@@ -55,15 +55,15 @@ class User extends Authenticatable
         return $this->hasRoles('admin');
     }
 
-    private function hasRoles(array | string $roles): bool {
+    private function hasRoles(array|string $roles): bool {
         if(is_array($roles)) {
             foreach ($roles as $role) {
-                if($this->roles->contains($role))
+                if($this->roles()->where('name', $role)->exists())
                     return true;
             }
             return false;
         }
-        return $this->roles->contains($roles);
+        return $this->roles()->where('name', $roles)->exists();
     }
 
 }

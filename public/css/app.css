@@ -1,11 +1,11 @@
 @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css);
 @import url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css);
-.option_nav_bar {
+.navbar-option {
   border: transparent solid 4px;
   background-color: transparent;
 }
 
-.option_nav_bar:hover {
+.navbar-option:hover {
     border-bottom: solid black 4px;
     height: 100%;
     background-color: rgba(104, 133, 130, 0.048);
@@ -13,38 +13,39 @@
     border-radius: 10px 10px 10px 10px;
 }
 
-.navegation_bar_style{
-    height: 70px;
-    background-color: #fff;
-}
-  
-  
-.footer_style {
+
+.footer {
     bottom: 0;
-    width: 100%;
+    width: 100vw;
     position: absolute;
-    background-color: #fff;
-    color: #000;
+    background: #fff;
     padding: 0;
     margin: 0;
-}
-
-.text_black {
-    color: #000;
-}
-
-a {
-    text-decoration: none;
-}
-
-hr {
-    color: #000;
-    border: 1px solid #000;
 }
 
 .networks {
     border-radius: 10px;
     border: transparent solid;
+}
+
+.facebook-icon {
+    background-color: #3b5998;
+}
+
+.twitter-icon {
+    background-color: #55acee;
+}
+
+.instagram-icon {
+    background-color: #e4405f;
+}
+
+.linkedin-icon {
+    background-color: #0077b5;
+}
+
+.youtube-icon {
+    background-color: #ff0000;
 }
 
 /* ----------------- Bootstrap v5.0 -------------------- */
@@ -55,10 +56,11 @@ hr {
 
 /* ----------------- Component -------------------- */
 
-/* navigation bar component personal styles */
+/* navbar component personal styles */
 
-/* navigation bar component personal styles */
+/* footer component personal styles */
 
+/* social icons */
 
 *{
     padding: 0;
@@ -67,6 +69,15 @@ hr {
 
 body {
     background-color: #caced1;
+}
+
+a {
+    text-decoration: none;
+}
+
+hr {
+    color: #000;
+    border: 1px solid #000;
 }
 
 
