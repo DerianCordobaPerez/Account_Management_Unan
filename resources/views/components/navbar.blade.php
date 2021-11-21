@@ -15,7 +15,7 @@
             <div class="mx-4 collapse navbar-collapse d-flex align-items-end flex-column" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                     <li class="nav-item me-2 option_nav_bar ">
-                        <a class="nav-link text-dark" aria-current="true"href="#"><i class="bi bi-house"></i> Inicio</a>
+                        <a class="nav-link text-dark" aria-current="true"href="/"><i class="bi bi-house"></i> Inicio</a>
                     </li>
 
                     <!-- Option 1 dropdown -->
