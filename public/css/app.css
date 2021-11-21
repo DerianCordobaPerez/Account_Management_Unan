@@ -47,6 +47,26 @@ hr {
     border: transparent solid;
 }
 
+.facebook-icon {
+    background-color: #3b5998;
+}
+
+.twitter-icon {
+    background-color: #55acee;
+}
+
+.instagram-icon {
+    background-color: #e4405f;
+}
+
+.linkedin-icon {
+    background-color: #0077b5;
+}
+
+.youtube-icon {
+    background-color: #ff0000;
+}
+
 /* ----------------- Bootstrap v5.0 -------------------- */
 
 /* bootstrap styles */
@@ -55,10 +75,11 @@ hr {
 
 /* ----------------- Component -------------------- */
 
-/* navigation bar component personal styles */
+/* navbar component personal styles */
 
-/* navigation bar component personal styles */
+/* footer component personal styles */
 
+/* social icons */
 
 *{
     padding: 0;

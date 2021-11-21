@@ -8,12 +8,14 @@
 
 /* ----------------- Component -------------------- */
 
-/* navigation bar component personal styles */
+/* navbar component personal styles */
 @import "components/navbar.css";
 
-/* navigation bar component personal styles */
+/* footer component personal styles */
 @import "components/footer.css";
 
+/* social icons */
+@import "components/social-icons.css";
 
 *{
     padding: 0;
