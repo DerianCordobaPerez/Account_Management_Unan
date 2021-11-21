@@ -8,12 +8,14 @@
 
 /* ----------------- Component -------------------- */
 
-/* navigation bar component personal styles */
+/* navbar component personal styles */
 @import "components/navbar.css";
 
-/* navigation bar component personal styles */
+/* footer component personal styles */
 @import "components/footer.css";
 
+/* social icons */
+@import "components/social-icons.css";
 
 *{
     padding: 0;
@@ -22,5 +24,14 @@
 
 body {
     background-color: #caced1;
+}
+
+a {
+    text-decoration: none;
+}
+
+hr {
+    color: #000;
+    border: 1px solid #000;
 }
 
