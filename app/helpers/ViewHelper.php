@@ -76,7 +76,7 @@ class ViewHelper
      * @param mixed $data Data to pass to the view
      * @return RedirectResponse|View
      */
-    public function render(array|string $roles, string $name, mixed $data): RedirectResponse | View {
+    public function render(array|string $roles, string $name, mixed $data = null): RedirectResponse | View {
         // We check if the user contains any of the roles
         return $this->redirectHelper->redirect($roles, function() use ($name, $data) {
             // If the user contains the required roles,
