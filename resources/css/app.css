@@ -26,3 +26,12 @@ body {
     background-color: #caced1;
 }
 
+a {
+    text-decoration: none;
+}
+
+hr {
+    color: #000;
+    border: 1px solid #000;
+}
+

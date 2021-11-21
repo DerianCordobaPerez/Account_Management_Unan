@@ -1,9 +1,9 @@
-.option_nav_bar {
+.navbar-option {
   border: transparent solid 4px;
   background-color: transparent;
 }
 
-.option_nav_bar:hover {
+.navbar-option:hover {
     border-bottom: solid black 4px;
     height: 100%;
     background-color: rgba(104, 133, 130, 0.048);
@@ -11,9 +11,3 @@
     border-radius: 10px 10px 10px 10px;
 }
 
-.navegation_bar_style{
-    height: 70px;
-    background-color: #fff;
-}
-  
-  

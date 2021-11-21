@@ -1,11 +1,10 @@
-<!-- TODO: Footer -->
-<footer class="bg-light text-white footer_style">
-    <!-- Grid container -->
+<!-- Footer start -->
+<footer class="bg-light text-white footer">
     <div class="p-3 pb-0 row mx-4">
         <div class="col-md-6 text-dark">
-            <h4 class=" text_black">Mantente en contacto</h4>
+            <h4 class="text-dark">Mantente en contacto</h4>
 
-            <p>UNAN - Leon Nicaragua</p>
+            <p>UNAN-LEÓN Nicaragua</p>
 
             <div class="row">
                 <a href="https://unanleon.edu.ni" target="blank">
@@ -30,10 +29,10 @@
 
         </div>
 
-        <!-- Section: Social media -->
+        <!-- Social media -->
         <div class="col-md-6 d-flex align-items-end justify-content-end">
             <section class="mb-4">
-                <h5 class="text_black text-center">Redes Sociales</h5>
+                <h5 class="text-dark text-center">Redes Sociales</h5>
 
                 <!-- Facebook -->
                 <a class="btn btn-primary networks btn-floating m-1 facebook-icon"
@@ -69,13 +68,7 @@
         <!-- Section: Social media -->
     </div>
 
-    <!-- Grid container -->
-    <div class="w-75 mx-auto">
-        <hr>
-    </div>
-
+    <hr class="w-75 mx-auto">
     <!-- Copyright -->
-    <div class="text-center bg-light text_black">
-        <h6>A la libertad por la Universidad</h6>
-    </div>
+    <h6 class="text-dark text-center">A la libertad por la Universidad</h6>
 </footer>
