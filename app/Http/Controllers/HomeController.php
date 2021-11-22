@@ -57,16 +57,4 @@ class HomeController extends Controller
     {
         return $this->viewHelper->render('about', ['user']);
     }
-
-    /**
-     * Download a PDF file
-     *
-     * @return Response
-     */
-    public function download(): Response
-    {
-        return $this->pdfHelper
-            ->loadView('', [])
-            ->download('test.pdf');
-    }
 }
