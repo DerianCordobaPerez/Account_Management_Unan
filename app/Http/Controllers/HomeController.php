@@ -38,7 +38,7 @@ class HomeController extends Controller
      */
     public function home(): View
     {
-        return view('home');
+        return $this->viewHelper->render('home');
     }
 
     /**
@@ -48,6 +48,6 @@ class HomeController extends Controller
      */
     public function about(): RedirectResponse|View
     {
-        return $this->viewHelper->render(['admin'],'about');
+        return $this->viewHelper->render('about', ['user']);
     }
 }
