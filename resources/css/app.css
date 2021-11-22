@@ -5,6 +5,7 @@
 /* ----------------- Component -------------------- */
 @import "components/navbar.css";
 @import "components/footer.css";
+@import "components/login.css";
 @import "components/social-icons.css";
 
 *{
@@ -24,4 +25,3 @@ hr {
     color: #000;
     border: 1px solid #000;
 }
-
