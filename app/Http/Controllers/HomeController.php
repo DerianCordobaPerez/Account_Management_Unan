@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\helpers\PdfHelper;
 use App\helpers\ViewHelper;
+use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -17,6 +19,8 @@ class HomeController extends Controller
      */
     private ViewHelper $viewHelper;
 
+    private PdfHelper $pdfHelper;
+
     /**
      * Create a new controller instance.
      *
@@ -29,6 +33,9 @@ class HomeController extends Controller
 
         // Inject the view helper
         $this->viewHelper = ViewHelper::getInstance();
+
+        // Inject the pdf helper
+        $this->pdfHelper = PdfHelper::getInstance();
     }
 
     /**
@@ -49,5 +56,17 @@ class HomeController extends Controller
     public function about(): RedirectResponse|View
     {
         return $this->viewHelper->render('about', ['user']);
+    }
+
+    /**
+     * Download a PDF file
+     *
+     * @return Response
+     */
+    public function download(): Response
+    {
+        return $this->pdfHelper
+            ->loadView('', [])
+            ->download('test.pdf');
     }
 }

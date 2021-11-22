@@ -17,5 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::group(['middleware' => 'auth'], function() {
+    // Home routes
+    Route::get('/', [HomeController::class, 'home'])->name('home');
+    Route::get('/about', [HomeController::class, 'about'])->name('about');
+    Route::get('/download', [HomeController::class, 'download'])->name('download');
+});
