@@ -43,7 +43,7 @@ class RedirectHelper
      * @param Closure $closure
      * @return mixed
      */
-    public function redirect(array | string $roles, Closure $closure): mixed
+    public function redirect(array|string $roles, Closure $closure): mixed
     {
         // If the user not contains the required roles, redirect to the home page
         if(!auth()->user()->authorize($roles) || !auth()->user()->isAdmin())
