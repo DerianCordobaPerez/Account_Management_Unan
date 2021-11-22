@@ -71,12 +71,16 @@ class ViewHelper
      * Render view with data or redirect to home route
      * if not contains any of the roles
      *
-     * @param array|string $roles Roles to check
      * @param string $name Name of the view
+     * @param array|string|null $roles Roles to check
      * @param mixed $data Data to pass to the view
      * @return RedirectResponse|View
      */
-    public function render(array|string $roles, string $name, mixed $data = null): RedirectResponse | View {
+    public function render(string $name, array|string $roles = null, mixed $data = null): RedirectResponse | View {
+        // We validate that the roles sent is not null
+        if(is_null($roles) || count($roles) == 0)
+            return $this->get($name, $data);
+
         // We check if the user contains any of the roles
         return $this->redirectHelper->redirect($roles, function() use ($name, $data) {
             // If the user contains the required roles,
