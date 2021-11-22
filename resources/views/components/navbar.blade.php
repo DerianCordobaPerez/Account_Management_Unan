@@ -1,19 +1,17 @@
 <!-- navbar start -->
-<nav class="navbar navbar-light bg-light navbar-expand-lg d-flex">
+<nav class="navbar navbar-light bg-light navbar-expand-sm d-flex">
     <div class="container-fluid mx-4">
         <h3 class="navbar-brand title-bar">
             Unan Leon
             <i class="bi bi-github"></i>
         </h3>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse d-flex align-items-end flex-column" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto ms-auto mb-2 mb-lg-0">
                 <li class="nav-item me-2">
                     <a class="nav-link text-dark" aria-current="true" href="{{route('home')}}">
                         <i class="bi bi-house"></i>
