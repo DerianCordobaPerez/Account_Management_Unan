@@ -1,6 +1,7 @@
 @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css);
 @import url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css);
 .navbar-option {
+  position: fixed;
   border: transparent solid 4px;
   background-color: transparent;
 }
@@ -15,9 +16,10 @@
 
 
 .footer {
-    bottom: 0;
-    width: 100vw;
     position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background: #fff;
     padding: 0;
     margin: 0;
@@ -29,6 +31,10 @@
     width: 45px;
 }
 
+.login {
+  width: 100vw;
+  overflow-x: hidden;
+}
 .facebook-icon {
     background-color: #3b5998;
 }
@@ -70,5 +76,3 @@ hr {
     color: #000;
     border: 1px solid #000;
 }
-
-

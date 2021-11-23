@@ -1,4 +1,5 @@
 .navbar-option {
+  position: fixed;
   border: transparent solid 4px;
   background-color: transparent;
 }

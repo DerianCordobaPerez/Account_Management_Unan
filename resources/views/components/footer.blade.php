@@ -1,5 +1,5 @@
 <!-- Footer start -->
-<footer class="bg-light text-white footer">
+<footer class="bg-light footer">
     <div class="p-3 pb-0 row mx-4">
         <div class="col-md-6 text-dark">
             <h4 class="text-dark">Mantente en contacto</h4>
