@@ -13,13 +13,16 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('css')
 </head>
+
 <body>
     <div id="app">
+
         <!-- Navbar -->
         @include('components.navbar')
 
+
         <!-- Main -->
-        <main class="container py-4">
+        <main class="container pt-4">
             @include('components.alert')
             @yield('content')
         </main>
@@ -30,7 +33,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/0496ae07d8.js" crossorigin="anonymous"></script>
     @yield('javascript')
 </body>
+
 </html>
