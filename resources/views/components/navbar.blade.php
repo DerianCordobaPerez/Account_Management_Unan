@@ -1,16 +1,16 @@
 <!-- navbar start -->
-<nav class="navbar navbar-light bg-light navbar-expand-sm d-flex">
-    <div class="container-fluid mx-4">
+<nav class="navbar navbar-light navbar-expand-sm w1">
+    <div class="container-fluid px-4 w">
         <h3 class="navbar-brand title-bar">
             Unan Leon
-            <i class="bi bi-github"></i>
+            <img src="{{ asset('img/Logo.png')}}" alt="" width="25">
         </h3>
 
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto ms-auto mb-2 mb-lg-0">
                
                 @guest
@@ -23,7 +23,7 @@
                 @endguest
 
                 @auth
-                    <li class="nav-item me-2">
+                    <li class="nav-item navbar-option" style="height: 100%">
                         <a class="nav-link text-dark" aria-current="true" href="{{route('home')}}">
                             <i class="bi bi-house"></i>
                             Inicio
@@ -31,7 +31,7 @@
                     </li>
 
                         <!-- Option 1 dropdown -->
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown navbar-option">
                         <a class="nav-link text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list-check"></i>
                             Opciones
@@ -45,7 +45,7 @@
                     </li>
 
                     <!-- Option 2 dropdown -->
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown navbar-option">
                         <a class="nav-link text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list-check"></i>
                             Opciones
@@ -59,7 +59,7 @@
                     </li>
 
                     <!-- Option 3 dropdown -->
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown navbar-option">
                         <a class="nav-link text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list-check"></i>
                             Opciones
@@ -72,7 +72,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item me-2">
+                    <li class="nav-item me-2 navbar-option">
                         <a class="nav-link text-dark" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="bi bi-power"></i>
