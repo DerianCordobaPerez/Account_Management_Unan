@@ -11,5 +11,9 @@
 .networks {
     border-radius: 10px;
     border: transparent solid;
-    width: 45px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

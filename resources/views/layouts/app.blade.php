@@ -19,17 +19,21 @@
     <div id="app">
 
         <!-- Navbar -->
-        @include('components.navbar')
+        @auth
+            @include('components.navbar')
+        @endauth
 
 
         <!-- Main -->
-        <main class="container pt-4">
+        <main class="container">
             @include('components.alert')
             @yield('content')
         </main>
 
         <!-- Footer -->
-        @include('components.footer')
+        @auth
+            @include('components.footer')
+        @endauth
     </div>
 
     <!-- Scripts -->
