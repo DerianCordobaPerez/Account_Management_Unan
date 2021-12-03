@@ -1,5 +1,5 @@
 .navbar{
-  background: #08f;
+  background: #009;
   color: #fff;
 }
 
@@ -24,11 +24,17 @@
   color: #fff;
 }
 
+.navbar-option a:focus{
+  color: #fff;
+}
+
 li .dropdown-item{
   transition: all .5s ease;
+  color: #000;
 }
 
 li .dropdown-item:hover{
-  border-left: 4px solid #000;
+  border-left: 4px solid #009;
   margin-left: 20px;
+  color: #000;
 }
