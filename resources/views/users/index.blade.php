@@ -18,7 +18,7 @@
                     </td>
 
                     <td>
-                        <a href="{{route('users.edit', $user->id)}}" class="btn btn-warning">
+                        <a href="{{route('users.edit', $user->id)}}" class="btn btn-primary">
                             <i class="bi bi-pencil"></i>
                             Editar
                         </a>
