@@ -1,5 +1,5 @@
 <!-- navbar start -->
-<nav class="navbar navbar-light navbar-expand-sm w1">
+<nav class="navbar navbar-expand-sm p-0 m-0">
     <div class="container-fluid px-4 w">
         <h3 class="navbar-brand title-bar">
             Unan Leon
@@ -24,7 +24,7 @@
 
                 @auth
                     <li class="nav-item navbar-option" style="height: 100%">
-                        <a class="nav-link text-dark" aria-current="true" href="{{route('home')}}">
+                        <a class="nav-link" aria-current="true" href="{{route('home')}}">
                             <i class="bi bi-house"></i>
                             Inicio
                         </a>
@@ -32,7 +32,7 @@
 
                         <!-- Option 1 dropdown -->
                     <li class="nav-item dropdown navbar-option">
-                        <a class="nav-link text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list-check"></i>
                             Opciones
                         </a>
@@ -46,7 +46,7 @@
 
                     <!-- Option 2 dropdown -->
                     <li class="nav-item dropdown navbar-option">
-                        <a class="nav-link text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list-check"></i>
                             Opciones
                         </a>
@@ -60,7 +60,7 @@
 
                     <!-- Option 3 dropdown -->
                     <li class="nav-item dropdown navbar-option">
-                        <a class="nav-link text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list-check"></i>
                             Opciones
                         </a>
@@ -73,7 +73,7 @@
                     </li>
 
                     <li class="nav-item me-2 navbar-option">
-                        <a class="nav-link text-dark" href="{{ route('logout') }}"
+                        <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="bi bi-power"></i>
                             Cerrar sesión
