@@ -1,7 +1,8 @@
 .footer {
-    bottom: 0;
-    width: 100vw;
     position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background: #fff;
     padding: 0;
     margin: 0;
@@ -10,5 +11,9 @@
 .networks {
     border-radius: 10px;
     border: transparent solid;
-    width: 45px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
