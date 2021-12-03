@@ -49,7 +49,7 @@ class ViewHelper
      * @param mixed $data Data to pass to the view
      * @return View
      */
-    public function get(string $name, mixed $data):  View
+    private function get(string $name, mixed $data):  View
     {
         // Get view
         $view = ViewMake::make($name);
