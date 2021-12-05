@@ -2,16 +2,23 @@
 
 namespace App\Models;
 
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, SoftCascadeTrait;
+
+    protected $dates = ['deleted_at'];
+
+    protected $softCascade = ['students'];
 
     /**
      * The attributes that are mass assignable.
@@ -43,30 +50,39 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function roles(): BelongsToMany {
+    public function students(): HasMany
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    public function roles(): BelongsToMany
+    {
         return $this->belongsToMany(Role::class);
     }
 
-    public function authorize(array|string|null $roles): bool {
+    public function authorize(array|string|null $roles): bool
+    {
         return $this->hasRoles($roles);
     }
 
-    public function isAdmin(): bool {
+    public function isAdmin(): bool
+    {
         return $this->hasRoles('admin');
     }
 
-    private function hasRoles(array|string|null $roles): bool {
-        if(!is_null($roles)) {
-            if(is_array($roles)) {
-                foreach ($roles as $role) {
-                    if($this->roles()->where('name', $role)->exists())
-                        return true;
-                }
-                return false;
+    private function hasRoles(array|string|null $roles): bool
+    {
+        if(is_null($roles))
+            return false;
+
+        if(is_array($roles)) {
+            foreach ($roles as $role) {
+                if($this->roles()->where('name', $role)->exists())
+                    return true;
             }
-            return $this->roles()->where('name', $roles)->exists();
+            return false;
         }
-        return false;
+        return $this->roles()->where('name', $roles)->exists();
     }
 
 }
