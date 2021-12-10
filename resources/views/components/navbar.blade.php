@@ -27,6 +27,23 @@
                         </a>
                     </li>
 
+<<<<<<< HEAD
+                <!-- Option registros -->
+                <li class="nav-item dropdown navbar-option">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-list-check"></i>
+                        Registros
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">option 1</a></li>
+                        <li><a class="dropdown-item" href="#">option 2</a></li>
+                        <li><a class="dropdown-item" href="#">option 3</a></li>
+                        <li><a class="dropdown-item" href="#">option 4</a></li>
+                    </ul>
+                </li>
+                <!-- Comentario Para el pull -->
+=======
                         <!-- Option registros -->
                     <li class="nav-item dropdown navbar-option">
                         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,6 +57,7 @@
                             <li><a class="dropdown-item" href="#">option 4</a></li>
                         </ul>
                     </li>
+>>>>>>> 5e80da0694e6c2668f00da00dd90b1f19933b755
 
                     <!-- Option herramientas -->
                     <li class="nav-item dropdown navbar-option">

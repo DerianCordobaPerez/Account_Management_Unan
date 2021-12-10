@@ -35,5 +35,6 @@
         </table>
     @else
         <p>No hay usuarios registrados</p>
+       
     @endif
 @endsection
