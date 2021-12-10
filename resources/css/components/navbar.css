@@ -1,12 +1,12 @@
 .navbar{
-  background: #009;
-  color: #fff;
+    background: #009;
+    color: #fff;
 }
 
 .navbar-option {
-  border-bottom: 4px solid transparent;
-  background-color: transparent;
-  transition: all .3s ease-out;
+    border-bottom: 4px solid transparent;
+    background-color: transparent;
+    transition: all .3s ease-out;
 }
 
 .navbar-option:hover {
@@ -16,26 +16,26 @@
 }
 
 .navbar-option a{
-  color: #fff;
+    color: #fff;
 }
 
 
 .navbar-option a:hover{
-  color: #fff;
+    color: #fff;
 }
 
 .navbar-option a:focus{
-  color: #fff;
+    color: #fff;
 }
 
 li .dropdown-item{
-  transition: all .5s ease;
-  color: #000;
+    transition: all .5s ease;
+    color: #000;
 }
 
 li .dropdown-item:hover{
-  border-left: 4px solid #009;
-  margin-left: 20px;
-  background-color: aquamarine;
-  color: #000;
+    border-left: 4px solid #009;
+    margin-left: 20px;
+    background-color: aquamarine;
+    color: #000;
 }
