@@ -1,39 +1,40 @@
-.navbar {
-    background: #009;
-    color: #fff;
+.navbar{
+  background: #009;
+  color: #fff;
 }
 
 .navbar-option {
-    border-bottom: 4px solid transparent;
-    background-color: transparent;
-    transition: all .3s ease-out;
+  border-bottom: 4px solid transparent;
+  background-color: transparent;
+  transition: all .3s ease-out;
 }
 
 .navbar-option:hover {
-    border-bottom: 4px solid #fff;
+    border-bottom:4px solid #fff;
     background-color: rgba(104, 133, 130, 0.048);
     color: #fff;
 }
 
-.navbar-option a {
-    color: #fff;
+.navbar-option a{
+  color: #fff;
 }
 
-.navbar-option a:hover {
-    color: #fff;
+
+.navbar-option a:hover{
+  color: #fff;
 }
 
-.navbar-option a:focus {
-    color: #fff;
+.navbar-option a:focus{
+  color: #fff;
 }
 
-li .dropdown-item {
-    border-left: 4px solid transparent;
-    transition: all .3s ease;
-    color: #000;
+li .dropdown-item{
+  transition: all .5s ease;
+  color: #000;
 }
 
-li .dropdown-item:hover {
-    border-left: 4px solid #009;
-    color: #000;
+li .dropdown-item:hover{
+  border-left: 4px solid #009;
+  margin-left: 20px;
+  color: #000;
 }
