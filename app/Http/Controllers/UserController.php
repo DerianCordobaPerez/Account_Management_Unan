@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\helpers\RedirectHelper;
 use App\helpers\ViewHelper;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -10,7 +11,7 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
-
+    private RedirectHelper $redirectHelper;
     private ViewHelper $viewHelper;
 
     public function __construct()
@@ -20,6 +21,9 @@ class UserController extends Controller
 
         // Initialize the view helper
         $this->viewHelper = ViewHelper::getInstance();
+
+        // Initialize the redirect helper
+        $this->redirectHelper = RedirectHelper::getInstance();
     }
 
     /**
@@ -49,12 +53,15 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        return $this->redirectHelper->redirect('Admin', function () use ($request) {
+            User::create($request->all());
+            return redirect()->route('users.index')->with('success', 'Usuario creado correctamente.');
+        });
     }
 
     /**
@@ -71,6 +78,7 @@ class UserController extends Controller
             ['user' => $user]
         );
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -85,7 +93,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param User $user
      * @return \Illuminate\Http\Response
      */
@@ -98,10 +106,13 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function destroy(User $user)
+    public function destroy(User $user): RedirectResponse
     {
-        //
+        return $this->redirectHelper->redirect('Admin', function () use ($user) {
+            $user->delete();
+            return redirect()->route('users.index')->with('success', 'Usuario eliminado correctamente');
+        });
     }
 }

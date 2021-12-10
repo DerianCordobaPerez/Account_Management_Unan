@@ -2,8 +2,6 @@
 
 namespace App\helpers;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use Closure;
 
 /**
@@ -19,7 +17,9 @@ class RedirectHelper
     /**
      * RedirectHelper constructor
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Get instance using singleton pattern
@@ -29,7 +29,7 @@ class RedirectHelper
     public static function getInstance(): RedirectHelper
     {
         // if instance is null, create new instance
-        if(is_null(static::$instance))
+        if (is_null(static::$instance))
             static::$instance = new RedirectHelper();
 
         // return instance
@@ -46,7 +46,7 @@ class RedirectHelper
     public function redirect(array|string $roles, Closure $closure): mixed
     {
         // If the user not contains the required roles, redirect to the home page
-        if(!auth()->user()->authorize($roles) || !auth()->user()->isAdmin())
+        if (!auth()->user()->authorize($roles) || !auth()->user()->isAdmin())
             return redirect()->route('home')->with('error', 'No estas autorizado para acceder a esta ruta');
 
         // If the user contains the required roles, execute the closure
