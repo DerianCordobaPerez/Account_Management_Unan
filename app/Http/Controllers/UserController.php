@@ -35,7 +35,6 @@ class UserController extends Controller
     {
         return $this->viewHelper->render(
             'users.index',
-            null,
             ['users' => User::all()]
         );
     }
@@ -74,7 +73,6 @@ class UserController extends Controller
     {
         return $this->viewHelper->render(
             'users.show',
-            null,
             ['user' => $user]
         );
     }
@@ -114,5 +112,16 @@ class UserController extends Controller
             $user->delete();
             return redirect()->route('users.index')->with('success', 'Usuario eliminado correctamente');
         });
+    }
+
+    public function payments(User $user): RedirectResponse|View
+    {
+        return $this->viewHelper->render(
+            'users.payments',
+            [
+                'user' => $user,
+                'payments' => $user->payments
+            ]
+        );
     }
 }

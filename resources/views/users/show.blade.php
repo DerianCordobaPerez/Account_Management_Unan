@@ -17,8 +17,8 @@
                         </footer>
 
                         <div class="d-flex align-items-center justify-content-between">
-                            <a href="{{route('users.index')}}" class="btn btn-primary my-2">Aceptar</a>
-                            <a href="{{route('users.index')}}" class="btn btn-success my-2">Información de pagos</a>
+                            <a href="{{route('users.index')}}" class="btn btn-primary my-2">Volver</a>
+                            <a href="{{route('payments.index')}}" class="btn btn-success my-2">Información de pagos</a>
                         </div>
                     </blockquote>
 
