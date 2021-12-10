@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\helpers\PdfHelper;
 use App\helpers\ViewHelper;
-use Illuminate\Http\Response;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 /**
@@ -18,8 +14,6 @@ class HomeController extends Controller
      * @var ViewHelper
      */
     private ViewHelper $viewHelper;
-
-    private PdfHelper $pdfHelper;
 
     /**
      * Create a new controller instance.
@@ -33,9 +27,6 @@ class HomeController extends Controller
 
         // Inject the view helper
         $this->viewHelper = ViewHelper::getInstance();
-
-        // Inject the pdf helper
-        $this->pdfHelper = PdfHelper::getInstance();
     }
 
     /**
@@ -51,10 +42,10 @@ class HomeController extends Controller
     /**
      * Show about page
      *
-     * @return RedirectResponse|View
+     * @return View
      */
-    public function about(): RedirectResponse|View
+    public function about(): View
     {
-        return $this->viewHelper->render('about', ['user']);
+        return $this->viewHelper->render('about');
     }
 }

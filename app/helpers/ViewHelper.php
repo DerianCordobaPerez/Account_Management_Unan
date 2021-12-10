@@ -3,8 +3,8 @@
 namespace App\helpers;
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\View as ViewMake;
+use Illuminate\View\View;
 
 /**
  *
@@ -20,7 +20,8 @@ class ViewHelper
     /**
      *
      */
-    private function __construct() {
+    private function __construct()
+    {
         // Set the redirect helper using singleton pattern
         $this->redirectHelper = RedirectHelper::getInstance();
     }
@@ -35,7 +36,7 @@ class ViewHelper
      */
     public static function getInstance(): ViewHelper
     {
-        if(is_null(static::$instance))
+        if (is_null(static::$instance))
             static::$instance = new ViewHelper();
 
         return static::$instance;
@@ -49,13 +50,13 @@ class ViewHelper
      * @param mixed $data Data to pass to the view
      * @return View
      */
-    private function get(string $name, mixed $data):  View
+    private function get(string $name, mixed $data): View
     {
         // Get view
         $view = ViewMake::make($name);
 
         // We validate that the data sent is not null
-        if(isset($data)) {
+        if (isset($data)) {
             // We go through the data array using key value
             foreach ($data as $key => $value)
                 //Inside the view we create a new attribute with the key and
@@ -76,13 +77,14 @@ class ViewHelper
      * @param mixed $data Data to pass to the view
      * @return RedirectResponse|View
      */
-    public function render(string $name, array|string $roles = null, mixed $data = null): RedirectResponse | View {
+    public function render(string $name, array|string $roles = null, mixed $data = null): RedirectResponse|View
+    {
         // We validate that the roles sent is not null
-        if(is_null($roles) || count($roles) == 0)
+        if (is_null($roles) || count($roles) == 0)
             return $this->get($name, $data);
 
         // We check if the user contains any of the roles
-        return $this->redirectHelper->redirect($roles, function() use ($name, $data) {
+        return $this->redirectHelper->redirect($roles, function () use ($name, $data) {
             // If the user contains the required roles,
             // render to the given page
             return $this->get($name, $data);

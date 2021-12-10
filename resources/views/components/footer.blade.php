@@ -3,7 +3,9 @@
     <!-- Copyright -->
             <!-- Social media -->
                 <section class="container d-flex justify-content-between">
-                    <h6 class="text-center justify-content-center">A la libertad por la Universidad</h6>
+                    <div>
+                        <span>Facultad de Ciencias Economicas y Empresariales</span>
+                    </div>
                     <div class="d-flex justify-content-end">
                         <!-- Facebook -->
                         <a class="btn btn-primary networks m-1 facebook-icon"
@@ -37,6 +39,6 @@
                     </div>
                 </section>
             <!-- Section: Social media -->
-            
+            <h6 class="text-center">A la libertad por la Universidad</h6>
 
 </footer>
