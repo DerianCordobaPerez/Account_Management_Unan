@@ -74,8 +74,8 @@
 
                 <!-- Option 3 dropdown -->
 
-                <li class="nav-item me-2">
-                    <div class="session-user nav-link text-white">
+                <li class="nav-item me-2 ms-2">
+                    <div class="session-user nav-link text-white px-2">
                         <i class="bi bi-person-fill"></i>
                         {{auth()->user()->names}}
                         <span class="mx-2">|</span>

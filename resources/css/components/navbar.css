@@ -62,6 +62,7 @@ li .dropdown-item:hover {
     margin-left: 15px;
     border-left: 1px solid #fff;
     opacity: 30%;
+    height: 80px;
 }
 
 .session-user {
