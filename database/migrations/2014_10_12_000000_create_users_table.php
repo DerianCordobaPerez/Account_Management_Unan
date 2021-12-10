@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('neighborhood');
             $table->dateTime('birthday');
+            $table->string('img')->nullable();
             $table->string('password');
             $table->softDeletes();
             $table->rememberToken();

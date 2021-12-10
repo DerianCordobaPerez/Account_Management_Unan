@@ -20,7 +20,8 @@ class PdfHelper
     /**
      * PdfHelper constructor.
      */
-    private function __construct() {
+    private function __construct()
+    {
         // Create new PDF
         $this->create();
     }
@@ -110,7 +111,7 @@ class PdfHelper
      */
     public function download(string $filename = 'document.pdf'): Response
     {
-        if(!str_contains($filename, '.pdf'))
+        if (!str_contains($filename, '.pdf'))
             $filename .= '.pdf';
 
         return $this->pdf->download($filename);
@@ -124,7 +125,7 @@ class PdfHelper
      */
     public function stream(string $filename = 'document.pdf'): Response
     {
-        if(!str_contains($filename, '.pdf'))
+        if (!str_contains($filename, '.pdf'))
             $filename .= '.pdf';
 
         return $this->pdf->stream($filename);
@@ -138,7 +139,7 @@ class PdfHelper
      */
     public function save(string $filename = 'document.pdf'): PDF
     {
-        if(!str_contains($filename, '.pdf'))
+        if (!str_contains($filename, '.pdf'))
             $filename .= '.pdf';
 
         return $this->pdf->save($filename);

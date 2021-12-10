@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -72,12 +71,12 @@ class User extends Authenticatable
 
     private function hasRoles(array|string|null $roles): bool
     {
-        if(is_null($roles))
+        if (is_null($roles))
             return false;
 
-        if(is_array($roles)) {
+        if (is_array($roles)) {
             foreach ($roles as $role) {
-                if($this->roles()->where('name', $role)->exists())
+                if ($this->roles()->where('name', $role)->exists())
                     return true;
             }
             return false;
