@@ -36,5 +36,6 @@ li .dropdown-item{
 li .dropdown-item:hover{
   border-left: 4px solid #009;
   margin-left: 20px;
+  background-color: aquamarine;
   color: #000;
 }

@@ -4,8 +4,8 @@
     @if(count($users) > 0)
         <table class="table table-light table-striped mt-4">
             <tr>
-                <th scope="col">Información </th>
-                <th scope="col">Acciones </th>
+                <th scope="col">Información</th>
+                <th scope="col">Acciones</th>
             </tr>
             @foreach($users as $user)
                 <tr>
