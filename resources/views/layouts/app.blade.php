@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{$title ?? 'Inicio'}}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -18,7 +18,7 @@
 <div id="app">
     <!-- Navbar -->
 @auth
-    @include('components.navbar')
+    @include('components.navbar', [$title])
 @endauth
 
 <!-- Main -->

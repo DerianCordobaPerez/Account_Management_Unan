@@ -1,14 +1,12 @@
-<!-- Footer start -->
 <footer class="footer">
-    <!-- Copyright -->
     <!-- Social media -->
-    <section class="container d-flex justify-content-between align-items-center">
+    <section class="container d-flex align-items-center justify-content-between">
         <h6 class="text-center">A la libertad por la Universidad</h6>
         <div class="d-flex justify-content-end">
             <!-- Facebook -->
             <a class="btn btn-primary networks m-1 facebook-icon"
-               href="https://www.facebook.com/BicentenariaUNANLeon/" role="button" target="blank"><i
-                    class="fab fa-facebook-f"></i>
+               href="https://www.facebook.com/BicentenariaUNANLeon/" role="button" target="blank">
+                <i class="fab fa-facebook-f"></i>
             </a>
 
             <!-- Twitter -->
@@ -36,7 +34,4 @@
             </a>
         </div>
     </section>
-    <!-- Section: Social media -->
-    
-
 </footer>
