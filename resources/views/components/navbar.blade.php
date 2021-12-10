@@ -45,7 +45,7 @@
                         <li>
                             <a class="dropdown-item" href="#">
                                 <i class="bi bi-lock-fill"></i>
-                                Cambiar contrasenia
+                                Cambiar contraseña
                             </a>
                         </li>
 
@@ -59,7 +59,7 @@
                         <li>
                             <a class="dropdown-item" href="#">
                                 <i class="bi bi-card-text"></i>
-                                Definir Conceptos
+                                Definir conceptos
                             </a>
                         </li>
 
