@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        return $this->redirectHelper->redirect('Admin', function() use ($request) {
+        return $this->redirectHelper->redirect('Admin', function () use ($request) {
             User::create($request->all());
             return redirect()->route('users.index')->with('success', 'Usuario creado correctamente.');
         });
@@ -78,6 +78,7 @@ class UserController extends Controller
             ['user' => $user]
         );
     }
+
     /**
      * Show the form for editing the specified resource.
      *

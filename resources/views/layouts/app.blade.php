@@ -15,28 +15,28 @@
 </head>
 
 <body>
-    <div id="app">
-        <!-- Navbar -->
-        @auth
-            @include('components.navbar')
-        @endauth
+<div id="app">
+    <!-- Navbar -->
+@auth
+    @include('components.navbar')
+@endauth
 
-        <!-- Main -->
-        <main class="container">
-            @include('components.alert')
-            @yield('content')
-        </main>
+<!-- Main -->
+    <main class="container">
+        @include('components.alert')
+        @yield('content')
+    </main>
 
-        <!-- Footer -->
-        @auth
-            @include('components.footer')
-        @endauth
-    </div>
+    <!-- Footer -->
+    @auth
+        @include('components.footer')
+    @endauth
+</div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://kit.fontawesome.com/0496ae07d8.js" crossorigin="anonymous"></script>
-    @yield('javascript')
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="https://kit.fontawesome.com/0496ae07d8.js" crossorigin="anonymous"></script>
+@yield('javascript')
 </body>
 
 </html>
