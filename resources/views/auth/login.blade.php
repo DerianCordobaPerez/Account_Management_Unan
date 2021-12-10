@@ -3,7 +3,7 @@
 @section('content')
     <div class="container contact-form">
         <div class="contact-image">
-            <img src="{{ asset('img/Logo.png')}}" alt="rocket_contact"/>
+            <img src="{{ asset('img/logos/UNAN.png')}}" alt="rocket_contact"/>
         </div>
         <form method="POST" action="{{ route('login') }}">
             @csrf

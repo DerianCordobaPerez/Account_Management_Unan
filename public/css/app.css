@@ -1,47 +1,75 @@
 @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css);
 @import url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css);
-.navbar{
-    background: #009;
+* {
+    font-family: sans-serif;
+}
+
+.navbar {
+    background: linear-gradient(#2780ab, #145777);
     color: #fff;
 }
 
 .navbar-option {
     border-bottom: 4px solid transparent;
     background-color: transparent;
-    transition: all .3s ease-out;
+    transition: all 0.3s ease-out;
 }
 
 .navbar-option:hover {
-    border-bottom:4px solid #fff;
+    border-bottom: 4px solid #fff;
     background-color: rgba(104, 133, 130, 0.048);
     color: #fff;
 }
 
-.navbar-option a{
+.navbar-option a {
     color: #fff;
 }
 
-
-.navbar-option a:hover{
+.navbar-option a:hover {
     color: #fff;
 }
 
-.navbar-option a:focus{
+.navbar-option a:focus {
     color: #fff;
 }
 
-li .dropdown-item{
-    transition: all .5s ease;
+li .dropdown-item {
+    border-left: 4px solid transparent;
+    transition: all 0.5s ease;
     color: #000;
 }
 
-li .dropdown-item:hover{
-    border-left: 4px solid #009;
-    margin-left: 20px;
-    background-color: aquamarine;
-    color: #000;
+li .dropdown-item:hover {
+    border-left: 4px solid #fff;
+    background: linear-gradient(#2780ab, #145777);
+    color: #fff;
 }
 
+.logo-style {
+    height: 85px;
+    margin-left: 50px;
+}
+
+.text-title {
+    margin-left: 2%;
+    font-size: 1.6rem;
+    color: #f6b200;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-shadow: 0 0 10px rgb(0 0 0 / 52%);
+}
+
+.vertical-line{
+    margin-left: 15px;
+    border-left: 1px solid #fff;
+    opacity: 30%;
+}
+
+.session-user {
+    background: #145777;
+    border-radius: 8px;
+}
 .footer {
     position: absolute;
     left: 0;
