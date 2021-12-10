@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Gestión de usuarios'])
 
 @section('content')
     @if(count($users) > 0)
@@ -12,7 +12,9 @@
                     <td>
                         <p class="d-block">
                             <a class="text-dark" href="{{route('users.show', $user->id)}}">
-                                {{$user->name}} | {{$user->email}}
+                                <span>{{$user->names}}</span>
+                                <span class="mx-2">|</span>
+                                <span>{{$user->email}}</span>
                             </a>
                         </p>
                     </td>
@@ -35,6 +37,5 @@
         </table>
     @else
         <p>No hay usuarios registrados</p>
-       
     @endif
 @endsection
