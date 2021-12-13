@@ -63,8 +63,7 @@ class PaymentController extends Controller
     {
         return $this->viewHelper->render(
             'payments.show',
-            ['payment' => $payment],
-            ['admin', 'cajero']
+            ['payment' => $payment]
         );
     }
 
