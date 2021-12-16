@@ -73,14 +73,12 @@ li .dropdown-item:hover {
 }
 
 .footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    margin-top:50px;
+    width:100%;
+    height:50px;
     background:linear-gradient(#2780ab, #145777);
     color: #fff;
-    padding: 0;
-    margin: 0;
+    position: absolute;
 }
 
 .networks {
@@ -182,7 +180,9 @@ li .dropdown-item:hover {
     background-color: #ff0000;
 }
 
-
+.text-blue{
+color: #145777;
+}
 /* ----------------- Bootstrap v5.0 -------------------- */
 
 /* ----------------- Component -------------------- */
