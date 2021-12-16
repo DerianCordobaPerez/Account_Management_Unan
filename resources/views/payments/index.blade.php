@@ -28,6 +28,11 @@
                     </div>
                 </div>
             @endforeach
+            <div class="d-flex align-items-center justify-content-center">
+                <a href="{{route('users.index')}}" class="btn btn-primary my-2">
+                    <i class="bi bi-arrow-return-left"></i> Volver
+                </a>
+            </div>
         </div>
     @else
         <h4 class="text-muted text-center mt-4">
