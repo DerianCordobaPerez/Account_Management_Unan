@@ -17,7 +17,7 @@ class User extends Authenticatable
 
     protected $dates = ['deleted_at'];
 
-    protected $softCascade = ['students'];
+    protected $softCascade = ['students', 'payments'];
 
     /**
      * The attributes that are mass assignable.
@@ -57,6 +57,11 @@ class User extends Authenticatable
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
     }
 
     public function authorize(array|string|null $roles): bool

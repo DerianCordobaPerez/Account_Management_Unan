@@ -57,7 +57,7 @@ li .dropdown-item:hover {
     height: auto;
     margin-top: auto;
     margin-bottom: auto;
-    text-shadow: 0 0 10px rgb(0 0 0 / 52%);
+    text-shadow: 0 0 10px rgba(0, 0, 0, .5);
 }
 
 .vertical-line{
@@ -71,6 +71,7 @@ li .dropdown-item:hover {
     background: #145777;
     border-radius: 8px;
 }
+
 .footer {
     position: absolute;
     left: 0;

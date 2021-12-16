@@ -73,11 +73,11 @@ class ViewHelper
      * if not contains any of the roles
      *
      * @param string $name Name of the view
-     * @param array|string|null $roles Roles to check
      * @param mixed $data Data to pass to the view
+     * @param array|string|null $roles Roles to check
      * @return RedirectResponse|View
      */
-    public function render(string $name, array|string $roles = null, mixed $data = null): RedirectResponse|View
+    public function render(string $name, mixed $data = null, array|string $roles = null): RedirectResponse|View
     {
         // We validate that the roles sent is not null
         if (is_null($roles) || count($roles) == 0)
