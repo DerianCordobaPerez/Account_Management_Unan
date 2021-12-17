@@ -1,17 +1,13 @@
 @extends('layouts.app', ['title' => 'Panel principal'])
 
 @section('content')
-
-    
-
-    <div class="container mt-4">
+    <div class="mt-4">
         <div class="row">
-            <!-- card 1 -->
-
+            <!-- User information card -->
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-header text-center">
-                      <h5 class="text-blue fw-bold"> Información del usuario</h5>
+                        <h5 class="text-blue fw-bold"> Información del usuario</h5>
                     </div>
                     <div class="card-body">
                         <p><span class="text-blue">Nombre:</span> {{ auth()->user()->names }}</p>
@@ -19,23 +15,98 @@
                     </div>
                 </div>
 
-                <!-- card 2 -->
-                <div class="mt-4">@include('home.accordion')</div>
-                
+                <!-- Payments for month card -->
+                <div class="mt-4">
+                    <x-card title="Historial de facturas">
+                        <x-accordion>
+                            <x-accordion-tab title="Diciembre 2021">
+                                <ul class="list-unstyled">
+                                    <li class="fw-bold">29 Diciembre 2021</li>
+                                    <li>C$ 390.09</li>
+                                </ul>
+                                <a href="#" class="text-info">
+                                    <i class="bi bi-download"></i>
+                                    Ver factura
+                                </a>
+                            </x-accordion-tab>
+
+                            <x-accordion-tab title="Noviembre 2021">
+                                <ul class="list-unstyled">
+                                    <li class="fw-bold">29 Noviembre 2021</li>
+                                    <li>C$ 489.36</li>
+                                </ul>
+                                <a href="#" class="text-info">
+                                    <i class="bi bi-download"></i>
+                                    Ver factura
+                                </a>
+                            </x-accordion-tab>
+
+                            <x-accordion-tab title="Octubre 2021">
+                                <ul class="list-unstyled">
+                                    <li class="fw-bold">29 Octubre 2021</li>
+                                    <li>C$ 4390.99</li>
+                                </ul>
+                                <a href="#" class="text-info">
+                                    <i class="bi bi-download"></i>
+                                    Ver factura
+                                </a>
+                            </x-accordion-tab>
+                        </x-accordion>
+
+                        <x-slot name="footer">
+                            <a class="text-blue" href="{{route('users.payments', auth()->user()->id)}}">
+                                Ver todas
+                            </a>
+                        </x-slot>
+
+                    </x-card>
+                </div>
+
             </div>
 
-            <!-- card 3 -->
+            <!-- Last bill card -->
             <div class="col-md-6">
-              <form class="d-flex justify-content-end">
-                <div class="input-group mb-4 w-100">
-                    <input type="email" class="form-control" placeholder="Barra de busqueda">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
+                <form class="d-flex justify-content-end">
+                    <div class="input-group mb-4 w-100">
+                        <input type="email" class="form-control" placeholder="Barra de busqueda"/>
+                        <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
                     </span>
-                </div>
-            </form> 
+                    </div>
+                </form>
 
-                @include('home.lastbill')
+                <x-card title="Ultima factura">
+                    <div class="amount mb-3">
+                    <h2 class="text-blue fs-1">C$ 2,162.87</h2>
+                    </div>
+                    <div class="row">
+                        <div class="detail col-md-6 text-blue">
+                            <p>Numero de Factura</p>
+                            <p>Fecha de Facturación</p>
+                            <p>Fecha de Pago</p>
+                            <p>Periodo</p>
+                            <p>Estado</p>
+                        </div>
+                        <div class="amount col-md-6">
+                            <p>51626</p>
+                            <p>01/01/2022</p>
+                            <p>28/01/2022</p>
+                            <p>Enero 2022</p>
+                            <p class="text-danger">Cancelado</p>
+                        </div>
+                    </div>
+
+                    <x-slot name="footer">
+                        <a href="#" class="text-blue">
+                            <i class="bi bi-download"></i>
+                            Ver factura
+                        </a>
+                    </x-slot>
+
+                </x-card>
+
             </div>
         </div>
     </div>
