@@ -3,7 +3,7 @@
 @section('content')
     <div class="container contact-form">
         <div class="contact-image">
-            <img src="{{ asset('img/logos/UNAN.png')}}" alt="rocket_contact"/>
+            <img src="{{ asset('img/logos/UNAN.png')}}" alt="Unan"/>
         </div>
         <form method="POST" action="{{ route('login') }}">
             @csrf
@@ -40,7 +40,7 @@
                 </div>
             </div>
 
-            <div class="form-group row my-2 mb-5">
+            <div class="form-group row mt-2 mb-5">
                 <div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="remember"
@@ -54,17 +54,15 @@
             </div>
 
             <div class="form-group">
-                <div class="">
-                    <button type="submit" class="btn btn-primary me-3">
-                        {{ __('Iniciar sesión') }}
-                    </button>
+                <button type="submit" class="btn btn-primary me-3">
+                    {{ __('Iniciar sesión') }}
+                </button>
 
-                    @if (Route::has('password.request'))
-                        <a class="" href="{{ route('password.request') }}">
-                            {{ __('Recuperar contraseña') }}
-                        </a>
-                    @endif
-                </div>
+                @if (Route::has('password.request'))
+                    <a class="" href="{{ route('password.request') }}">
+                        {{ __('Recuperar contraseña') }}
+                    </a>
+                @endif
             </div>
         </form>
 
