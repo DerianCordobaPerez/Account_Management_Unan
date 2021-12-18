@@ -23,7 +23,7 @@
 
         <!-- Main -->
         <main class="container">
-            @include('components.alert')
+            <x-alert />
             @yield('content')
         </main>
 
