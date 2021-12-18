@@ -22,7 +22,7 @@
         @endauth
 
         <!-- Main -->
-        <main class="container">
+        <main class="container mt-2">
             <x-alert />
             @yield('content')
         </main>
