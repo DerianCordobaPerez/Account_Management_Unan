@@ -19,6 +19,7 @@ class RedirectHelper
      */
     private function __construct()
     {
+
     }
 
     /**
