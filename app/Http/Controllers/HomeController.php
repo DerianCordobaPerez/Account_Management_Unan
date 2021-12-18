@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\helpers\ExchangeRateHelper;
 use App\helpers\ViewHelper;
-use Exception;
 use Illuminate\View\View;
-use SoapClient;
 use SoapFault;
 
 /**

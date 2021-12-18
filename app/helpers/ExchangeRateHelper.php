@@ -14,8 +14,20 @@ class ExchangeRateHelper
      * @var ExchangeRateHelper|null
      */
     private static ?ExchangeRateHelper $instance = null;
+    /**
+     * @var string
+     */
     private string $api;
+    /**
+     * @var array
+     */
+    /**
+     * @var array
+     */
     private array $options, $data;
+    /**
+     * @var mixed
+     */
     private mixed $client;
 
     /**
@@ -37,6 +49,9 @@ class ExchangeRateHelper
     }
 
     /**
+     * Build this object with all attributes
+     *
+     * @return $this
      * @throws SoapFault
      */
     public function build(): ExchangeRateHelper
@@ -45,14 +60,12 @@ class ExchangeRateHelper
         $this->setOptions([
             'cache_wsdl'     => WSDL_CACHE_NONE,
             'trace'          => 1,
-            'stream_context' => stream_context_create(
-                [
-                    'ssl' => [
-                        'verify_peer'       => false,
-                        'verify_peer_name'  => false,
-                        'allow_self_signed' => true
-                    ]
-                ]
+            'stream_context' => stream_context_create([
+                'ssl' => [
+                    'verify_peer'       => false,
+                    'verify_peer_name'  => false,
+                    'allow_self_signed' => true
+                ]]
             )
         ]);
         $this->setClient(new SoapClient($this->getApi(), $this->getOptions()));
@@ -60,6 +73,9 @@ class ExchangeRateHelper
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function get(): mixed
     {
         $result = $this->getClient()->RecuperaTC_Dia($this->getData());

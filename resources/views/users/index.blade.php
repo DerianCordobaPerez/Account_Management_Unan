@@ -1,8 +1,10 @@
 @extends('layouts.app', ['title' => 'Gestión de usuarios'])
 
 @section('content')
+    {{Breadcrumbs::render()}}
+
     @if(count($users) > 0)
-        <table class="table table-light table-striped mt-4">
+        <table class="table table-light table-striped">
             <tr>
                 <th scope="col">Información</th>
                 <th scope="col">Acciones</th>

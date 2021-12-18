@@ -69,12 +69,8 @@
 
 /**/
 
-* {
-    font-family: sans-serif;
-}
-
 .navbar {
-    background: linear-gradient(#2780ab, #145777);
+    background: var(--dark-blue-gradient);
     color: #fff;
 }
 
@@ -187,10 +183,15 @@ li .dropdown-item:hover {
 
 /* ----------------- Component -------------------- */
 
+:root {
+    --dark-blue: #145777;
+    --dark-blue-gradient: linear-gradient(#2780ab, #145777);
+}
 
 * {
     padding: 0;
     margin: 0;
+    font-family: sans-serif;
 }
 
 body {
@@ -206,7 +207,15 @@ hr {
     border: 1px solid #000;
 }
 
-.text-blue{
-    color: #145777;
+.text-blue {
+    color: var(--dark-blue);
+}
+
+.bg-blue {
+    background: var(--dark-blue);
+}
+
+.bg-blue-gradient {
+    background: var(--dark-blue-gradient);
 }
 

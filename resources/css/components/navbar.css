@@ -1,9 +1,5 @@
-* {
-    font-family: sans-serif;
-}
-
 .navbar {
-    background: linear-gradient(#2780ab, #145777);
+    background: var(--dark-blue-gradient);
     color: #fff;
 }
 
