@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 
 class Card extends Component
 {
-    public $title;
+    public string $title;
     /**
      * Create a new component instance.
      *

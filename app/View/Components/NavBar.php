@@ -9,7 +9,7 @@ use Closure;
 class NavBar extends Component
 {
 
-    public $title;
+    public string $title;
 
     /**
      * Create a new component instance.
