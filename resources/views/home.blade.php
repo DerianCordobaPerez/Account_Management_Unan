@@ -3,6 +3,7 @@
 @section('content')
     <div class="mt-4">
         <div class="row">
+            <p>{{$exchangeRate}}</p>
             <!-- User information card -->
             <div class="col-md-6">
                 <div class="card shadow">
