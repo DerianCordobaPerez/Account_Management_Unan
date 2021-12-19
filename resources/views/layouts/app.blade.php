@@ -9,6 +9,9 @@
 
     <title>{{$title ?? 'Inicio'}}</title>
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png"  href="{{ asset('img/logos/favicon.png') }}" />
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('css')
@@ -22,7 +25,7 @@
         @endauth
 
         <!-- Main -->
-        <main class="container mt-2">
+        <main class="container mt-4">
             <x-alert />
             @yield('content')
         </main>
