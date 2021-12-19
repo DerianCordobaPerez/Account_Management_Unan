@@ -1,57 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Iniciar sesión'])
 
 @section('content')
     <div class="container contact-form">
         <div class="contact-image">
             <img src="{{ asset('img/logos/UNAN.png')}}" alt="Unan"/>
         </div>
-        <form method="POST" action="{{ route('login') }}">
+
+        <x-form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <div class="form-group">
-                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
+            <x-field name="email" label="Correo" type="email" value="{{old('email')}}" />
 
-                <div class="col-md-12">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                           name="email"
-                           value="{{ old('email') }}" required autocomplete="email" autofocus>
+            <x-field name="password" label="Contraseña" type="password" />
 
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
-
-                <div class="col-md-12">
-                    <input id="password" type="password"
-                           class="form-control w-100 @error('password') is-invalid @enderror"
-                           name="password" required autocomplete="current-password">
-
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="form-group row mt-2 mb-5">
-                <div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember"
-                               id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                        <label class="form-check-label" for="remember">
-                            {{ __('Recordar') }}
-                        </label>
-                    </div>
-                </div>
-            </div>
+            <x-field name="remember" type="checkbox" label="Recordarme" checked="{{ old('remember') ? 'checked' : '' }}" />
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary me-3">
@@ -64,7 +26,7 @@
                     </a>
                 @endif
             </div>
-        </form>
+        </x-form>
 
     </div>
 @endsection
