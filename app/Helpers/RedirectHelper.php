@@ -1,7 +1,6 @@
 <?php
 
-namespace App\helpers;
-
+namespace App\Helpers;
 use Closure;
 
 /**
@@ -9,33 +8,12 @@ use Closure;
  */
 class RedirectHelper
 {
-    /**
-     * @var RedirectHelper|null
-     */
-    private static ?RedirectHelper $instance = null;
+    use SingletonHelper;
 
     /**
      * RedirectHelper constructor
      */
-    private function __construct()
-    {
-
-    }
-
-    /**
-     * Get instance using singleton pattern
-     *
-     * @return RedirectHelper
-     */
-    public static function getInstance(): RedirectHelper
-    {
-        // if instance is null, create new instance
-        if (is_null(static::$instance))
-            static::$instance = new RedirectHelper();
-
-        // return instance
-        return static::$instance;
-    }
+    private function __construct() { }
 
     /**
      * Redirect to given url if not contains any roles

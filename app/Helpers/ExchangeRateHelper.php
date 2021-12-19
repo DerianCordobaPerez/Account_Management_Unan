@@ -1,6 +1,6 @@
 <?php
 
-namespace App\helpers;
+namespace App\Helpers;
 
 use SoapClient;
 use SoapFault;
@@ -10,21 +10,18 @@ use SoapFault;
  */
 class ExchangeRateHelper
 {
-    /**
-     * @var ExchangeRateHelper|null
-     */
-    private static ?ExchangeRateHelper $instance = null;
+    use SingletonHelper;
+
     /**
      * @var string
      */
     private string $api;
-    /**
-     * @var array
-     */
+
     /**
      * @var array
      */
     private array $options, $data;
+
     /**
      * @var mixed
      */
@@ -34,19 +31,6 @@ class ExchangeRateHelper
      * ExchangeRateHelper constructor
      */
     private function __construct() {}
-
-    /**
-     * Get instance of ExchangeRateHelper
-     *
-     * @return ExchangeRateHelper
-     */
-    public static function getInstance(): ExchangeRateHelper
-    {
-        if (is_null(static::$instance)) {
-            static::$instance = new ExchangeRateHelper();
-        }
-        return static::$instance;
-    }
 
     /**
      * Build this object with all attributes
