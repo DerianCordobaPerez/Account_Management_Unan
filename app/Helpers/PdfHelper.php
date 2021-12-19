@@ -1,21 +1,18 @@
 <?php
 
-namespace App\helpers;
+namespace App\Helpers;
 
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Response;
 
 class PdfHelper
 {
+    use SingletonHelper;
+
     /**
      * @var PDF
      */
     private PDF $pdf;
-
-    /**
-     * @var PdfHelper|null
-     */
-    private static ?PdfHelper $instance = null;
 
     /**
      * PdfHelper constructor.
@@ -24,22 +21,6 @@ class PdfHelper
     {
         // Create new PDF
         $this->create();
-    }
-
-    /**
-     * Get instance of PdfHelper
-     *
-     * @return PdfHelper
-     */
-    public static function getInstance(): PdfHelper
-    {
-        // Check if instance is null
-        if (is_null(static::$instance))
-            // Create new instance
-            static::$instance = new PdfHelper();
-
-        // Return instance
-        return static::$instance;
     }
 
     /**

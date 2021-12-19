@@ -1,6 +1,6 @@
 <?php
 
-namespace App\helpers;
+namespace App\Helpers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\View as ViewMake;
@@ -11,6 +11,7 @@ use Illuminate\View\View;
  */
 class ViewHelper
 {
+    use SingletonHelper;
 
     /**
      * @var RedirectHelper
@@ -24,22 +25,6 @@ class ViewHelper
     {
         // Set the redirect helper using singleton pattern
         $this->redirectHelper = RedirectHelper::getInstance();
-    }
-
-    /**
-     * @var ViewHelper|null
-     */
-    private static ?ViewHelper $instance = null;
-
-    /**
-     * @return ViewHelper
-     */
-    public static function getInstance(): ViewHelper
-    {
-        if (is_null(static::$instance))
-            static::$instance = new ViewHelper();
-
-        return static::$instance;
     }
 
     /**
