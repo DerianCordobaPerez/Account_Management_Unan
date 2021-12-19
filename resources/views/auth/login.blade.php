@@ -13,12 +13,10 @@
 
             <x-field name="password" label="Contraseña" type="password" />
 
-            <x-field name="remember" type="checkbox" label="Recordarme" checked="{{ old('remember') ? 'checked' : '' }}" />
+            <x-field name="remember" type="checkbox" label="Recordarme" checked="{{old('remember') ? 'checked' : ''}}" />
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary me-3">
-                    {{ __('Iniciar sesión') }}
-                </button>
+                <x-button title="Iniciar sesión" class="btn btn-primary me-3" type="submit" />
 
                 @if (Route::has('password.request'))
                     <a class="" href="{{ route('password.request') }}">
