@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{$title ?? 'Inicio'}}</title>
+    <title>UNAN: {{$title ?? 'Inicio'}}</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png"  href="{{ asset('img/logos/favicon.png') }}" />
@@ -25,7 +25,7 @@
         @endauth
 
         <!-- Main -->
-        <main class="container mt-4">
+        <main id="main" class="container">
             <x-alert />
             @yield('content')
         </main>

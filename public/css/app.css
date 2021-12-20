@@ -138,10 +138,10 @@ li .dropdown-item:hover {
 }
 
 .footer {
-    margin-top: 50px;
     width: 100%;
     height: 50px;
-    background:linear-gradient(#2780ab, #145777);
+    bottom: 0;
+    background: linear-gradient(#2780ab, #145777);
     color: #fff;
     position: absolute;
 }
@@ -194,8 +194,12 @@ li .dropdown-item:hover {
     font-family: sans-serif;
 }
 
+html,
 body {
     background-color: #caced1;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 a {
@@ -205,6 +209,15 @@ a {
 hr {
     color: #000;
     border: 1px solid #000;
+}
+
+#app {
+    min-height: 100%;
+    position: relative;
+}
+
+#main {
+    padding: 10px 10px 70px;
 }
 
 .text-blue {
