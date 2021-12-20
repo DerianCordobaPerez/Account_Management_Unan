@@ -44,3 +44,8 @@ hr {
 .bg-blue-gradient {
     background: var(--dark-blue-gradient);
 }
+
+.ms-n5 {
+    margin-left: -40px;
+}
+
