@@ -39,7 +39,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/0496ae07d8.js" crossorigin="anonymous"></script>
-    @yield('javascript')
+    @yield('js')
 </body>
 
 </html>
