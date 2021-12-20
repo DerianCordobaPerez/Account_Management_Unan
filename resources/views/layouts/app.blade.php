@@ -21,7 +21,7 @@
     <div id="app">
         <!-- Navbar -->
         @auth
-            <x-nav-bar title="{{$title}}" />
+            <x-nav-bar title="{{$title ?? 'Inicio'}}" />
         @endauth
 
         <!-- Main -->

@@ -13,3 +13,9 @@ const filterTable = () => {
         }
     })
 }
+
+const resetTable = () => {
+    const table = document.querySelector('#payment-table')
+    const tr = table.querySelectorAll('tr')
+    tr.forEach(tr => tr.style.display = '')
+}
