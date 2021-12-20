@@ -11,7 +11,7 @@
 
         <div class="col-md-8 d-flex justify-content-end">
             <div class="input-group">
-                <input class="form-control border-end-0 border" onkeyup="filterTable()" id="search-payment-id" type="search" placeholder="Buscar por número de factura">
+                <input class="form-control border-end-0 border" onsearch="resetTable()" onkeyup="filterTable()" id="search-payment-id" type="search" placeholder="Buscar por número de factura">
                 <span class="input-group-append">
                     <button class="btn bg-white border-start-0 border-bottom-0 border ms-n5" type="button">
                         <i class="fa fa-search"></i>
