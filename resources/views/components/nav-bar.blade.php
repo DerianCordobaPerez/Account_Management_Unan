@@ -21,19 +21,44 @@
                     </a>
                 </li>
 
-                <!-- Option registros -->
-                <li class="nav-item dropdown navbar-option">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-list-check"></i>
-                        Registros
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{route('payments.index')}}">Recibos de pagos</a></li>
-                        <li><a class="dropdown-item" href="#">option 2</a></li>
-                        <li><a class="dropdown-item" href="#">option 3</a></li>
-                        <li><a class="dropdown-item" href="#">option 4</a></li>
-                    </ul>
-                </li>
+                @if(auth()->user()->isAdmin())
+                    <!-- Option registros -->
+                    <li class="nav-item dropdown navbar-option">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-list-check"></i>
+                            Registros
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{route('payments.index')}}">
+                                    <i class="bi bi-credit-card-2-front"></i>
+                                    Recibos de pagos
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="{{route('roles.index')}}">
+                                    <i class="bi bi-ui-radios"></i>
+                                    Roles
+                                </a>
+                            </li>
+    
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="bi bi-card-text"></i>
+                                    Definir conceptos
+                                </a>
+                            </li>
+    
+                            <li>
+                                <a class="dropdown-item" aria-current="true" href="{{route('users.index')}}">
+                                    <i class="bi bi-person-circle"></i>
+                                    Usuarios
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
 
                 <!-- Option herramientas -->
                 <li class="nav-item dropdown navbar-option">
@@ -43,30 +68,9 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item" href="{{route('password.reset', '8555588')}}">
+                            <a class="dropdown-item" href="{{route('password.request')}}">
                                 <i class="bi bi-lock-fill"></i>
                                 Cambiar contraseña
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="bi bi-ui-radios"></i>
-                                Roles
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="bi bi-card-text"></i>
-                                Definir conceptos
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" aria-current="true" href="{{route('users.index')}}">
-                                <i class="bi bi-person-circle"></i>
-                                Usuarios
                             </a>
                         </li>
                     </ul>

@@ -2,16 +2,6 @@
 
 @section('content')
 
-
-    <div class="col-md-12 alert bg-ligth mb-2 d-flex">
-        <div class="d-flex justify-content-start">
-            <h4>Tasa de intercambio</h4>
-        </div>
-        <div class="d-flex justify-content-end">
-           <p class="fw-bold">Venta C$: {{ $exchangeRate }}</p> 
-        </div>
-        
-    </div>
     <div class="row">
         <!-- User information card -->
         <div class="col-md-6">
@@ -75,7 +65,7 @@
                 <div class="col-md-8">
                     <form class="d-flex justify-content-start">
                         <div class="input-group mb-4 w-100">
-                            <input type="email" class="form-control" placeholder="Barra de busqueda" />
+                            <input type="email" class="form-control" placeholder="Barra de busqueda"/>
                             <span class="input-group-btn">
                                 <button class="btn bg-blue-gradient" type="submit">
                                     <i class="bi bi-search text-white"></i>
@@ -85,6 +75,11 @@
                     </form>
                 </div>
 
+                <div class="col-md-4">
+                    <div class="d-flex justify-content-end">
+                        <p class="fw-bold">Tasa de cambio: {{$exchangeRate}}</p>
+                    </div>
+                </div>
             </div>
 
             <x-card title="Ultima factura">

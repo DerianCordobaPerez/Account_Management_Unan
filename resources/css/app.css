@@ -11,6 +11,7 @@
 @import "components/breadcrumb";
 
 :root {
+    --light-blue: #2780ab;
     --dark-blue: #145777;
     --dark-blue-gradient: linear-gradient(#2780ab, #145777);
 }
@@ -49,6 +50,10 @@ hr {
 
 .text-blue {
     color: var(--dark-blue);
+}
+
+.text-blue:hover {
+    color: var(--light-blue);
 }
 
 .bg-blue {

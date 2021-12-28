@@ -154,6 +154,11 @@ li .dropdown-item:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #fff;
+}
+
+.networks:hover {
+    color: #fff;
 }
 
 .facebook-icon {
@@ -246,6 +251,7 @@ li .dropdown-item:hover {
 /* ----------------- Component -------------------- */
 
 :root {
+    --light-blue: #2780ab;
     --dark-blue: #145777;
     --dark-blue-gradient: linear-gradient(#2780ab, #145777);
 }
@@ -284,6 +290,10 @@ hr {
 
 .text-blue {
     color: var(--dark-blue);
+}
+
+.text-blue:hover {
+    color: var(--light-blue);
 }
 
 .bg-blue {

@@ -15,6 +15,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #fff;
+}
+
+.networks:hover {
+    color: #fff;
 }
 
 .facebook-icon {

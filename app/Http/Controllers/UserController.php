@@ -35,7 +35,8 @@ class UserController extends Controller
     {
         return $this->viewHelper->render(
             'users.index',
-            ['users' => User::all()]
+            ['users' => User::select()->whereNotIn('names', ['Administrator'])->get()],
+            ['admin']
         );
     }
 
@@ -73,7 +74,8 @@ class UserController extends Controller
     {
         return $this->viewHelper->render(
             'users.show',
-            ['user' => $user]
+            ['user' => $user],
+            ['admin', 'Administrator'],
         );
     }
 
@@ -121,7 +123,8 @@ class UserController extends Controller
             [
                 'user' => $user,
                 'payments' => $user->payments
-            ]
+            ],
+            ['admin', 'Administrator']
         );
     }
 }

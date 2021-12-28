@@ -1,4 +1,4 @@
-<div class="card shadow">
+<div {{$attributes->merge(['class' => 'card shadow'])}}>
     @isset($title)
         <div class="card-header">
             <h5 class="fw-bold text-blue text-center">
@@ -10,7 +10,7 @@
         {{$slot}}
     </div>
     @isset($footer)
-        <div class="card-footer text-center">
+        <div class="card-footer text-center text-blue">
             {{$footer}}
         </div>
     @endisset
