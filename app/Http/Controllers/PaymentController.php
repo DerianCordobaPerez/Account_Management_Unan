@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\helpers\ViewHelper;
+use App\Helpers\ViewHelper;
 use App\Models\Payment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

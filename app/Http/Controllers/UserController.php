@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\helpers\RedirectHelper;
-use App\helpers\ViewHelper;
+use App\Helpers\RedirectHelper;
+use App\Helpers\ViewHelper;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

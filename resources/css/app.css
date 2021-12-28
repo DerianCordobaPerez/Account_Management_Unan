@@ -21,8 +21,12 @@
     font-family: sans-serif;
 }
 
+html,
 body {
     background-color: #caced1;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 a {
@@ -32,6 +36,15 @@ a {
 hr {
     color: #000;
     border: 1px solid #000;
+}
+
+#app {
+    min-height: 100%;
+    position: relative;
+}
+
+#main {
+    padding: 10px 10px 70px;
 }
 
 .text-blue {
@@ -45,3 +58,8 @@ hr {
 .bg-blue-gradient {
     background: var(--dark-blue-gradient);
 }
+
+.ms-n5 {
+    margin-left: -40px;
+}
+

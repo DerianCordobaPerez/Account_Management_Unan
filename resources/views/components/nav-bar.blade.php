@@ -28,7 +28,7 @@
                         Registros
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">option 1</a></li>
+                        <li><a class="dropdown-item" href="{{route('payments.index')}}">Recibos de pagos</a></li>
                         <li><a class="dropdown-item" href="#">option 2</a></li>
                         <li><a class="dropdown-item" href="#">option 3</a></li>
                         <li><a class="dropdown-item" href="#">option 4</a></li>
@@ -43,7 +43,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{route('password.reset', '8555588')}}">
                                 <i class="bi bi-lock-fill"></i>
                                 Cambiar contraseña
                             </a>
