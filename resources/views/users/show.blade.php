@@ -1,6 +1,7 @@
 @extends('layouts.app', ['title' => "Usuario: $user->names"])
 
 @section('content')
+
     <section class="py-5">
         <div class="container">
             <div class="row">
@@ -20,7 +21,7 @@
                             <a href="{{route('users.index')}}" class="w-100 btn btn-primary my-2">
                                 <i class="bi bi-arrow-return-left"></i> Volver
                             </a>
-                            <a href="{{route('payments.index')}}" class="w-100 ms-2 btn btn-primary my-2">
+                            <a href="{{route('users.payments', $user->id)}}" class="w-100 ms-2 btn btn-primary my-2">
                                 <i class="bi bi-info-circle"></i> Información de pagos
                             </a>
                         </div>

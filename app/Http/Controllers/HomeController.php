@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\ExchangeRateHelper;
 use App\Helpers\ViewHelper;
 use Illuminate\View\View;
+use App\Models\Role;
 use SoapFault;
 
 /**
@@ -47,7 +48,17 @@ class HomeController extends Controller
      */
     public function home(): View
     {
-        return $this->viewHelper->render('home', ['exchangeRate' => $this->exchangeRateHelper->build()->get()]);
+        if(auth()->user()->isAdmin()) {
+            return $this->viewHelper->render(
+                'admin.index', 
+                ['roles' => Role::select()->whereNotIn('name', ['admin', 'Admin'])->get()]
+            );
+        }
+
+        return $this->viewHelper->render(
+            'home', 
+            ['exchangeRate' => $this->exchangeRateHelper->build()->get()]
+        );
     }
 
     /**

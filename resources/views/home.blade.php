@@ -1,6 +1,7 @@
 @extends('layouts.app', ['title' => 'Panel principal'])
 
 @section('content')
+
     <div class="row">
         <!-- User information card -->
         <div class="col-md-6">
@@ -50,7 +51,7 @@
                     </x-accordion>
 
                     <x-slot name="footer">
-                        <a class="text-blue" href="{{route('users.payments', auth()->user()->id)}}">
+                        <a class="text-blue" href="{{ route('payments.index') }}">
                             Ver todas
                         </a>
                     </x-slot>

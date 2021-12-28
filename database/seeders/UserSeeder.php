@@ -62,5 +62,85 @@ class UserSeeder extends Seeder
             'birthday' => '1999-09-07',
             'password' => Hash::make('password')
         ]);
+
+        User::create([
+            'names' => 'Bryan Timador',
+            'lastnames' => 'Perez Alvarado',
+            'email' => 'rosa11@gmail.com',
+            'sex' => 'feminine',
+            'identification' => '281-4455-77a77',
+            'maritalStatus' => 'divorced',
+            'phone' => '+00 0000 0000',
+            'nationality' => 'Nicaragua',
+            'municipality' => 'Managua',
+            'address' => 'Direccion',
+            'neighborhood' => 'Barrio',
+            'birthday' => '1999-09-07',
+            'password' => Hash::make('password')
+        ]);
+
+        User::create([
+            'names' => 'Eddy Urbina',
+            'lastnames' => 'Perez Alvarado',
+            'email' => 'ros111@gmail.com',
+            'sex' => 'feminine',
+            'identification' => '281-4455-77a77',
+            'maritalStatus' => 'divorced',
+            'phone' => '+00 0000 0000',
+            'nationality' => 'Nicaragua',
+            'municipality' => 'Managua',
+            'address' => 'Direccion',
+            'neighborhood' => 'Barrio',
+            'birthday' => '1999-09-07',
+            'password' => Hash::make('password')
+        ]);
+
+        User::create([
+            'names' => 'Glenda la del viatico',
+            'lastnames' => 'Perez Alvarado',
+            'email' => 'rosa@gmail.com',
+            'sex' => 'feminine',
+            'identification' => '281-4455-77a77',
+            'maritalStatus' => 'divorced',
+            'phone' => '+00 0000 0000',
+            'nationality' => 'Nicaragua',
+            'municipality' => 'Managua',
+            'address' => 'Direccion',
+            'neighborhood' => 'Barrio',
+            'birthday' => '1999-09-07',
+            'password' => Hash::make('password')
+        ]);
+
+        User::create([
+            'names' => 'Cabeza de chimbomba numero 31',
+            'lastnames' => 'Perez Alvarado',
+            'email' => '111@gmail.com',
+            'sex' => 'feminine',
+            'identification' => '281-4455-77a77',
+            'maritalStatus' => 'divorced',
+            'phone' => '+00 0000 0000',
+            'nationality' => 'Nicaragua',
+            'municipality' => 'Managua',
+            'address' => 'Direccion',
+            'neighborhood' => 'Barrio',
+            'birthday' => '1999-09-07',
+            'password' => Hash::make('password')
+        ]);
+
+        User::create([
+            'names' => 'Frente de trailer',
+            'lastnames' => 'Perez Alvarado',
+            'email' => 'r@gmail.com',
+            'sex' => 'feminine',
+            'identification' => '281-4455-77a77',
+            'maritalStatus' => 'divorced',
+            'phone' => '+00 0000 0000',
+            'nationality' => 'Nicaragua',
+            'municipality' => 'Managua',
+            'address' => 'Direccion',
+            'neighborhood' => 'Barrio',
+            'birthday' => '1999-09-07',
+            'password' => Hash::make('password')
+        ]);
     }
 }
