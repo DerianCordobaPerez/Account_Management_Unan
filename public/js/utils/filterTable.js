@@ -5,7 +5,7 @@ const filterTable = () => {
     const tr = table.querySelectorAll('tr')
 
     tr.forEach(tr => {
-        const td = tr.querySelectorAll('td')[0]
+        const td = tr.querySelectorAll('td')[1]
         if(td) {
             const id = `${td.textContent || td.innerText}`
             const exists = id.toUpperCase().indexOf(filter) > -1
