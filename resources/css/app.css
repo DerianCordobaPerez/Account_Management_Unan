@@ -8,6 +8,7 @@
 /* ----------------- Component -------------------- */
 @import "components/navbar.css";
 @import "components/footer.css";
+@import "components/breadcrumb";
 
 :root {
     --dark-blue: #145777;

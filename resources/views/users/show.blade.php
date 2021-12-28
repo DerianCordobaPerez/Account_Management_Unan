@@ -1,6 +1,7 @@
 @extends('layouts.app', ['title' => "Usuario: $user->names"])
 
 @section('content')
+
     <section class="py-5">
         <div class="container">
             <div class="row">
