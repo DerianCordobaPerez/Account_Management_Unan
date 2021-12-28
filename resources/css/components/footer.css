@@ -4,7 +4,7 @@
     bottom: 0;
     background: linear-gradient(#2780ab, #145777);
     color: #fff;
-    position: absolute;
+    position: fixed;
 }
 
 .networks {

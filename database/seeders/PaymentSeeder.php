@@ -15,7 +15,7 @@ class PaymentSeeder extends Seeder
     public function run()
     {
         Payment::create([
-            'user_id' => 1,
+            'user_id' => 2,
             'concept' => 'Pago de servicio',
             'amount' => '100',
             'date_made_payment' => '2020-01-01',
@@ -34,7 +34,7 @@ class PaymentSeeder extends Seeder
         ]);
 
         Payment::create([
-            'user_id' => 1,
+            'user_id' => 2,
             'concept' => 'Pago de servicio',
             'amount' => '2000',
             'date_made_payment' => '2020-03-02',
