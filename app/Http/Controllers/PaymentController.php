@@ -28,7 +28,7 @@ class PaymentController extends Controller
     {
         return $this->viewHelper->render(
             'payments.index',
-            ['payments' => Payment::latest()->paginate(5)],
+            ['payments' => Payment::latest()->paginate(10)],
             ['admin']
         );
     }

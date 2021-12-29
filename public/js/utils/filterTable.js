@@ -1,7 +1,7 @@
-const filterTable = () => {
-    const input = document.querySelector('#search-payment-id')
+const filterTable = (input, tableId) => {
     const filter = input.value.toUpperCase()
-    const table = document.querySelector('#payment-table')
+    console.log(input, filter)
+    const table = document.querySelector(`#${tableId}`)
     const tr = table.querySelectorAll('tr')
 
     tr.forEach(tr => {
@@ -14,8 +14,8 @@ const filterTable = () => {
     })
 }
 
-const resetTable = () => {
-    const table = document.querySelector('#payment-table')
+const resetTable = (tableId) => {
+    const table = document.querySelector(`#${tableId}`)
     const tr = table.querySelectorAll('tr')
     tr.forEach(tr => tr.style.display = '')
 }

@@ -35,7 +35,7 @@ class UserController extends Controller
     {
         return $this->viewHelper->render(
             'users.index',
-            ['users' => User::select()->whereNotIn('names', ['Administrator'])->get()],
+            ['users' => User::select()->whereNotIn('names', ['Administrator'])->paginate(10)],
             ['admin']
         );
     }

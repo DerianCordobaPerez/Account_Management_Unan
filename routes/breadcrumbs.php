@@ -15,8 +15,7 @@ Breadcrumbs::for('users.index', function (BreadcrumbTrail $trail) {
 });
 
 // Payments
-Breadcrumbs::for('payments', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('payments.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Payments', route('payments.index'));
+    $trail->push('Pagos', route('payments.index'));
 });
-
