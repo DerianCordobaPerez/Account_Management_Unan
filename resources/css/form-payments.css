@@ -1,0 +1,25 @@
+.title-form-payments{
+    border-bottom: 5px solid #145777;
+    margin-bottom: 25px;
+    color: #145777;
+}
+
+.data-form{
+    color: #145777;
+    font-weight: bold;
+}
+
+form{
+    background-color:#fff;
+    padding: 20px 40px;
+}
+
+textarea{
+    resize: none;
+}
+
+.change{
+    border: 1px solid #aaa;
+    text-align: center;
+    padding: 5px 0;
+}
