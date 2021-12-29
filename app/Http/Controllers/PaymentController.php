@@ -7,16 +7,36 @@ use App\Models\Payment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Helpers\ExchangeRateHelper;
 
 class PaymentController extends Controller
 {
 
+    /**
+     * @var ViewHelper
+     */
     private ViewHelper $viewHelper;
 
+    /**
+     * @var ExchangeRateHelper
+     */
+    private ExchangeRateHelper $exchangeRateHelper;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
+        // Require auth middleware
+        $this->middleware('auth');
+
         // Inject the view helper
         $this->viewHelper = ViewHelper::getInstance();
+
+        // Inject the exchange rate helper
+        $this->exchangeRateHelper = ExchangeRateHelper::getInstance();
     }
 
     /**
@@ -40,7 +60,11 @@ class PaymentController extends Controller
      */
     public function create(): View|RedirectResponse
     {
-        return $this->viewHelper->render('payments.create', null, ['admin']);
+        //return $this->viewHelper->render('payments.create', null, ['admin']);
+        return $this->viewHelper->render(
+            'payments.create', 
+            ['exchangeRate' => $this->exchangeRateHelper->build()->get()]
+        );
     }
 
     /**

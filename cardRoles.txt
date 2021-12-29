@@ -1,0 +1,22 @@
+ <x-card title='Roles'>
+                <div class="row">
+                    <div class="col-md-6">
+                        @foreach($roles as $role)
+                            {{ $role->name }}
+                        @endforeach
+                    </div>
+
+                    <div class="col-md-6">
+                        @foreach($roles as $role)
+                            <a href="{{route('roles.edit', $role->id)}}" class="text-blue">
+                                <i class="bi bi-pencil-square"></i>
+                                Editar
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+
+                <x-slot name="footer">
+                    Ver todos los roles
+                </x-slot>
+            </x-card>

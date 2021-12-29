@@ -4,6 +4,7 @@
 
 /* ----------------- Views -------------------- */
 @import "login.css";
+@import "form-payments.css";
 
 /* ----------------- Component -------------------- */
 @import "components/navbar.css";
