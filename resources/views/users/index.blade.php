@@ -3,25 +3,37 @@
 @section('content')
     {{Breadcrumbs::render()}}
 
+    <div class="input-group">
+        <input class="form-control border-end-0 border" onsearch="resetTable('users-table')" 
+            onkeyup="filterTable(this, 'users-table')" 
+            id="search-payment-id" type="search" 
+            placeholder="Buscar por nombre del usuario"
+        >
+        <span class="input-group-append">
+            <button class="btn bg-white border-start-0 border-bottom-0 border ms-n5" type="button">
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </div>
+
     @if(count($users) > 0)
         <div class="table-responsive mt-2">
-            <table class="table table-striped table-bordered sortable align-middle">
+            <table id="users-table" class="table table-striped table-bordered sortable align-middle">
                 <thead class="bg-blue-gradient text-white">
                     <tr>
-                        <th scope="col">Información</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Nombre</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 @foreach($users as $user)
                     <tr class="table-light">
                         <td>
-                            <p class="d-block">
-                                <a class="text-dark" href="{{route('users.show', $user->id)}}">
-                                    <span>{{$user->names}}</span>
-                                    <span class="mx-2">|</span>
-                                    <span>{{$user->email}}</span>
-                                </a>
-                            </p>
+                            {{$user->email}}
+                        </td>
+                        
+                        <td>
+                            {{$user->names}}
                         </td>
     
                         <td>
@@ -39,6 +51,10 @@
                 @endforeach
             </table>
         </div>
+
+        <div class="d-flex justify-content-center">
+            {!! $users->links() !!}
+        </div>
     @else
         <p>No hay usuarios registrados</p>
     @endif
@@ -46,4 +62,5 @@
 
 @section('js')
     <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    <script src="{{asset('js/utils/filterTable.js')}}"></script>
 @endsection
