@@ -42,14 +42,14 @@
                                     Roles
                                 </a>
                             </li>
-    
+
                             <li>
                                 <a class="dropdown-item" href="#">
                                     <i class="bi bi-card-text"></i>
                                     Definir conceptos
                                 </a>
                             </li>
-    
+
                             <li>
                                 <a class="dropdown-item" aria-current="true" href="{{route('users.index')}}">
                                     <i class="bi bi-person-circle"></i>
