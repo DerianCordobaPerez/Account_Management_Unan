@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        return $this->redirectHelper->redirect('Admin', function () use ($request) {
+        return $this->redirectHelper->redirect('admin', function () use ($request) {
             User::create($request->all());
             return redirect()->route('users.index')->with('success', 'Usuario creado correctamente.');
         });

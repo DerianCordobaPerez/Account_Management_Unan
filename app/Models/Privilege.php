@@ -6,22 +6,16 @@ use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Role extends Model
+class Privilege extends Model
 {
     use HasFactory, SoftDeletes, SoftCascadeTrait;
     protected $dates = ['deleted_at'];
-    protected $softCascade = ['users'];
+    protected $softCascade = ['roles'];
 
-    public function users(): BelongsToMany
+    public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(User::class);
-    }
-
-    public function privileges(): BelongsToMany
-    {
-        return $this->belongsToMany(Privilege::class);
+        return $this->belongsToMany(Role::class);
     }
 }

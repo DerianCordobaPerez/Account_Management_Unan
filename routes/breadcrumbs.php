@@ -19,3 +19,9 @@ Breadcrumbs::for('payments.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Pagos', route('payments.index'));
 });
+
+// Roles
+Breadcrumbs::for('roles.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Gestión de roles', route('roles.index'));
+});

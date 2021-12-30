@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Helpers\ExchangeRateHelper;
+use SoapFault;
 
 class PaymentController extends Controller
 {
@@ -24,8 +25,6 @@ class PaymentController extends Controller
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -57,13 +56,14 @@ class PaymentController extends Controller
      * Show the form for creating a new resource.
      *
      * @return RedirectResponse|View
+     * @throws SoapFault
      */
     public function create(): View|RedirectResponse
     {
-        //return $this->viewHelper->render('payments.create', null, ['admin']);
         return $this->viewHelper->render(
-            'payments.create', 
-            ['exchangeRate' => $this->exchangeRateHelper->build()->get()]
+            'payments.create',
+            ['exchangeRate' => $this->exchangeRateHelper->build()->get()],
+            ['admin']
         );
     }
 
@@ -88,7 +88,8 @@ class PaymentController extends Controller
     {
         return $this->viewHelper->render(
             'payments.show',
-            ['payment' => $payment]
+            ['payment' => $payment],
+            ['admin']
         );
     }
 

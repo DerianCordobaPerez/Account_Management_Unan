@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -53,14 +54,14 @@ class User extends Authenticatable
         return $this->hasMany(Student::class);
     }
 
-    public function roles(): HasMany
+    public function roles(): BelongsToMany
     {
-        return $this->hasMany(Role::class);
+        return $this->belongsToMany(Role::class);
     }
 
-    public function payments(): HasMany
+    public function payments(): BelongsToMany
     {
-        return $this->hasMany(Payment::class);
+        return $this->belongsToMany(Payment::class);
     }
 
     public function authorize(array|string|null $roles): bool
