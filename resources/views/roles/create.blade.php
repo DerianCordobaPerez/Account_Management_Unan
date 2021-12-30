@@ -1,8 +1,13 @@
 @extends('layouts.app', ['title' => 'Creacion de Roles'])
 
 @section('content')
-    <form action="{{route('roles.create')}}" class="form">
+    <form action="{{route('roles.create')}}" class="form shadow">
         <h2 class="title-form">Creacion de roles</h2>
+        <h4 class="data-form">
+            <i class="bi bi-caret-down-fill"></i>
+            Datos Generales
+        </h4>
+        <hr>
 
         <div class="row mt-2 p-2">
             <div class="col-md-4">
@@ -27,7 +32,7 @@
                     @foreach ($privileges as $privilege)
                         <div class="col-md-4">
                             <label class="mx-2">
-                                <input type="checkbox" name="privileges[]" value="{{$privilege->id}}">
+                                <input type="checkbox" name="privileges[]" value="{{$privilege->id}}" onclick="validateCheckboxs()">
                                 {{$privilege->name}}
                             </label>
                         </div>
@@ -35,5 +40,14 @@
                 </div>
             </div>
         </div>
+
+        <div class="btn-group mt-2 d-flex gap-2">
+            <button type="submit" class="btn btn-success">Crear</button>
+            <a href="{{url()->previous()}}" class="btn btn-dark">Regresar</a>
+        </div>
     </form>
+@endsection
+
+@section('js')
+    <script src="{{asset('js/utils/validateCheckboxs.js')}}"></script>
 @endsection
