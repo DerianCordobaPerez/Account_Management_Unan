@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <x-slot name="footer">
-                    Ver detalles <i class="bi bi-arrow-right-circle"></i>
+                    <a href="{{route('concepts.index')}}">Ver detalles <i class="bi bi-arrow-right-circle"></i> </a> 
                 </x-slot>
             </x-card>
         </div>

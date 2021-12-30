@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\ConceptController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
         'users' => UserController::class,
         'payments' => PaymentController::class,
         'roles' => RoleController::class,
+        'concepts' => ConceptController::class,
+        'currencies' => CurrencyController::class,
     ]);
 
     Route::get('/users/{user}/payments', [UserController::class, 'payments'])->name('users.payments');
