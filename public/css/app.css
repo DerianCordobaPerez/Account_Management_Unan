@@ -69,31 +69,32 @@
 
 /**/
 
-.title-form-payments{
+.title-form {
     border-bottom: 5px solid #145777;
     margin-bottom: 25px;
     color: #145777;
 }
 
-.data-form{
+.data-form {
     color: #145777;
     font-weight: bold;
 }
 
-form{
+form {
     background-color:#fff;
     padding: 20px 40px;
 }
 
-textarea{
+textarea {
     resize: none;
 }
 
-.change{
+.change {
     border: 1px solid #aaa;
     text-align: center;
     padding: 5px 0;
 }
+
 .navbar {
     background: var(--dark-blue-gradient);
     color: #fff;
@@ -168,7 +169,7 @@ li .dropdown-item:hover {
     bottom: 0;
     background: linear-gradient(#2780ab, #145777);
     color: #fff;
-    position: fixed;
+    position: absolute;
 }
 
 .networks {
@@ -207,68 +208,32 @@ li .dropdown-item:hover {
 }
 
 
-.breadcrumbs {
-    border: 1px solid #cbd2d9;
-    border-radius: 0.3rem;
-    display: inline-flex;
-    overflow: hidden;
-  }
-  
-  .breadcrumbs__item {
-    background:linear-gradient(#2780ab, #145777);
-    color: #333;
-    outline: none;
-    padding: 0.25em 1.25em;
-    position: relative;
-  }
+.title-form {
+    border-bottom: 5px solid #145777;
+    margin-bottom: 25px;
+    color: #145777;
+}
 
+.data-form {
+    color: #145777;
+    font-weight: bold;
+}
 
-  .breadcrumbs__item:hover:after,
-  .breadcrumbs__item:hover {
-    background: #2780ab;
-  }
+form {
+    background-color:#fff;
+    padding: 20px 40px;
+}
 
-  .breadcrumbs__item > a{
-      color: #fff;
-  }
+textarea {
+    resize: none;
+}
 
-  
-  .breadcrumbs__item:focus:after,
-  .breadcrumbs__item:focus,
-  .breadcrumbs__item.is-active:focus {
-    background: #323f4a;
-    color: #fff;
-  }
-  
-  .breadcrumbs__item:after,
-  .breadcrumbs__item:before {
-    background:linear-gradient(#2780ab, #145777);
-    bottom: 0;
-    -webkit-clip-path: polygon(50% 50%, -50% -50%, 0 100%);
-            clip-path: polygon(50% 50%, -50% -50%, 0 100%);
-    content: "";
-    left: 100%;
-    position: absolute;
-    top: 0;
-    width: 1em;
-    z-index: 1;
-  }
-  
-  .breadcrumbs__item:before {
-    background: #caced1;
-    margin-left: 2px;
-  }
-  
-  .breadcrumbs__item:last-child {
-    border-right: none;
-  }
-  
-  .breadcrumbs__item.is-active {
-    background:linear-gradient(#2780ab, #145777);
-    opacity: 80%;
-    color: #fff;
-  }
-  
+.change {
+    border: 1px solid #aaa;
+    text-align: center;
+    padding: 5px 0;
+}
+
 /* ----------------- Bootstrap v5.0 -------------------- */
 
 /* ----------------- Views -------------------- */
