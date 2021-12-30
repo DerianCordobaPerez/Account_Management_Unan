@@ -4,12 +4,12 @@
 
 /* ----------------- Views -------------------- */
 @import "login.css";
-@import "form-payments.css";
+@import "forms.css";
 
 /* ----------------- Component -------------------- */
 @import "components/navbar.css";
 @import "components/footer.css";
-@import "components/breadcrumb";
+@import "forms.css";
 
 :root {
     --light-blue: #2780ab;

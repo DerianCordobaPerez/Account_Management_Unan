@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
+use App\Models\Privilege;
 use App\Models\Role;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -52,7 +53,7 @@ class RoleController extends Controller
     {
         return $this->viewHelper->render(
             'roles.create',
-            null,
+            ['privileges' => Privilege::all()],
             ['admin']
         );
     }
