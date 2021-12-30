@@ -1,9 +1,12 @@
 @extends('layouts.app', ['title' => 'Creación de Pago'])
 
 @section('content')
-    <form action="" class="form">
-    <h2 class="title-form-payments">Creacion de Pago</h3>
-        <h4 class="data-form"><i class="bi bi-caret-down-fill"></i>Datos Generales</h4>
+    <form class="form">
+    <h2 class="title-form-payments">Creacion de Pago</h2>
+        <h4 class="data-form">
+            <i class="bi bi-caret-down-fill"></i>
+            Datos Generales
+        </h4>
         <hr>
 
         <div class="row">
@@ -11,14 +14,14 @@
                 <label class="control-label d-block fw-bold mb-2" for="">Forma de pago</label>
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="wayToPay" id="" > 
+                        <input class="form-check-input" type="radio" name="wayToPay" id="" >
                         Efectivo
                     </label>
                 </div>
 
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="wayToPay" > 
+                        <input class="form-check-input" type="radio" name="wayToPay" >
                         Cheque
                     </label>
                 </div>
@@ -28,16 +31,14 @@
                 <label class="control-label d-block fw-bold mb-2" for="">Moneda</label>
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="
-                        currency" id="" > 
+                        <input class="form-check-input" type="radio" name="currency" id="">
                         Cordobas
                     </label>
                 </div>
 
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="
-                        currency" > 
+                        <input class="form-check-input" type="radio" name="currency">
                         Dolares
                     </label>
                 </div>
@@ -70,7 +71,7 @@
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="
-                        client" id="" > 
+                        client" id="" >
                         Estudiante
                     </label>
                 </div>
@@ -78,14 +79,14 @@
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="
-                        client" > 
+                        client" >
                         Trabajador
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="
-                        client" > 
+                        client" >
                         Otro
                     </label>
                 </div>
@@ -186,7 +187,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                    </tr>    
+                    </tr>
                 </table>
             </div>
         </div>
