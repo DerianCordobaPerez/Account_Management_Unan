@@ -30,6 +30,7 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Privilegios</th>
                         <th scope="col">Asignaciones</th>
                         <th scope="col">Acciones</th>
                     </tr>
@@ -39,6 +40,7 @@
                     <tr class="table-light">
                         <td class="fw-bold">#{{$role->id}}</td>
                         <td>{{$role->name}}</td>
+                        <td>{{$role->privileges->count()}}</td>
                         <td>{{$role->users->count()}}</td>
                         <td>
                             <form class="bg-transparent p-0" action="{{route('roles.destroy', $role->id)}}" method="POST">
@@ -52,7 +54,7 @@
                                     Editar
                                 </a>
 
-                                @csrf @method('PUT')
+                                @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm text-white mb-2 font-weight-bold shadow-sm">
                                     <i class="bi bi-trash"></i>
                                     Eliminar
@@ -63,6 +65,10 @@
                 @endforeach
             </table>
         </div>
+    @else
+        <h4 class="text-muted text-center mt-4">
+            No hay roles registrados.
+        </h4>
     @endif
 @endsection
 
