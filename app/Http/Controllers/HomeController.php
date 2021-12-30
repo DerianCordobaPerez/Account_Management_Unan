@@ -50,14 +50,20 @@ class HomeController extends Controller
     {
         if(auth()->user()->isAdmin()) {
             return $this->viewHelper->render(
-                'admin.index', 
-                ['roles' => Role::select()->whereNotIn('name', ['admin', 'Admin'])->get()]
+                'admin.index',
+                [
+                    'roles' => Role::select()->whereNotIn('name', ['admin', 'Admin'])->get(),
+                    'title' => 'Panel de administración',
+                ]
             );
         }
 
         return $this->viewHelper->render(
-            'home', 
-            ['exchangeRate' => $this->exchangeRateHelper->build()->get()]
+            'home',
+            [
+                'exchangeRate' => $this->exchangeRateHelper->build()->get(),
+                'title' => 'Panel principal',
+            ]
         );
     }
 

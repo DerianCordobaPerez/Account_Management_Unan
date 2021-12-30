@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Panel principal'])
+@extends('layouts.app', ['title' => $title])
 
 @section('content')
 

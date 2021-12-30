@@ -10,4 +10,5 @@ class Currency extends Model
 {
     use HasFactory, SoftDeletes;
     protected $dates = ['deleted_at'];
+    protected $fillable = ['name', 'abbreviation', 'country'];
 }

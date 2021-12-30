@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\RedirectHelper;
 use App\Models\Currency;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -11,12 +12,14 @@ use App\Helpers\ViewHelper;
 class CurrencyController extends Controller
 {
 
-   private ViewHelper $viewHelper;
+    private ViewHelper $viewHelper;
+    private RedirectHelper $redirectHelper;
 
-    public function __construct() 
+    public function __construct()
     {
         $this->middleware(['auth']);
         $this->viewHelper = ViewHelper::getInstance();
+        $this->redirectHelper = RedirectHelper::getInstance();
     }
 
     /**
@@ -37,7 +40,7 @@ class CurrencyController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View|RedirectResponse
      */
     public function create(): View|RedirectResponse
     {
@@ -51,18 +54,26 @@ class CurrencyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        return $this->redirectHelper->redirect('admin', function() use ($request) {
+            Currency::create([
+                'name' => $request->name,
+                'abbreviation' => $request->abbreviation,
+                'country' => $request->country,
+            ]);
+
+            return redirect()->route('currencies.index')->with('success', 'Moneda agregada correctamente');
+        });
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Currency  $currency
+     * @param Currency $currency
      * @return \Illuminate\Http\Response
      */
     public function show(Currency $currency)
@@ -73,34 +84,49 @@ class CurrencyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Currency  $currency
-     * @return \Illuminate\Http\Response
+     * @param Currency $currency
+     * @return View|RedirectResponse
      */
-    public function edit(Currency $currency)
+    public function edit(Currency $currency): View|RedirectResponse
     {
-        //
+        return $this->viewHelper->render(
+            'currencies.edit',
+            ['currency' => $currency],
+            ['admin']
+        );
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Currency  $currency
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Currency $currency
+     * @return RedirectResponse
      */
-    public function update(Request $request, Currency $currency)
+    public function update(Request $request, Currency $currency): RedirectResponse
     {
-        //
+        return $this->redirectHelper->redirect('admin', function() use ($request, $currency) {
+            $currency->update([
+                'name' => $request->name,
+                'abbreviation' => $request->abbreviation,
+                'country' => $request->country,
+            ]);
+
+            return redirect()->route('currencies.index')->with('success', 'Moneda actualizada correctamente');
+        });
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Currency  $currency
-     * @return \Illuminate\Http\Response
+     * @param Currency $currency
+     * @return RedirectResponse
      */
     public function destroy(Currency $currency)
     {
-        //
+        return $this->redirectHelper->redirect('admin', function() use ($currency) {
+            $currency->delete();
+            return redirect()->route('currencies.index')->with('success', 'Moneda eliminada correctamente');
+        });
     }
 }
