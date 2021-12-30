@@ -44,7 +44,7 @@
                             </li>
 
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{route('concepts.index') }}">
                                     <i class="bi bi-card-text"></i>
                                     Definir conceptos
                                 </a>

@@ -4,17 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Models\Currency;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use App\Helpers\ViewHelper;
 
 class CurrencyController extends Controller
 {
+
+   private ViewHelper $viewHelper;
+
+    public function __construct() 
+    {
+        $this->middleware(['auth']);
+        $this->viewHelper = ViewHelper::getInstance();
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View|RedirectResponse
      */
-    public function index()
+
+    public function index(): View|RedirectResponse
     {
-        //
+        return $this->viewHelper->render(
+            'currencies.index',
+            ['currencies' => Currency::all()],
+            ['admin']
+        );
     }
 
     /**
@@ -22,9 +39,13 @@ class CurrencyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View|RedirectResponse
     {
-        //
+        return $this->viewHelper->render(
+            'currencies.create',
+            null,
+            ['admin']
+        );
     }
 
     /**
