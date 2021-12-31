@@ -27,7 +27,7 @@
 
     @if(count($currencies) > 0)
         <div class="table-responsive mt-2">
-            <table id="payment-table" class="table table-striped table-bordered sortable align-middle">
+            <table id="currency-table" class="table table-striped table-bordered sortable align-middle">
                 <thead class="bg-blue-gradient text-white">
                     <tr>
                         <th scope="col">Id</th>
@@ -68,5 +68,9 @@
             No hay monedas agregadas
         </h4>
     @endif
+@endsection
 
+@section('js')
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    <script src="{{asset('js/utils/filterTable.js')}}"></script>
 @endsection

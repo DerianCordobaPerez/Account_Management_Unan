@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -124,7 +125,30 @@ class UserController extends Controller
                 'user' => $user,
                 'payments' => $user->payments
             ],
-            ['admin', 'Administrator']
+            ['admin']
         );
+    }
+
+    public function assignRole(User $user): RedirectResponse|View
+    {
+        // Gets all the roles that the user does not contain
+        $roles = Role::select()->whereNotIn('name', ['admin'])->get();
+
+        return $this->viewHelper->render(
+            'users.assign-role',
+            [
+                'user' => $user,
+                'roles' => $roles
+            ],
+            ['admin']
+        );
+    }
+
+    public function assignRoleStore(Request $request, User $user): RedirectResponse
+    {
+        return $this->redirectHelper->redirect(['admin'], function() use($request, $user) {
+            $user->roles()->sync($request->roles);
+            return redirect()->route('users.index')->with('success', 'Roles asignados correctamente');
+        });
     }
 }

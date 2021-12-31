@@ -13,6 +13,7 @@ class Role extends Model
     use HasFactory, SoftDeletes, SoftCascadeTrait;
     protected $dates = ['deleted_at'];
     protected $softCascade = ['users', 'privileges'];
+    protected $fillable = ['name'];
 
     public function users(): BelongsToMany
     {
