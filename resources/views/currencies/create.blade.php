@@ -4,7 +4,6 @@
 
     <form action="{{route('currencies.store')}}" method="POST" class="form">
         @csrf
-
         <h2 class="title-form">Registro de Moneda</h2>
         <h4 class="data-form">
             <i class="bi bi-caret-down-fill"></i>

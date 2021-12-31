@@ -36,6 +36,10 @@ Route::group(['middleware' => 'auth'], function () {
         'currencies' => CurrencyController::class,
     ]);
 
+    // Show payments by user
     Route::get('/users/{user}/payments', [UserController::class, 'payments'])->name('users.payments');
 
+    // Assign role to user
+    Route::get('/users/{user}/roles', [UserController::class, 'assignRole'])->name('users.assign.role');
+    Route::post('/users/{user}/roles', [UserController::class, 'assignRoleStore'])->name('users.store.role');
 });

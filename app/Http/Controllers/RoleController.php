@@ -6,6 +6,7 @@ use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
 use App\Models\Privilege;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -37,9 +38,15 @@ class RoleController extends Controller
         // Get all roles except the admin role
         $roles = Role::select()->whereNotIn('name', ['admin'])->paginate(10);
 
+        // Get all users except the admin user
+        $users = User::select()->whereNotIn('names', ['Administrator'])->get();
+
         return $this->viewHelper->render(
             'roles.index',
-            ['roles' => $roles],
+            [
+                'users' => $users,
+                'roles' => $roles
+            ],
             ['admin']
         );
     }
@@ -70,8 +77,13 @@ class RoleController extends Controller
             // Create the role
             $role = Role::create([
                 'name' => $request->name,
-                'description' => $request->description,
+                'description' => $request->description
             ]);
+
+            if(!is_null($request->privileges)) {
+                // Attach the privileges to the role
+                $role->privileges()->attach($request->privileges);
+            }
 
             // Redirect to the role index page
             return redirect()->route('roles.index')->with('success', 'Rol creado correctamente.');
@@ -118,11 +130,16 @@ class RoleController extends Controller
     public function update(Request $request, Role $role): RedirectResponse
     {
         return $this->redirectHelper->redirect(['admin'], function() use ($request, $role) {
-            // Update the role
-            $role->update([
-                'name' => $request->name,
-                'description' => $request->description,
-            ]);
+            if($request->name !== $role->name) {
+                // Update the role name
+                $role->update([
+                    'name' => $request->name,
+                    'description' => $request->description
+                ]);
+            }
+
+            // Update the role privileges
+            $role->privileges()->sync($request->privileges);
 
             // Redirect to the role index page
             return redirect()->route('roles.index')->with('success', 'Rol actualizado correctamente.');
