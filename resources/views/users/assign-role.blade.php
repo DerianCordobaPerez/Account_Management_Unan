@@ -24,19 +24,19 @@
                         Roles:
                     </span>
 
+                    @foreach ($user->roles as $role)
+                        <span class="badge bg-primary">{{$role->name}}</span>
+                    @endforeach
+
                     @if(count($user->roles) == 0)
-                        <span class="badge bg-primary">Sin roles asignados</span>
+                        <span class="badge bg-danger">Sin roles asignados</span>
                         <p class="text-muted e">
                             <i class="bi bi-info-circle"></i>
                             Precaución: el usuario no contiene ningún rol.
                         </p>
                     @endif
 
-                    @foreach ($user->roles as $role)
-                        <span class="badge bg-primary">{{$role->name}}</span>
-                    @endforeach
-
-                    @if($user->roles->contains('name', 'usuario'))
+                    @if($user->roles->contains('name', 'usuario') && $user->roles->count() == 1)
                         <p class="text-muted e">
                             <i class="bi bi-info-circle"></i>
                             Precaución: el usuario tiene un nivel de acceso bajo.
@@ -64,7 +64,7 @@
 
         <div class="row mt-2">
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn bg-blue-gradient text-white">
                     <i class="bi bi-check-circle"></i>
                     Guardar
                 </button>

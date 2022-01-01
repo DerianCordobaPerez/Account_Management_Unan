@@ -148,7 +148,7 @@ class UserController extends Controller
     {
         return $this->redirectHelper->redirect(['admin'], function() use($request, $user) {
             $user->roles()->sync($request->roles);
-            return redirect()->route('users.index')->with('success', 'Roles asignados correctamente');
+            return redirect()->route('roles.index')->with('success', 'Roles asignados correctamente');
         });
     }
 }

@@ -17,7 +17,7 @@
                     @if(count($roles) <= 0) disabled @endif
             >
                 <i class="fas fa-sync"></i>
-                Agregar roles
+                Gestionar roles
             </button>
         </div>
 
@@ -77,7 +77,7 @@
 
         <x-modal id="modal-assigment-roles"
                  title="Seleccione el usuario"
-                 class="fade"
+                 class="fade shadow-lg"
                  :scrollable="true"
         >
             <x-slot name="body">
@@ -92,8 +92,8 @@
                             </div>
                             <div>
                                 <a href="{{route('users.assign.role', $user->id)}}" class="btn btn-sm btn-success text-white font-weight-bold shadow-sm">
-                                    <i class="fas fa-plus"></i>
-                                    Asignar rol
+                                    <i class="bi bi-tools"></i>
+                                    Gestionar
                                 </a>
                             </div>
                         </li>

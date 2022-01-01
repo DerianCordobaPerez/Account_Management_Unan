@@ -75,10 +75,13 @@ class RoleController extends Controller
     {
         return $this->redirectHelper->redirect(['admin'], function() use ($request) {
             // Create the role
-            $role = Role::create([
-                'name' => $request->name,
-                'description' => $request->description
-            ]);
+            $role = Role::create(['name' => $request->name]);
+
+            if($request->description) {
+                // Add description to the role
+                $role->description = $request->description;
+                $role->save();
+            }
 
             if(!is_null($request->privileges)) {
                 // Attach the privileges to the role
@@ -132,10 +135,12 @@ class RoleController extends Controller
         return $this->redirectHelper->redirect(['admin'], function() use ($request, $role) {
             if($request->name !== $role->name) {
                 // Update the role name
-                $role->update([
-                    'name' => $request->name,
-                    'description' => $request->description
-                ]);
+                $role->update(['name' => $request->name]);
+            }
+
+            if($request->description !== $role->description) {
+                // Update the role description
+                $role->update(['description' => $request->description]);
             }
 
             // Update the role privileges
