@@ -192,6 +192,14 @@ class RoleController extends Controller
             // Restore the role
             Role::onlyTrashed()->find($id)->restore();
 
+            // Count the roles deleted
+            $count = Role::onlyTrashed()->count();
+
+            if($count !== 0) {
+                // Redirect to the role trashed page
+                return redirect()->route('roles.trashed')->with('success', 'Rol restaurado correctamente.');
+            }
+
             // Redirect to the role index page
             return redirect()->route('roles.index')->with('success', 'Rol restaurado correctamente.');
         });
