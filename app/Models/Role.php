@@ -12,16 +12,11 @@ class Role extends Model
 {
     use HasFactory, SoftDeletes, SoftCascadeTrait;
     protected $dates = ['deleted_at'];
-    protected $softCascade = ['users', 'privileges'];
-    protected $fillable = ['name'];
+    protected $softCascade = ['users'];
+    protected $fillable = ['name', 'description'];
 
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
-    }
-
-    public function privileges(): BelongsToMany
-    {
-        return $this->belongsToMany(Privilege::class, 'role_privileges');
     }
 }

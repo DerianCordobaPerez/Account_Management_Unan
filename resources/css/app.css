@@ -10,7 +10,6 @@
 @import "components/navbar.css";
 @import "components/footer.css";
 @import "components/breadcrumb.css";
-@import "forms.css";
 
 :root {
     --light-blue: #2780ab;

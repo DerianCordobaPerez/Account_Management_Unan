@@ -22,18 +22,20 @@
         </div>
 
         <div class="col-md-8 d-flex justify-content-end">
-            <div class="input-group">
-                <input class="form-control border-end-0 border" onsearch="resetTable('roles-table')"
-                       onkeyup="filterTable(this, 'roles-table')" id="search-payment-id"
-                       type="search" placeholder="Buscar por nombre del rol"
-                       @if(count($roles) <= 0) disabled @endif
-                >
-                <span class="input-group-append">
-                    <button class="btn bg-white border-start-0 border-bottom-0 border ms-n5" type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
+            <form action="{{route('roles.index')}}" method="GET" class="bg-transparent p-0 w-100">
+                <div class="input-group">
+                    <input class="form-control border-end-0 border" id="search-payment-id"
+                           type="text" placeholder="Buscar por nombre del rol"
+                           name="search" value="{{ request('search') }}"
+                           @if(count($roles) <= 0) disabled @endif
+                    >
+                    <span class="input-group-append">
+                        <button class="btn bg-white border-start-0 border-bottom-0 border ms-n5" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -44,9 +46,8 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Privilegios</th>
                         <th scope="col">Asignaciones</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col" class="w-25">Acciones</th>
                     </tr>
                 </thead>
 
@@ -54,7 +55,6 @@
                     <tr class="table-light">
                         <td class="fw-bold">#{{$role->id}}</td>
                         <td>{{$role->name}}</td>
-                        <td>{{$role->privileges->count()}}</td>
                         <td>{{$role->users->count()}}</td>
                         <td>
                             <form class="bg-transparent p-0" action="{{route('roles.destroy', $role->id)}}" method="POST">

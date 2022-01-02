@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ExchangeRateHelper;
 use App\Helpers\ViewHelper;
 use App\Models\Payment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use App\Helpers\ExchangeRateHelper;
 use SoapFault;
 
 class PaymentController extends Controller

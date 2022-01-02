@@ -59,9 +59,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    public function payments(): BelongsToMany
+    public function payments(): HasMany
     {
-        return $this->belongsToMany(Payment::class);
+        return $this->hasMany(Payment::class);
     }
 
     public function authorize(array|string|null $roles): bool

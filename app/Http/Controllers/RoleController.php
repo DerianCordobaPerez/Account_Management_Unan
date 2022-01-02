@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
-use App\Models\Privilege;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -31,21 +30,27 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return View|RedirectResponse
      */
-    public function index(): View|RedirectResponse
+    public function index(Request $request): View|RedirectResponse
     {
         // Get all roles except the admin role
-        $roles = Role::select()->whereNotIn('name', ['admin'])->paginate(10);
+        $roles = Role::select()->whereNotIn('name', ['admin']);
 
         // Get all users except the admin user
         $users = User::select()->whereNotIn('names', ['Administrator'])->get();
+
+        // Check if the request search query is set
+        if($request->query('search')) {
+            $roles = Role::select()->where('name', 'like', '%' . $request->query('search') . '%');
+        }
 
         return $this->viewHelper->render(
             'roles.index',
             [
                 'users' => $users,
-                'roles' => $roles
+                'roles' => $roles->orderBy('id')->paginate(10)
             ],
             ['admin']
         );
@@ -60,7 +65,6 @@ class RoleController extends Controller
     {
         return $this->viewHelper->render(
             'roles.create',
-            ['privileges' => Privilege::all()],
             ['admin']
         );
     }
@@ -81,11 +85,6 @@ class RoleController extends Controller
                 // Add description to the role
                 $role->description = $request->description;
                 $role->save();
-            }
-
-            if(!is_null($request->privileges)) {
-                // Attach the privileges to the role
-                $role->privileges()->attach($request->privileges);
             }
 
             // Redirect to the role index page
@@ -142,9 +141,6 @@ class RoleController extends Controller
                 // Update the role description
                 $role->update(['description' => $request->description]);
             }
-
-            // Update the role privileges
-            $role->privileges()->sync($request->privileges);
 
             // Redirect to the role index page
             return redirect()->route('roles.index')->with('success', 'Rol actualizado correctamente.');

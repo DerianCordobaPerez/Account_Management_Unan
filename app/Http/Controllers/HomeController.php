@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ExchangeRateHelper;
 use App\Helpers\ViewHelper;
-use Illuminate\View\View;
 use App\Models\Role;
+use Illuminate\View\View;
 use SoapFault;
 
 /**
