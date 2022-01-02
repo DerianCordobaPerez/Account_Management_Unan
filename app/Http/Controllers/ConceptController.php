@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ViewHelper;
 use App\Models\Concept;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 
 class ConceptController extends Controller
 {
     private ViewHelper $viewHelper;
 
-    public function __construct() 
+    public function __construct()
     {
         $this->middleware(['auth']);
         $this->viewHelper = ViewHelper::getInstance();

@@ -4,9 +4,8 @@
     {{Breadcrumbs::render()}}
 
     <div class="input-group">
-        <input class="form-control border-end-0 border" onsearch="resetTable('users-table')" 
-            onkeyup="filterTable(this, 'users-table')" 
-            id="search-payment-id" type="search" 
+        <input class="form-control border-end-0 border"
+            id="search" name="search" type="text"
             placeholder="Buscar por nombre del usuario"
         >
         <span class="input-group-append">
@@ -31,17 +30,17 @@
                         <td>
                             {{$user->email}}
                         </td>
-                        
+
                         <td>
                             {{$user->names}}
                         </td>
-    
+
                         <td>
                             <a href="{{route('users.show', $user->id)}}" class="btn bg-blue-gradient text-white">
                                 <i class="bi bi-pencil"></i>
                                 Ver
                             </a>
-    
+
                             <a href="{{route('users.payments', $user->id)}}" class="btn btn-success">
                                 <i class="bi bi-credit-card-2-front"></i>
                                 Pagos
@@ -58,9 +57,4 @@
     @else
         <p>No hay usuarios registrados</p>
     @endif
-@endsection
-
-@section('js')
-    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
-    <script src="{{asset('js/utils/filterTable.js')}}"></script>
 @endsection

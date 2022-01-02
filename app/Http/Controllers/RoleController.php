@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
-use App\Models\Privilege;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -36,16 +35,21 @@ class RoleController extends Controller
     public function index(): View|RedirectResponse
     {
         // Get all roles except the admin role
-        $roles = Role::select()->whereNotIn('name', ['admin'])->paginate(10);
+        $roles = Role::select()->whereNotIn('name', ['admin']);
 
         // Get all users except the admin user
         $users = User::select()->whereNotIn('names', ['Administrator'])->get();
+
+        // Check if the request search query is set
+        if(request('search')) {
+            $roles = Role::select()->where('name', 'like', '%' . request('search') . '%');
+        }
 
         return $this->viewHelper->render(
             'roles.index',
             [
                 'users' => $users,
-                'roles' => $roles
+                'roles' => $roles->orderBy('id')->paginate(10)
             ],
             ['admin']
         );
@@ -60,7 +64,6 @@ class RoleController extends Controller
     {
         return $this->viewHelper->render(
             'roles.create',
-            ['privileges' => Privilege::all()],
             ['admin']
         );
     }
@@ -75,14 +78,12 @@ class RoleController extends Controller
     {
         return $this->redirectHelper->redirect(['admin'], function() use ($request) {
             // Create the role
-            $role = Role::create([
-                'name' => $request->name,
-                'description' => $request->description
-            ]);
+            $role = Role::create(['name' => $request->name]);
 
-            if(!is_null($request->privileges)) {
-                // Attach the privileges to the role
-                $role->privileges()->attach($request->privileges);
+            if($request->description) {
+                // Add description to the role
+                $role->description = $request->description;
+                $role->save();
             }
 
             // Redirect to the role index page
@@ -132,14 +133,13 @@ class RoleController extends Controller
         return $this->redirectHelper->redirect(['admin'], function() use ($request, $role) {
             if($request->name !== $role->name) {
                 // Update the role name
-                $role->update([
-                    'name' => $request->name,
-                    'description' => $request->description
-                ]);
+                $role->update(['name' => $request->name]);
             }
 
-            // Update the role privileges
-            $role->privileges()->sync($request->privileges);
+            if($request->description !== $role->description) {
+                // Update the role description
+                $role->update(['description' => $request->description]);
+            }
 
             // Redirect to the role index page
             return redirect()->route('roles.index')->with('success', 'Rol actualizado correctamente.');
@@ -160,6 +160,40 @@ class RoleController extends Controller
 
             // Redirect to the role index page
             return redirect()->route('roles.index')->with('success', 'Rol eliminado correctamente.');
+        });
+    }
+
+    /**
+     * Get only the roles deleted
+     *
+     * @return View|RedirectResponse
+     */
+    public function trashed(): View|RedirectResponse
+    {
+        // Get the roles deleted
+        $roles = Role::onlyTrashed()->get();
+
+        return $this->viewHelper->render(
+            'roles.trashed',
+            ['roles' => $roles],
+            ['admin']
+        );
+    }
+
+    /**
+     * Restore the specified role from storage.
+     *
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function restore($id): RedirectResponse
+    {
+        return $this->redirectHelper->redirect(['admin'], function() use($id) {
+            // Restore the role
+            Role::onlyTrashed()->find($id)->restore();
+
+            // Redirect to the role index page
+            return redirect()->route('roles.index')->with('success', 'Rol restaurado correctamente.');
         });
     }
 }

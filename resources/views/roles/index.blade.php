@@ -4,36 +4,61 @@
     {{Breadcrumbs::render()}}
 
     <div class="row">
-        <div class="col-md-2 d-flex justify-content-start">
-            <a href="{{ route('roles.create') }}" class="btn bg-blue-gradient btn-sm text-white mb-2 font-weight-bold shadow-sm">
-                <i class="fas fa-plus"></i>
-                Nuevo rol
+        <div class="col-md-2 d-flex align-items-center justify-content-start">
+            <div class="dropdown">
+                <button class="btn bg-blue-gradient text-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Acciones sobre roles
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li>
+                        <a class="dropdown-item" href="{{route('roles.create')}}">
+                            <i class="fas fa-plus"></i>
+                            Nuevo rol
+                        </a>
+                    </li>
+
+                    <li>
+                        <a type="button" class="dropdown-item"
+                           data-bs-toggle="modal" data-bs-target="#modal-assigment-roles"
+                           @if(count($roles) <= 0) disabled @endif
+                        >
+                            <i class="fas fa-sync"></i>
+                            Gestionar roles
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="{{route('roles.trashed')}}">
+                            <i class="bi bi-archive"></i>
+                            Roles eliminados
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex align-items-center justify-content-center">
+            <a href="{{route('roles.index')}}" class="btn btn-danger text-white font-weight-bold shadow-sm me-4">
+                <i class="bi bi-arrow-clockwise"></i>
+                Limpiar busqueda
             </a>
         </div>
 
-        <div class="col-md-2 d-flex justify-content-center">
-            <button type="button" class="btn btn-success btn-sm text-white mb-2 font-weight-bold shadow-sm"
-                    data-bs-toggle="modal" data-bs-target="#modal-assigment-roles"
-                    @if(count($roles) <= 0) disabled @endif
-            >
-                <i class="fas fa-sync"></i>
-                Agregar roles
-            </button>
-        </div>
-
-        <div class="col-md-8 d-flex justify-content-end">
-            <div class="input-group">
-                <input class="form-control border-end-0 border" onsearch="resetTable('roles-table')"
-                       onkeyup="filterTable(this, 'roles-table')" id="search-payment-id"
-                       type="search" placeholder="Buscar por nombre del rol"
-                       @if(count($roles) <= 0) disabled @endif
-                >
-                <span class="input-group-append">
-                    <button class="btn bg-white border-start-0 border-bottom-0 border ms-n5" type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
+        <div class="col-md-6 d-flex justify-content-end">
+            <form action="{{route('roles.index')}}" method="GET" class="bg-transparent p-0 w-100">
+                <div class="input-group">
+                    <input class="form-control border-end-0 border" id="search-payment-id"
+                           type="text" placeholder="Buscar por nombre del rol"
+                           name="search" value="{{ request('search') }}"
+                           @if(count($roles) <= 0) disabled @endif
+                    >
+                    <span class="input-group-append">
+                        <button class="btn bg-white border-start-0 border-bottom-0 border ms-n5" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -44,9 +69,8 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Privilegios</th>
                         <th scope="col">Asignaciones</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col" class="w-25">Acciones</th>
                     </tr>
                 </thead>
 
@@ -54,7 +78,6 @@
                     <tr class="table-light">
                         <td class="fw-bold">#{{$role->id}}</td>
                         <td>{{$role->name}}</td>
-                        <td>{{$role->privileges->count()}}</td>
                         <td>{{$role->users->count()}}</td>
                         <td>
                             <form class="bg-transparent p-0" action="{{route('roles.destroy', $role->id)}}" method="POST">
@@ -77,7 +100,7 @@
 
         <x-modal id="modal-assigment-roles"
                  title="Seleccione el usuario"
-                 class="fade"
+                 class="fade shadow-lg"
                  :scrollable="true"
         >
             <x-slot name="body">
@@ -92,8 +115,8 @@
                             </div>
                             <div>
                                 <a href="{{route('users.assign.role', $user->id)}}" class="btn btn-sm btn-success text-white font-weight-bold shadow-sm">
-                                    <i class="fas fa-plus"></i>
-                                    Asignar rol
+                                    <i class="bi bi-tools"></i>
+                                    Gestionar
                                 </a>
                             </div>
                         </li>

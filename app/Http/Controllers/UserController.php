@@ -6,6 +6,7 @@ use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -129,6 +130,12 @@ class UserController extends Controller
         );
     }
 
+    public function search(Request $request): JsonResponse
+    {
+        $users = User::where('names', 'like', '%' . $request->get('query') . '%')->get();
+        return response()->json($users);
+    }
+
     public function assignRole(User $user): RedirectResponse|View
     {
         // Gets all the roles that the user does not contain
@@ -148,7 +155,7 @@ class UserController extends Controller
     {
         return $this->redirectHelper->redirect(['admin'], function() use($request, $user) {
             $user->roles()->sync($request->roles);
-            return redirect()->route('users.index')->with('success', 'Roles asignados correctamente');
+            return redirect()->route('roles.index')->with('success', 'Roles asignados correctamente');
         });
     }
 }
