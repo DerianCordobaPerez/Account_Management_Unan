@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\ConceptController;
+use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\CurrencyController;
-use App\Http\Controllers\ConceptController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -31,10 +31,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resources([
         'users' => UserController::class,
         'payments' => PaymentController::class,
-        'roles' => RoleController::class,
         'concepts' => ConceptController::class,
         'currencies' => CurrencyController::class,
     ]);
+
+    // Role routes except show
+    Route::resource('roles', RoleController::class)->except(['show']);
 
     // Show payments by user
     Route::get('/users/{user}/payments', [UserController::class, 'payments'])->name('users.payments');
@@ -43,4 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users/{user}/roles', [UserController::class, 'assignRole'])->name('users.assign.role');
     Route::post('/users/{user}/roles', [UserController::class, 'assignRoleStore'])->name('users.store.role');
 
+    // Show trashed roles
+    Route::get('/roles/trashed', [RoleController::class, 'trashed'])->name('roles.trashed');
+    Route::get('/roles/{role}/restore', [RoleController::class, 'restore'])->name('roles.restore');
 });

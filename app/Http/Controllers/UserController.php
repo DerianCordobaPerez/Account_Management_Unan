@@ -6,6 +6,7 @@ use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -127,6 +128,12 @@ class UserController extends Controller
             ],
             ['admin']
         );
+    }
+
+    public function search(Request $request): JsonResponse
+    {
+        $users = User::where('names', 'like', '%' . $request->get('query') . '%')->get();
+        return response()->json($users);
     }
 
     public function assignRole(User $user): RedirectResponse|View

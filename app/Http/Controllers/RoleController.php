@@ -30,10 +30,9 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
      * @return View|RedirectResponse
      */
-    public function index(Request $request): View|RedirectResponse
+    public function index(): View|RedirectResponse
     {
         // Get all roles except the admin role
         $roles = Role::select()->whereNotIn('name', ['admin']);
@@ -42,8 +41,8 @@ class RoleController extends Controller
         $users = User::select()->whereNotIn('names', ['Administrator'])->get();
 
         // Check if the request search query is set
-        if($request->query('search')) {
-            $roles = Role::select()->where('name', 'like', '%' . $request->query('search') . '%');
+        if(request('search')) {
+            $roles = Role::select()->where('name', 'like', '%' . request('search') . '%');
         }
 
         return $this->viewHelper->render(
@@ -161,6 +160,40 @@ class RoleController extends Controller
 
             // Redirect to the role index page
             return redirect()->route('roles.index')->with('success', 'Rol eliminado correctamente.');
+        });
+    }
+
+    /**
+     * Get only the roles deleted
+     *
+     * @return View|RedirectResponse
+     */
+    public function trashed(): View|RedirectResponse
+    {
+        // Get the roles deleted
+        $roles = Role::onlyTrashed()->get();
+
+        return $this->viewHelper->render(
+            'roles.trashed',
+            ['roles' => $roles],
+            ['admin']
+        );
+    }
+
+    /**
+     * Restore the specified role from storage.
+     *
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function restore($id): RedirectResponse
+    {
+        return $this->redirectHelper->redirect(['admin'], function() use($id) {
+            // Restore the role
+            Role::onlyTrashed()->find($id)->restore();
+
+            // Redirect to the role index page
+            return redirect()->route('roles.index')->with('success', 'Rol restaurado correctamente.');
         });
     }
 }
