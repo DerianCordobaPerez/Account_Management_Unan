@@ -25,8 +25,20 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'names',
+        'lastnames',
         'email',
+        'sex',
+        'identification',
+        'maritalStatus',
+        'phone',
+        'nationality',
+        'municipality',
+        'address',
+        'neighborhood',
+        'birthday',
+        'img',
+        'active',
         'password',
     ];
 
@@ -47,6 +59,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'birthday' => 'datetime'
     ];
 
     public function students(): HasMany
