@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             RoleUserSeeder::class,
             PaymentSeeder::class,
-            PrivilegeSeeder::class
         ]);
     }
 }

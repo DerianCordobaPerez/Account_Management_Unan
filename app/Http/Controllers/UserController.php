@@ -35,9 +35,19 @@ class UserController extends Controller
      */
     public function index(): RedirectResponse|View
     {
+        $users = User::select()->whereNotIn('names', ['Administrator']);
+
+        if(request('search')) {
+            $users = User::where('names', 'like', '%' . request('search') . '%')
+                ->orWhere('lastnames', 'like', '%' . request('search') . '%')
+                ->orWhere('email', 'like', '%' . request('search') . '%')
+                ->orWhere('identification', 'like', '%' . request('search') . '%')
+                ->orWhere('phone', 'like', '%' . request('search') . '%');
+        }
+
         return $this->viewHelper->render(
             'users.index',
-            ['users' => User::select()->whereNotIn('names', ['Administrator'])->paginate(10)],
+            ['users' => $users->orderBy('names')->paginate(10)],
             ['admin']
         );
     }
@@ -112,7 +122,7 @@ class UserController extends Controller
      */
     public function destroy(User $user): RedirectResponse
     {
-        return $this->redirectHelper->redirect('Admin', function () use ($user) {
+        return $this->redirectHelper->redirect('Admin', function() use($user) {
             $user->delete();
             return redirect()->route('users.index')->with('success', 'Usuario eliminado correctamente');
         });
@@ -130,10 +140,26 @@ class UserController extends Controller
         );
     }
 
-    public function search(Request $request): JsonResponse
+    public function disable(User $user): RedirectResponse
     {
-        $users = User::where('names', 'like', '%' . $request->get('query') . '%')->get();
-        return response()->json($users);
+        return $this->redirectHelper->redirect(['admin'], function() use($user) {
+            // Disable the user
+            $user->update(['active' => false]);
+
+            // Redirect to the users index
+            return redirect()->route('users.index')->with('success', 'Usuario deshabilitado correctamente');
+        });
+    }
+
+    public function enable(User $user): RedirectResponse
+    {
+        return $this->redirectHelper->redirect(['admin'], function() use($user) {
+            // Enable the user
+            $user->update(['active' => true]);
+
+            // Redirect to the users index
+            return redirect()->route('users.index')->with('success', 'Usuario habilitado correctamente');
+        });
     }
 
     public function assignRole(User $user): RedirectResponse|View

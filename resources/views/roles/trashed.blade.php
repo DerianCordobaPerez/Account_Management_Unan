@@ -8,7 +8,7 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col" class="w-25">Acciones</th>
+                        <th scope="col" class="w-50">Acciones</th>
                     </tr>
                 </thead>
 
@@ -17,10 +17,23 @@
                         <td class="fw-bold">#{{$role->id}}</td>
                         <td>{{$role->name}}</td>
                         <td>
-                            <a href="{{route('roles.restore', $role->id)}}" class="btn btn-success btn-sm text-white mb-2 font-weight-bold shadow-sm">
-                                <i class="fas fa-sync"></i>
-                                Restaurar
-                            </a>
+                            <div class="d-flex gap-2">
+                                <form action="{{route('roles.restore', $role->id)}}" method="POST" class="bg-transparent p-0">
+                                    @csrf @method('PUT')
+                                    <button type="submit" class="btn btn-sm btn-success">
+                                        <i class="fas fa-sync"></i>
+                                        Restaurar
+                                    </button>
+                                </form>
+
+                                <form action="{{route('roles.force', $role->id)}}" method="POST" class="bg-transparent p-0">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                        Eliminar permanentemente
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

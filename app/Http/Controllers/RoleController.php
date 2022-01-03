@@ -49,7 +49,7 @@ class RoleController extends Controller
             'roles.index',
             [
                 'users' => $users,
-                'roles' => $roles->orderBy('id')->paginate(10)
+                'roles' => $roles->orderBy('id')->paginate(10),
             ],
             ['admin']
         );
@@ -202,6 +202,25 @@ class RoleController extends Controller
 
             // Redirect to the role index page
             return redirect()->route('roles.index')->with('success', 'Rol restaurado correctamente.');
+        });
+    }
+
+    public function force($id): RedirectResponse
+    {
+        return $this->redirectHelper->redirect(['admin'], function() use($id) {
+            // Delete the role
+            Role::onlyTrashed()->find($id)->forceDelete();
+
+            // Count the roles deleted
+            $count = Role::onlyTrashed()->count();
+
+            if($count !== 0) {
+                // Redirect to the role trashed page
+                return redirect()->route('roles.trashed')->with('success', 'Rol eliminado correctamente.');
+            }
+
+            // Redirect to the role index page
+            return redirect()->route('roles.index')->with('success', 'Rol eliminado correctamente.');
         });
     }
 }

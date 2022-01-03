@@ -9,17 +9,6 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
@@ -45,7 +34,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users/{user}/roles', [UserController::class, 'assignRole'])->name('users.assign.role');
     Route::post('/users/{user}/roles', [UserController::class, 'assignRoleStore'])->name('users.store.role');
 
+    // Disable user
+    Route::post('/users/{user}/disable', [UserController::class, 'disable'])->name('users.disable');
+
+    // Enable user
+    Route::post('/users/{user}/enable', [UserController::class, 'enable'])->name('users.enable');
+
     // Show trashed roles
     Route::get('/roles/trashed', [RoleController::class, 'trashed'])->name('roles.trashed');
-    Route::get('/roles/{role}/restore', [RoleController::class, 'restore'])->name('roles.restore');
+    Route::put('/roles/{role}/restore', [RoleController::class, 'restore'])->name('roles.restore');
+
+    // Delete permanently roles
+    Route::delete('/roles/{role}/force', [RoleController::class, 'force'])->name('roles.force');
 });
