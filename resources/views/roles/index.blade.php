@@ -22,7 +22,7 @@
                            data-bs-toggle="modal" data-bs-target="#modal-assigment-roles"
                            @if(count($roles) <= 0) disabled @endif
                         >
-                            <i class="fas fa-sync"></i>
+                            <i class="bi bi-tools"></i>
                             Gestionar roles
                         </a>
                     </li>
@@ -38,7 +38,10 @@
         </div>
 
         <div class="col-md-4 d-flex align-items-center justify-content-center">
-            <a href="{{route('roles.index')}}" class="btn btn-danger text-white font-weight-bold shadow-sm me-4">
+            <a href="{{route('roles.index')}}"
+               class="btn btn-danger text-white font-weight-bold shadow-sm me-4"
+               @if(count($roles) <= 0) disabled @endif
+            >
                 <i class="bi bi-arrow-clockwise"></i>
                 Limpiar busqueda
             </a>
