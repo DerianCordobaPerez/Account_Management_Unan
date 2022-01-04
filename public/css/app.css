@@ -80,20 +80,202 @@
     font-weight: bold;
 }
 
+textarea {
+    resize: none;
+}
+/*
 form {
     background-color:#fff;
     padding: 20px 40px;
 }
 
-textarea {
-    resize: none;
-}
+
 
 .change {
     border: 1px solid #aaa;
     text-align: center;
     padding: 5px 0;
+} */
+
+
+/* Contenedor principal */
+.payments-form {
+    background-color: #FFF;
+    height: auto;
 }
+
+.content-payments{
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    overflow: hidden;
+    padding: 0 30px;
+}
+
+/* Formulario */
+.form-register {
+    max-width: 100%;
+}
+
+/* Header del formulario */
+
+/* Progressbar */
+.progressbar {
+    display: flex;
+    list-style: none;
+    margin-left: -40px;
+    counter-reset: step;
+}
+
+.progressbar__option {
+    width: 100%;
+    text-align: center;
+    font-size: .7rem;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.progressbar__option:before {
+    display: flex;
+    content: counter(step);
+    counter-increment: step;
+    width: 20px;
+    height: 20px;
+    background-color: #FFF;
+    margin: 0 auto 5px;
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+
+.progressbar__option:after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: #FFF;
+    position: absolute;
+    top: 10px;
+    left: -50%;
+    z-index: 1;
+}
+
+.progressbar__option:first-child:after {
+    content: none;
+}
+
+.progressbar__option.active:before, .progressbar__option.active:after {
+    background-color: #145777;
+    color: #FFF;
+}
+
+/* Título del formulario */
+.form-register__title {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* body del formulario */
+.form-register__body {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* step */
+.step {
+    background-color: #FFF;
+    box-shadow: 5px 5px 5px 2px #ccc;
+    border-radius: 3px;
+    min-width: 100%;
+    opacity: 0;
+    transition: all .2s linear;
+}
+
+.step.active {
+    opacity: 1;
+}
+
+.step.to-left {
+    margin-left: -100%;
+}
+
+.step.inactive {
+    -webkit-animation-name: scale;
+            animation-name: scale;
+    -webkit-animation-duration: .2s;
+            animation-duration: .2s;
+    -webkit-animation-direction: alternate;
+            animation-direction: alternate;
+    -webkit-animation-iteration-count: 2;
+            animation-iteration-count: 2;
+}
+
+@-webkit-keyframes scale {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes scale {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+/* header de step */
+.step__header {
+    padding: 20px 15px;
+    color: #FFF;
+    border-radius: 3px 3px 0 0;
+}
+
+.step__title {
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* body de step */
+.step__body {
+    padding: 20px 15px 0;
+}
+
+/* step inputs */
+.step__input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+}
+
+/* step footer */
+.step__footer {
+    padding: 20px 15px;
+    text-align: center;
+}
+
+/* step botones */
+.step__button {
+    display: inline-block;
+    padding: 10px;
+    background-color: #145777;
+    border: none;
+    color: #FFF;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
 
 .navbar {
     background: var(--dark-blue-gradient);
@@ -270,32 +452,6 @@ li .dropdown-item:hover {
     color: #fff;
   }
   
-.title-form {
-    border-bottom: 5px solid #145777;
-    margin-bottom: 25px;
-    color: #145777;
-}
-
-.data-form {
-    color: #145777;
-    font-weight: bold;
-}
-
-form {
-    background-color:#fff;
-    padding: 20px 40px;
-}
-
-textarea {
-    resize: none;
-}
-
-.change {
-    border: 1px solid #aaa;
-    text-align: center;
-    padding: 5px 0;
-}
-
 /* ----------------- Bootstrap v5.0 -------------------- */
 
 /* ----------------- Views -------------------- */
