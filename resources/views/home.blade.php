@@ -63,7 +63,7 @@
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-8">
-                    <form class="d-flex justify-content-start">
+                    <form class="d-flex justify-content-start bg-transparent p-0">
                         <div class="input-group mb-4 w-100">
                             <input type="email" class="form-control" placeholder="Barra de busqueda"/>
                             <span class="input-group-btn">
@@ -77,30 +77,30 @@
 
                 <div class="col-md-4">
                     <div class="d-flex justify-content-end">
-                        <p class="fw-bold">Tasa de cambio: {{$exchangeRate}}</p>
+                        <p class="fw-bold text-danger">Tasa de cambio: {{$exchangeRate}}</p>
                     </div>
                 </div>
             </div>
 
             <x-card title="Ultima factura">
                 <div class="amount mb-3">
-                    <h2 class="text-blue fs-1">C$ 2,162.87</h2>
+                    <h2 class="text-blue fs-1">C$ {{$latestPayment->amount}}</h2>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6 text-blue">
-                        <p>Numero de Factura</p>
-                        <p>Fecha de Facturación</p>
+                        <p>Numero de pago</p>
+                        <p>Fecha de registro</p>
                         <p>Fecha de Pago</p>
                         <p>Periodo</p>
                         <p>Estado</p>
                     </div>
 
                     <div class="col-md-6">
-                        <p>51626</p>
-                        <p>01/01/2022</p>
-                        <p>28/01/2022</p>
-                        <p>Enero 2022</p>
+                        <p>{{$latestPayment->id}}</p>
+                        <p>{{$latestPayment->payment_registration_date}}</p>
+                        <p>{{$latestPayment->date_made_payment}}</p>
+                        <p>{{$month}}</p>
                         <p class="text-danger">Pendiente</p>
                     </div>
                 </div>

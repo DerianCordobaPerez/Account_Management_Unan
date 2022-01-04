@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Helpers\ExchangeRateHelper;
 use App\Helpers\ViewHelper;
 use App\Models\Role;
+use DateTime;
+use Exception;
 use Illuminate\View\View;
 use SoapFault;
 
@@ -45,6 +47,7 @@ class HomeController extends Controller
      *
      * @return View
      * @throws SoapFault
+     * @throws Exception
      */
     public function home(): View
     {
@@ -58,11 +61,23 @@ class HomeController extends Controller
             );
         }
 
+        // Get last payment of the user
+        $latestPayment = auth()->user()->payments()->orderBy('created_at', 'desc')->first();
+
+        // Set locate to Spanish
+        setlocale(LC_TIME, 'es_ES', 'Spanish_Spain', 'Spanish');
+
+        // Get the last payment date
+        $date = str_replace('/', '-', $latestPayment->date_made_payment);
+        $month = strftime('%B', strtotime($date));
+
         return $this->viewHelper->render(
             'home',
             [
                 'exchangeRate' => $this->exchangeRateHelper->build()->get(),
                 'title' => 'Panel principal',
+                'latestPayment' => $latestPayment,
+                'month' => $month,
             ]
         );
     }
