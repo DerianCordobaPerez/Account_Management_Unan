@@ -21,8 +21,8 @@
                     </a>
                 </li>
 
-                @if(auth()->user()->isAdmin())
-                    <!-- Option registros -->
+                @if(!auth()->user()->authorize('usuario'))
+                    <!-- Records option -->
                     <li class="nav-item dropdown navbar-option">
                         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list-check"></i>
@@ -36,31 +36,33 @@
                                 </a>
                             </li>
 
-                            <li>
-                                <a class="dropdown-item" href="{{route('roles.index')}}">
-                                    <i class="bi bi-ui-radios"></i>
-                                    Roles
-                                </a>
-                            </li>
+                            @if(auth()->user()->isAdmin())
+                                <li>
+                                    <a class="dropdown-item" href="{{route('roles.index')}}">
+                                        <i class="bi bi-ui-radios"></i>
+                                        Roles
+                                    </a>
+                                </li>
 
-                            <li>
-                                <a class="dropdown-item" href="{{route('concepts.index') }}">
-                                    <i class="bi bi-card-text"></i>
-                                    Definir conceptos
-                                </a>
-                            </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{route('concepts.index') }}">
+                                        <i class="bi bi-card-text"></i>
+                                        Definir conceptos
+                                    </a>
+                                </li>
 
-                            <li>
-                                <a class="dropdown-item" aria-current="true" href="{{route('users.index')}}">
-                                    <i class="bi bi-person-circle"></i>
-                                    Usuarios
-                                </a>
-                            </li>
+                                <li>
+                                    <a class="dropdown-item" aria-current="true" href="{{route('users.index')}}">
+                                        <i class="bi bi-person-circle"></i>
+                                        Usuarios
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </li>
                 @endif
 
-                <!-- Option herramientas -->
+                <!-- Tools option -->
                 <li class="nav-item dropdown navbar-option">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-list-check"></i>
@@ -92,9 +94,7 @@
                         </form>
                     </div>
                 </li>
-
             </ul>
-
         </div>
     </div>
 </nav>

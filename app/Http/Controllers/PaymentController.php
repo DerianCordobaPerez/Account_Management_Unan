@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ExchangeRateHelper;
 use App\Helpers\ViewHelper;
+use App\Models\Concept;
+use App\Models\Currency;
 use App\Models\Payment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -62,7 +64,11 @@ class PaymentController extends Controller
     {
         return $this->viewHelper->render(
             'payments.create',
-            ['exchangeRate' => $this->exchangeRateHelper->build()->get()],
+            [
+                'exchangeRate' => $this->exchangeRateHelper->build()->get(),
+                'currencies' => Currency::all(),
+                'concepts' => Concept::all()
+            ],
             ['admin']
         );
     }
