@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Currency;
 use Illuminate\Database\Seeder;
 
 class CurrencySeeder extends Seeder
@@ -13,6 +14,26 @@ class CurrencySeeder extends Seeder
      */
     public function run()
     {
-        //
+        $currencies = [
+            [
+                'name' => 'Cordoba',
+                'abbreviation' => 'C$',
+                'country' => 'Nicaragua'
+            ],
+            [
+                'name' => 'Dolar',
+                'abbreviation' => '$',
+                'country' => 'Estados Unidos'
+            ],
+            [
+                'name' => 'Euro',
+                'abbreviation' => '€',
+                'country' => 'España'
+            ]
+        ];
+
+        foreach ($currencies as $currency) {
+            Currency::create($currency);
+        }
     }
 }
