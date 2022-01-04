@@ -130,9 +130,12 @@ class UserController extends Controller
 
     public function payments(User $user): RedirectResponse|View
     {
+        $name = explode(' ', $user->names)[0];
+
         return $this->viewHelper->render(
             'users.payments',
             [
+                'name' => $name,
                 'user' => $user,
                 'payments' => $user->payments
             ],
