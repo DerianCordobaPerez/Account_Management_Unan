@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\ExchangeRateHelper;
 use App\Helpers\ViewHelper;
 use App\Models\Role;
-use DateTime;
-use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use SoapFault;
 
@@ -15,6 +14,7 @@ use SoapFault;
  */
 class HomeController extends Controller
 {
+
     /**
      * @var ViewHelper
      */
@@ -45,11 +45,10 @@ class HomeController extends Controller
     /**
      * Show home page.
      *
-     * @return View
+     * @return View|RedirectResponse
      * @throws SoapFault
-     * @throws Exception
      */
-    public function home(): View
+    public function home(): View|RedirectResponse
     {
         if(auth()->user()->isAdmin()) {
             return $this->viewHelper->render(
@@ -57,28 +56,18 @@ class HomeController extends Controller
                 [
                     'roles' => Role::select()->whereNotIn('name', ['admin', 'Admin'])->get(),
                     'title' => 'Panel de administración',
-                ]
+                ],
             );
         }
-
-        // Get last payment of the user
-        $latestPayment = auth()->user()->payments()->orderBy('created_at', 'desc')->first();
-
-        // Set locate to Spanish
-        setlocale(LC_TIME, 'es_ES', 'Spanish_Spain', 'Spanish');
-
-        // Get the last payment date
-        $date = str_replace('/', '-', $latestPayment->date_made_payment);
-        $month = strftime('%B', strtotime($date));
 
         return $this->viewHelper->render(
             'home',
             [
                 'exchangeRate' => $this->exchangeRateHelper->build()->get(),
                 'title' => 'Panel principal',
-                'latestPayment' => $latestPayment,
-                'month' => $month,
-            ]
+                'latestPayment' => auth()->user()->payments()->orderBy('created_at', 'desc')->first(),
+            ],
+            ['usuario']
         );
     }
 
@@ -89,6 +78,6 @@ class HomeController extends Controller
      */
     public function about(): View
     {
-        return $this->viewHelper->render('about');
+        return $this->viewHelper->render('about', ['title' => 'Acerca de'], ['usuario']);
     }
 }
