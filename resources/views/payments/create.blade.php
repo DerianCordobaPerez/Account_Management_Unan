@@ -57,11 +57,10 @@
                         </div>
 
                         <!-- CURRENCY -->
-                        <label class="control-label d-block fw-bold my-2" for="currency">
-                            Moneda
-                        </label>
-
                         @if($currencies->count() <= 2)
+                            <label class="control-label d-block fw-bold my-2">
+                                Moneda
+                            </label>
                             @foreach($currencies as $currency)
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label">
@@ -71,21 +70,12 @@
                                 </div>
                             @endforeach
                         @else
-                            <select name="currency" id="currency" class="form-select">
-                                @foreach($currencies as $currency)
-                                    <option value="{{$currency->id}}">{{ $currency->name }}</option>
-                                @endforeach
-                            </select>
+                            <x-form.select name="currency" id="currencies" key="name" label="Moneda" :options="$currencies" />
                         @endif
 
                         <!-- CONCEPT -->
                         <div class="mt-2">
-                            <label for="concept" class="form-label fw-bold">Concepto</label>
-                            <select id="concept" name="concept" class="form-select" aria-label="Select concept">
-                                @foreach($concepts as $concept)
-                                    <option value="{{$concept->id}}">{{$concept->name}}</option>
-                                @endforeach
-                            </select>
+                            <x-form.select name="concept" id="concepts" key="name" label="Concepto" :options="$concepts" />
                         </div>
                     </div>
 
