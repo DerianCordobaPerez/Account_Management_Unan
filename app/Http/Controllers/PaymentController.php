@@ -50,7 +50,7 @@ class PaymentController extends Controller
         return $this->viewHelper->render(
             'payments.index',
             ['payments' => Payment::latest()->paginate(10)],
-            ['admin']
+            ['cajero']
         );
     }
 
@@ -69,7 +69,7 @@ class PaymentController extends Controller
                 'currencies' => Currency::all(),
                 'concepts' => Concept::all()
             ],
-            ['admin']
+            ['cajero']
         );
     }
 
@@ -95,7 +95,7 @@ class PaymentController extends Controller
         return $this->viewHelper->render(
             'payments.show',
             ['payment' => $payment],
-            ['admin']
+            ['cajero']
         );
     }
 

@@ -28,6 +28,7 @@ class Payment extends Model
         'currency',
         'receipt_number',
         'pay_time',
+        'status',
         'cashier',
         'cashier_identification'
     ];
