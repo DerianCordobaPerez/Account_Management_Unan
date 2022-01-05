@@ -48,7 +48,7 @@ class UserController extends Controller
         return $this->viewHelper->render(
             'users.index',
             ['users' => $users->orderBy('names')->paginate(10)],
-            ['admin']
+            ['cajero']
         );
     }
 
