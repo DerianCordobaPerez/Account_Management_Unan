@@ -18,6 +18,7 @@ class CreateCurrenciesTable extends Migration
             $table->string('name');
             $table->string('abbreviation');
             $table->string('country');
+            $table->boolean('is_active')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });

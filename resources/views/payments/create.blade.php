@@ -15,73 +15,78 @@
                     </div>
                     <div class="step__body">
 
-                    <!-- CLIENT -->
-                    <label class="control-label d-block fw-bold mb-2" for="">Tipo de cliente</label>
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="
-                            client" id="" >
-                            Estudiante
-                        </label>
-                    </div>
+                        <!-- CLIENT -->
+                        <label class="control-label d-block fw-bold mb-2">Tipo de cliente</label>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="
+                                client" id="" >
+                                Estudiante
+                            </label>
+                        </div>
 
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="
-                            client" >
-                            Trabajador
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="
-                            client" >
-                            Otro
-                        </label>
-                    </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="
+                                client" >
+                                Trabajador
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="
+                                client" >
+                                Otro
+                            </label>
+                        </div>
 
-                    <!-- PAYMENT -->
-                    <label class="control-label d-block fw-bold my-2" for="">Forma de pago</label>
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="wayToPay" id="" >
-                            Efectivo
-                        </label>
-                    </div>
+                        <!-- PAYMENT -->
+                        <label class="control-label d-block fw-bold my-2" for="">Forma de pago</label>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="wayToPay" id="" >
+                                Efectivo
+                            </label>
+                        </div>
 
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="wayToPay" >
-                            Cheque
-                        </label>
-                    </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="wayToPay" >
+                                Cheque
+                            </label>
+                        </div>
 
-                    <!-- CURRENCY -->
-                    <label class="control-label d-block fw-bold my-2" for="">Moneda</label>
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="currency">
-                            Cordobas
+                        <!-- CURRENCY -->
+                        <label class="control-label d-block fw-bold my-2" for="currency">
+                            Moneda
                         </label>
-                    </div>
 
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="currency">
-                            Dolares
-                        </label>
-                    </div>
+                        @if($currencies->count() <= 2)
+                            @foreach($currencies as $currency)
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="currency" value="{{$currency->id}}">
+                                        {{ $currency->name }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        @else
+                            <select name="currency" id="currency" class="form-select">
+                                @foreach($currencies as $currency)
+                                    <option value="{{$currency->id}}">{{ $currency->name }}</option>
+                                @endforeach
+                            </select>
+                        @endif
 
-                    <!-- CONCEPT -->
-                    <div class="mt-2">
-                        <label for="" class="form-label fw-bold">Concepto</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Seleccione un concepto</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
+                        <!-- CONCEPT -->
+                        <div class="mt-2">
+                            <label for="concept" class="form-label fw-bold">Concepto</label>
+                            <select id="concept" name="concept" class="form-select" aria-label="Select concept">
+                                @foreach($concepts as $concept)
+                                    <option value="{{$concept->id}}">{{$concept->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
 
                     <div class="step__footer">
