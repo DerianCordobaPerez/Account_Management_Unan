@@ -21,7 +21,7 @@
                     </a>
                 </li>
 
-                @if(!auth()->user()->authorize('usuario'))
+                @if(auth()->user()->isAdmin() || auth()->user()->authorize('cajero'))
                     <!-- Records option -->
                     <li class="nav-item dropdown navbar-option">
                         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
