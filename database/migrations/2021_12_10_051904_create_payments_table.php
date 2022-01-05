@@ -29,6 +29,7 @@ class CreatePaymentsTable extends Migration
             $table->string('currency');
             $table->string('receipt_number');
             $table->string('pay_time');
+            $table->string('status')->default('Pendiente');
             $table->string('cashier');
             $table->string('cashier_identification');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
