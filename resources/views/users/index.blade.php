@@ -7,7 +7,7 @@
         <div class="col-md-4">
             <a href="{{route('users.index')}}"
                class="btn btn-danger text-white font-weight-bold shadow-sm me-4"
-               @if(count($users) <= 0) disabled @endi
+               @if(count($users) <= 0) disabled @endif
             >
                 <i class="bi bi-arrow-clockwise"></i>
                 Limpiar busqueda
