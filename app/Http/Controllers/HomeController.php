@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\ExchangeRateHelper;
 use App\Helpers\ViewHelper;
 use App\Models\Role;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use SoapFault;
 
@@ -13,6 +14,7 @@ use SoapFault;
  */
 class HomeController extends Controller
 {
+
     /**
      * @var ViewHelper
      */
@@ -43,10 +45,10 @@ class HomeController extends Controller
     /**
      * Show home page.
      *
-     * @return View
+     * @return View|RedirectResponse
      * @throws SoapFault
      */
-    public function home(): View
+    public function home(): View|RedirectResponse
     {
         if(auth()->user()->isAdmin()) {
             return $this->viewHelper->render(
@@ -54,7 +56,7 @@ class HomeController extends Controller
                 [
                     'roles' => Role::select()->whereNotIn('name', ['admin', 'Admin'])->get(),
                     'title' => 'Panel de administración',
-                ]
+                ],
             );
         }
 
@@ -63,7 +65,9 @@ class HomeController extends Controller
             [
                 'exchangeRate' => $this->exchangeRateHelper->build()->get(),
                 'title' => 'Panel principal',
-            ]
+                'latestPayment' => auth()->user()->payments()->orderBy('created_at', 'desc')->first(),
+            ],
+            ['usuario']
         );
     }
 
@@ -74,6 +78,6 @@ class HomeController extends Controller
      */
     public function about(): View
     {
-        return $this->viewHelper->render('about');
+        return $this->viewHelper->render('about', ['title' => 'Acerca de'], ['usuario']);
     }
 }

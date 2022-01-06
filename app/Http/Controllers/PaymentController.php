@@ -50,7 +50,7 @@ class PaymentController extends Controller
         return $this->viewHelper->render(
             'payments.index',
             ['payments' => Payment::latest()->paginate(10)],
-            ['admin']
+            ['cajero']
         );
     }
 
@@ -66,10 +66,11 @@ class PaymentController extends Controller
             'payments.create',
             [
                 'exchangeRate' => $this->exchangeRateHelper->build()->get(),
-                'currencies' => Currency::all(),
-                'concepts' => Concept::all()
+                'currencies' => Currency::where('is_active', true)->get(),
+                'concepts' => Concept::all(),
+                'types' => ['Estudiante', 'Trabajador', 'Otro']
             ],
-            ['admin']
+            ['cajero']
         );
     }
 
@@ -95,7 +96,7 @@ class PaymentController extends Controller
         return $this->viewHelper->render(
             'payments.show',
             ['payment' => $payment],
-            ['admin']
+            ['cajero']
         );
     }
 

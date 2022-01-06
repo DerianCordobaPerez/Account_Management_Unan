@@ -63,15 +63,17 @@
                                     Pagos
                                 </a>
 
-                                <button type="submit" class="btn btn-{{$user->active ? 'danger' : 'secondary'}} btn-sm">
-                                    @if($user->active)
-                                        <i class="bi bi-lock-fill"></i>
-                                        Deshabilitar
-                                    @else
-                                        <i class="bi bi-unlock-fill"></i>
-                                        Habilitar
-                                    @endif
-                                </button>
+                                @if(auth()->user()->isAdmin())
+                                    <button type="submit" class="btn btn-{{$user->active ? 'danger' : 'secondary'}} btn-sm">
+                                        @if($user->active)
+                                            <i class="bi bi-lock-fill"></i>
+                                            Deshabilitar
+                                        @else
+                                            <i class="bi bi-unlock-fill"></i>
+                                            Habilitar
+                                        @endif
+                                    </button>
+                                @endif
                             </form>
                         </td>
                     </tr>
@@ -83,6 +85,8 @@
             {!! $users->links() !!}
         </div>
     @else
-        <p>No hay usuarios registrados</p>
+        <h4 class="text-muted text-center mt-4">
+            No hay usuarios registrados.
+        </h4>
     @endif
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\RoleHelper;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -13,7 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, SoftCascadeTrait;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, SoftCascadeTrait, RoleHelper;
 
     protected $dates = ['deleted_at'];
 
@@ -76,30 +77,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Payment::class);
     }
-
-    public function authorize(array|string|null $roles): bool
-    {
-        return $this->hasRoles($roles);
-    }
-
-    public function isAdmin(): bool
-    {
-        return $this->hasRoles('admin');
-    }
-
-    private function hasRoles(array|string|null $roles): bool
-    {
-        if (is_null($roles))
-            return false;
-
-        if (is_array($roles)) {
-            foreach ($roles as $role) {
-                if ($this->roles()->where('name', $role)->exists())
-                    return true;
-            }
-            return false;
-        }
-        return $this->roles()->where('name', $roles)->exists();
-    }
-
 }
