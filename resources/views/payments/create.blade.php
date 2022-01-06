@@ -13,50 +13,24 @@
                             <small>(Paso 1)</small>
                         </h2>
                     </div>
+
                     <div class="step__body">
-
-                        <!-- CLIENT -->
-                        <label class="control-label d-block fw-bold mb-2">Tipo de cliente</label>
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="
-                                client" id="" >
-                                Estudiante
-                            </label>
+                        <!-- Concept field -->
+                        <div class="mt-2">
+                            <x-form.select name="concept" id="concepts" key="name" label="Concepto" :options="$concepts" />
                         </div>
 
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="
-                                client" >
-                                Trabajador
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="
-                                client" >
-                                Otro
-                            </label>
+                        <!-- Amount field -->
+                        <div class="mt-2">
+                            <x-form.input name="amount" id="amount" label="Monto" type="number" min="0" />
                         </div>
 
-                        <!-- PAYMENT -->
-                        <label class="control-label d-block fw-bold my-2" for="">Forma de pago</label>
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="wayToPay" id="" >
-                                Efectivo
-                            </label>
+                        <!-- Amount in letters field -->
+                        <div class="mt-2">
+                            <x-form.input name="amount_in_letters" id="amount_in_letters" label="Monto en letras" type="text" :disabled="true" />
                         </div>
 
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="wayToPay" >
-                                Cheque
-                            </label>
-                        </div>
-
-                        <!-- CURRENCY -->
+                        <!-- Currency field -->
                         @if($currencies->count() <= 2)
                             <label class="control-label d-block fw-bold my-2">
                                 Moneda
@@ -72,11 +46,6 @@
                         @else
                             <x-form.select name="currency" id="currencies" key="name" label="Moneda" :options="$currencies" />
                         @endif
-
-                        <!-- CONCEPT -->
-                        <div class="mt-2">
-                            <x-form.select name="concept" id="concepts" key="name" label="Concepto" :options="$concepts" />
-                        </div>
                     </div>
 
                     <div class="step__footer">
@@ -175,5 +144,6 @@
 @endsection
 
 @section("js")
+    <script src="{{asset('js/helpers/convertNumberToWord.js')}}"></script>
     <script src="{{ asset('js/helpers/multiple-form.js') }}"></script>
 @endsection
