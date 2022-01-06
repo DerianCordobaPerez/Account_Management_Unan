@@ -2,6 +2,7 @@
 
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
+use App\Model\User;
 
 // Home
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
@@ -25,3 +26,4 @@ Breadcrumbs::for('roles.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Gestión de roles', route('roles.index'));
 });
+
