@@ -136,5 +136,4 @@
 
 @section('js')
     <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
-    <script src="{{asset('js/utils/filterTable.js')}}"></script>
 @endsection

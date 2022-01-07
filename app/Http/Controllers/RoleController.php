@@ -40,16 +40,17 @@ class RoleController extends Controller
 
         // Check if the request search query is set
         if($request->has('search')) {
-            $roles = Role::search($request->search);
+            $roles = Role::search($request->search)->orderBy('id')->paginate(10);
+            $roles->withQueryString();
         } else {
-            $roles = Role::where('name', '!=', 'admin');
+            $roles = Role::where('name', '!=', 'admin')->orderBy('id')->paginate(10);
         }
 
         return $this->viewHelper->render(
             'roles.index',
             [
                 'users' => $users,
-                'roles' => $roles->orderBy('id')->paginate(10),
+                'roles' => $roles,
             ],
             ['admin']
         );

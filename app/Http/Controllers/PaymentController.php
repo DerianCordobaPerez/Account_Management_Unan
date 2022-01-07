@@ -58,14 +58,16 @@ class PaymentController extends Controller
     {
         // Check if the request search query is set
         if ($request->has('search')) {
-            $payments = Payment::search($request->search);
+            $payments = Payment::search($request->search)->paginate(7);
+            $payments->withQueryString();
         } else {
-            $payments = Payment::latest();
+            $payments = Payment::latest()->paginate(7);
         }
 
+        // Return the view
         return $this->viewHelper->render(
             'payments.index',
-            ['payments' => $payments->paginate(10)],
+            ['payments' => $payments],
             ['cajero']
         );
     }
