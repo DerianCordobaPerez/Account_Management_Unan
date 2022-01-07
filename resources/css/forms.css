@@ -12,25 +12,12 @@
 textarea {
     resize: none;
 }
-/*
-form {
-    background-color:#fff;
-    padding: 20px 40px;
-}
-
-
-
-.change {
-    border: 1px solid #aaa;
-    text-align: center;
-    padding: 5px 0;
-} */
-
 
 /* Contenedor principal */
 .payments-form {
     background-color: #FFF;
     height: auto;
+    padding: 15px;
 }
 
 .content-payments{
@@ -116,8 +103,7 @@ form {
 
 /* step */
 .step {
-    background-color: #FFF;
-    box-shadow: 5px 5px 5px 2px #ccc;
+    background-color: #fff;
     border-radius: 3px;
     min-width: 100%;
     opacity: 0;

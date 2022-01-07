@@ -35,8 +35,7 @@ class Payment extends Model
 
     protected $casts = [
         'date_made_payment' => 'datetime',
-        'payment_registration_date' => 'datetime',
-        'payment_received' => 'boolean',
+        'payment_registration_date' => 'datetime'
     ];
 
     public function user(): BelongsTo
