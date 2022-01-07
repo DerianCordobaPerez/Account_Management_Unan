@@ -30,19 +30,19 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return View|RedirectResponse
      */
-    public function index(): View|RedirectResponse
+    public function index(Request $request): View|RedirectResponse
     {
-        // Get all roles except the admin role
-        $roles = Role::select()->whereNotIn('name', ['admin']);
-
         // Get all users except the admin user
         $users = User::select()->whereNotIn('names', ['Administrator'])->get();
 
         // Check if the request search query is set
-        if(request('search')) {
-            $roles = Role::select()->where('name', 'like', '%' . request('search') . '%');
+        if($request->has('search')) {
+            $roles = Role::search($request->search);
+        } else {
+            $roles = Role::where('name', '!=', 'admin');
         }
 
         return $this->viewHelper->render(

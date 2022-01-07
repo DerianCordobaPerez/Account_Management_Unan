@@ -51,13 +51,21 @@ class PaymentController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return RedirectResponse|View
      */
-    public function index(): View|RedirectResponse
+    public function index(Request $request): View|RedirectResponse
     {
+        // Check if the request search query is set
+        if ($request->has('search')) {
+            $payments = Payment::search($request->search);
+        } else {
+            $payments = Payment::latest();
+        }
+
         return $this->viewHelper->render(
             'payments.index',
-            ['payments' => Payment::latest()->paginate(10)],
+            ['payments' => $payments->paginate(10)],
             ['cajero']
         );
     }
