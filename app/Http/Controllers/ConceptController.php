@@ -21,13 +21,20 @@ class ConceptController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return View|RedirectResponse
      */
-    public function index(): View|RedirectResponse
+    public function index(Request $request): View|RedirectResponse
     {
+        if($request->has('search')) {
+            $concepts = Concept::search($request->search);
+        } else {
+            $concepts = Concept::latest();
+        }
+
         return $this->viewHelper->render(
             'concepts.index',
-            ['concepts' => Concept::all()],
+            ['concepts' => $concepts->orderBy('id')->paginate(10)]
             ['admin']
         );
     }

@@ -31,18 +31,16 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return RedirectResponse|View
      */
-    public function index(): RedirectResponse|View
+    public function index(Request $request): RedirectResponse|View
     {
-        $users = User::select()->whereNotIn('names', ['Administrator']);
-
-        if(request('search')) {
-            $users = User::where('names', 'like', '%' . request('search') . '%')
-                ->orWhere('lastnames', 'like', '%' . request('search') . '%')
-                ->orWhere('email', 'like', '%' . request('search') . '%')
-                ->orWhere('identification', 'like', '%' . request('search') . '%')
-                ->orWhere('phone', 'like', '%' . request('search') . '%');
+        // Check if the request search query is set
+        if($request->has('search')) {
+            $users = User::search($request->search);
+        } else {
+            $users = User::select()->whereNotIn('names', ['Administrator']);
         }
 
         return $this->viewHelper->render(

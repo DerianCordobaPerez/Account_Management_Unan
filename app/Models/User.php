@@ -11,10 +11,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, SoftCascadeTrait, RoleHelper;
+    use HasApiTokens, HasFactory, Searchable, Notifiable, SoftDeletes, SoftCascadeTrait, RoleHelper;
 
     protected $dates = ['deleted_at'];
 
@@ -76,5 +77,10 @@ class User extends Authenticatable
     public function payments(): HasMany
     {
         return $this->hasMany(Payment::class);
+    }
+
+    public function searchableAs(): string
+    {
+        return 'users_index';
     }
 }
