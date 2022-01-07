@@ -39,6 +39,7 @@ class UserController extends Controller
         // Check if the request search query is set
         if($request->has('search')) {
             $users = User::search($request->search);
+            $users->withQueryString();
         } else {
             $users = User::select()->whereNotIn('names', ['Administrator']);
         }

@@ -27,14 +27,15 @@ class ConceptController extends Controller
     public function index(Request $request): View|RedirectResponse
     {
         if($request->has('search')) {
-            $concepts = Concept::search($request->search);
+            $concepts = Concept::search($request->search)->orderBy('id')->paginate(10);
+            $concepts->withQueryString();
         } else {
-            $concepts = Concept::latest();
+            $concepts = Concept::latest()->orderBy('id')->paginate(10);
         }
 
         return $this->viewHelper->render(
             'concepts.index',
-            ['concepts' => $concepts->orderBy('id')->paginate(10)]
+            ['concepts' => $concepts]
             ['admin']
         );
     }

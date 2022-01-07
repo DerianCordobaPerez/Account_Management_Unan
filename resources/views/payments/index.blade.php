@@ -4,22 +4,38 @@
     {{Breadcrumbs::render()}}
 
     <div class="row">
-        <div class="col-md-4 d-flex justify-content-start">
-            <a href="{{ route('payments.create') }}" class="btn bg-blue-gradient btn-sm text-white mb-2 font-weight-bold shadow-sm">
+        <div class="col-md-2 d-flex align-items-center justify-content-start">
+            <a href="{{ route('payments.create') }}" class="btn bg-blue-gradient text-white font-weight-bold shadow-sm">
                 <i class="fas fa-plus"></i>
-                Nuevo recibo de pago
+                Recibo de pago
             </a>
         </div>
 
-        <div class="col-md-8 d-flex justify-content-end">
-            <div class="input-group">
-                <input class="form-control border-end-0 border" onsearch="resetTable('payment-table')" onkeyup="filterTable(this, 'payment-table')" id="search-payment-id" type="search" placeholder="Buscar por nombre del cliente">
-                <span class="input-group-append">
-                    <button class="btn bg-white border-start-0 border-bottom-0 border ms-n5" type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
+        <div class="col-md-4 d-flex align-items-center justify-content-center">
+            <a href="{{route('payments.index')}}"
+               class="btn btn-danger text-white font-weight-bold shadow-sm"
+               @if(count($payments) <= 0) disabled @endif
+            >
+                <i class="bi bi-arrow-clockwise"></i>
+                Limpiar busqueda
+            </a>
+        </div>
+
+        <div class="col-md-6 d-flex justify-content-end">
+            <form action="{{route('payments.index')}}" method="GET" class="bg-transparent p-0 w-100">
+                <div class="input-group">
+                    <input class="form-control border-end-0 border" name="search"
+                           id="search-payment-id" type="search"
+                           placeholder="Buscar por nombre del cliente"
+                           @if(request('search') !== null) value="{{request('search')}}" @endif
+                    >
+                    <span class="input-group-append">
+                        <button class="btn bg-white border-start-0 border-bottom-0 border ms-n5" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -67,5 +83,4 @@
 
 @section('js')
     <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
-    <script src="{{asset('js/utils/filterTable.js')}}"></script>
 @endsection
