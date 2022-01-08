@@ -17,7 +17,10 @@ class CurrencyController extends Controller
 
     public function __construct()
     {
+        // Check if user is logged in
         $this->middleware(['auth']);
+
+        // Inject ViewHelper and RedirectHelper
         $this->viewHelper = ViewHelper::getInstance();
         $this->redirectHelper = RedirectHelper::getInstance();
     }
@@ -46,7 +49,7 @@ class CurrencyController extends Controller
     {
         return $this->viewHelper->render(
             'currencies.create',
-            null,
+            [],
             ['admin']
         );
     }
