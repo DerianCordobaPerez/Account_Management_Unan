@@ -40,15 +40,15 @@ class UserController extends Controller
     {
         // Check if the request search query is set
         if($request->has('search')) {
-            $users = User::search($request->search);
+            $users = User::search($request->search)->orderBy('names')->paginate(10);
             $users->withQueryString();
         } else {
-            $users = User::select()->whereNotIn('names', ['Administrator']);
+            $users = User::select()->whereNotIn('names', ['Administrator'])->orderBy('names')->paginate(10);
         }
 
         return $this->viewHelper->render(
             'users.index',
-            ['users' => $users->orderBy('names')->paginate(10)],
+            ['users' => $users],
             ['cajero']
         );
     }
