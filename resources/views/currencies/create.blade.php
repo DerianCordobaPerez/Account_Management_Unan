@@ -1,8 +1,7 @@
 @extends('layouts.app' , ['title' => 'Registro de Moneda'])
 
 @section('content')
-
-    <form action="{{route('currencies.store')}}" method="POST" class="form">
+    <form action="{{route('currencies.store')}}" method="POST" class="form-register__body bg-white p-2">
         @csrf
         <h2 class="title-form">Registro de Moneda</h2>
         <h4 class="data-form">
