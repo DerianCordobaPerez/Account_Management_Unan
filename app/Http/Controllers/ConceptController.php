@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
 use App\Models\Concept;
 use Illuminate\Http\RedirectResponse;
@@ -10,14 +11,19 @@ use Illuminate\View\View;
 
 class ConceptController extends Controller
 {
-
-
     private ViewHelper $viewHelper;
+    private RedirectHelper $redirectHelper;
 
     public function __construct()
     {
+        // Check if the user is logged in
         $this->middleware(['auth']);
+
+        // Inject the view helper
         $this->viewHelper = ViewHelper::getInstance();
+
+        // Inject the redirect helper
+        $this->redirectHelper = RedirectHelper::getInstance();
     }
 
     /**
@@ -45,13 +51,13 @@ class ConceptController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View|RedirectResponse
      */
     public function create(): View|RedirectResponse
     {
         return $this->viewHelper->render(
             'concepts.create',
-            null,
+            [],
             ['admin']
         );
     }
@@ -59,18 +65,32 @@ class ConceptController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        return $this->redirectHelper->redirect(['admin'], function() use($request) {
+            // Create concept
+            $concept = Concept::create([
+                'name' => $request->name,
+                'price' => $request->price,
+            ]);
+
+            if($request->description) {
+                $concept->description = $request->description;
+                $concept->save();
+            }
+
+            // Redirect to the index page
+            return redirect()->route('concepts.index')->with('success', 'Concepto creado correctamente.');
+        });
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Concept  $concept
+     * @param Concept $concept
      * @return \Illuminate\Http\Response
      */
     public function show(Concept $concept)
@@ -81,34 +101,58 @@ class ConceptController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Concept  $concept
-     * @return \Illuminate\Http\Response
+     * @param Concept $concept
+     * @return View|RedirectResponse
      */
-    public function edit(Concept $concept)
+    public function edit(Concept $concept): View|RedirectResponse
     {
-        //
+        return $this->viewHelper->render(
+            'concepts.edit',
+            ['concept' => $concept],
+            ['admin']
+        );
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Concept  $concept
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Concept $concept
+     * @return RedirectResponse
      */
-    public function update(Request $request, Concept $concept)
+    public function update(Request $request, Concept $concept): RedirectResponse
     {
-        //
+        return $this->redirectHelper->redirect(['admin'], function() use($request, $concept) {
+            // Update concept
+            $concept->name = $request->name;
+            $concept->price = $request->price;
+
+            // Check if the description is not empty
+            if($request->description) {
+                $concept->description = $request->description;
+            }
+
+            $concept->save();
+
+            // Redirect to the index page
+            return redirect()->route('concepts.index')->with('success', 'Concepto actualizado correctamente.');
+        });
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Concept  $concept
-     * @return \Illuminate\Http\Response
+     * @param Concept $concept
+     * @return RedirectResponse
      */
-    public function destroy(Concept $concept)
+    public function destroy(Concept $concept): RedirectResponse
     {
-        //
+        return $this->redirectHelper->redirect(['admin'], function() use($concept) {
+            // Delete concept
+            $concept->delete();
+
+            // Redirect to the index page
+            return redirect()->route('concepts.index')->with('success', 'Concepto eliminado correctamente.');
+        });
     }
 }
