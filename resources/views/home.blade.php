@@ -16,38 +16,23 @@
             <div class="mt-4">
                 <x-card title="Historial de facturas">
                     <x-accordion>
-                        <x-accordion-tab title="Diciembre 2021">
-                            <ul class="list-unstyled">
-                                <li class="fw-bold">29 Diciembre 2021</li>
-                                <li>C$ 390.09</li>
-                            </ul>
-                            <a href="#" class="text-info">
-                                <i class="bi bi-download"></i>
-                                Ver factura
-                            </a>
-                        </x-accordion-tab>
-
-                        <x-accordion-tab title="Noviembre 2021">
-                            <ul class="list-unstyled">
-                                <li class="fw-bold">29 Noviembre 2021</li>
-                                <li>C$ 489.36</li>
-                            </ul>
-                            <a href="#" class="text-info">
-                                <i class="bi bi-download"></i>
-                                Ver factura
-                            </a>
-                        </x-accordion-tab>
-
-                        <x-accordion-tab title="Octubre 2021">
-                            <ul class="list-unstyled">
-                                <li class="fw-bold">29 Octubre 2021</li>
-                                <li>C$ 4390.99</li>
-                            </ul>
-                            <a href="#" class="text-info">
-                                <i class="bi bi-download"></i>
-                                Ver factura
-                            </a>
-                        </x-accordion-tab>
+                        @if($totalAmountByMonth)
+                            @foreach($totalAmountByMonth as $amount)
+                                <x-accordion-tab title="{{$periods[$loop->index]}}">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <span class="text-blue">Monto total:</span>
+                                            <span class="fw-bold">{{ $amount }}</span>
+                                        </li>
+                                    </ul>
+                                </x-accordion-tab>
+                            @endforeach
+                        @else
+                            <div class="text-center text-gray-500 text-sm">
+                                <h3>No hay pagos registradas</h3>
+                                <h5>Durante los ultimos 3 meses</h5>
+                            </div>
+                        @endif
                     </x-accordion>
 
                     <x-slot name="footer">
@@ -95,16 +80,16 @@
                 <div class="row">
                     <div class="col-md-6 text-blue">
                         <p>Numero de pago</p>
-                        <p>Fecha de registro</p>
                         <p>Fecha de Pago</p>
+                        <p>Fecha de registro</p>
                         <p>Periodo</p>
                         <p>Estado</p>
                     </div>
 
                     <div class="col-md-6">
-                        <p>{{$latestPayment->id}}</p>
-                        <p>{{$latestPayment->payment_registration_date}}</p>
+                        <p>{{$latestPayment->receipt_number}}</p>
                         <p>{{$latestPayment->date_made_payment}}</p>
+                        <p>{{$latestPayment->payment_registration_date}}</p>
                         <p>{{$period}}</p>
                         <p class="text-{{$latestPayment->status === 'Pendiente' ? 'danger' : 'success'}}">
                             {{$latestPayment->status}}

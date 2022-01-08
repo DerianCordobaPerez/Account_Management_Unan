@@ -64,7 +64,28 @@ class HomeController extends Controller
         }
 
         // Get last payment user
-        $latestPayment = auth()->user()->payments()->orderBy('created_at', 'desc')->first();
+        $latestPayment = auth()->user()->payments()->orderBy('payment_registration_date', 'desc')->first();
+
+        // Get records by latest 3 months for the user
+        $records = auth()->user()->payments()->whereBetween('payment_registration_date', [
+            $this->getFirstDayOfLastThreeMonths(),
+            $this->getLastDayOfLastThreeMonths(),
+        ])->get();
+
+        //Split records by month
+        $recordsByMonth = $records->groupBy(function ($record) {
+            return $record->payment_registration_date->format('Y-m');
+        });
+
+        // Get total amount of records for each month
+        $totalAmountByMonth = [];
+
+        foreach ($recordsByMonth as $month => $values) {
+            $totalAmountByMonth[$month] = $values->sum('amount');
+        }
+
+        // Get periods for the last 3 months
+        $periods = $this->getPeriodsForLastThreeMonths();
 
         return $this->viewHelper->render(
             'home',
@@ -73,6 +94,8 @@ class HomeController extends Controller
                 'title' => 'Panel principal',
                 'latestPayment' => $latestPayment,
                 'period' => $this->getPeriod($latestPayment->payment_registration_date),
+                'periods' => $periods,
+                'totalAmountByMonth' => $totalAmountByMonth,
             ],
             ['usuario']
         );
