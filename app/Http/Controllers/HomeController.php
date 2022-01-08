@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\DateHelper;
 use App\Helpers\ExchangeRateHelper;
 use App\Helpers\ViewHelper;
 use App\Models\Role;
+use Carbon\Traits\Date;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use SoapFault;
@@ -14,6 +16,7 @@ use SoapFault;
  */
 class HomeController extends Controller
 {
+    use DateHelper;
 
     /**
      * @var ViewHelper
@@ -60,12 +63,16 @@ class HomeController extends Controller
             );
         }
 
+        // Get last payment user
+        $latestPayment = auth()->user()->payments()->orderBy('created_at', 'desc')->first();
+
         return $this->viewHelper->render(
             'home',
             [
                 'exchangeRate' => $this->exchangeRateHelper->build()->get(),
                 'title' => 'Panel principal',
-                'latestPayment' => auth()->user()->payments()->orderBy('created_at', 'desc')->first(),
+                'latestPayment' => $latestPayment,
+                'period' => $this->getPeriod($latestPayment->payment_registration_date),
             ],
             ['usuario']
         );

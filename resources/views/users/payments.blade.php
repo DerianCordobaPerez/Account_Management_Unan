@@ -3,8 +3,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-8">
-            <a href="{{ route('users.payments', auth()->user()->id) }}"
-                class="btn btn-danger text-white font-weight-bold shadow-sm me-4" 
+            <a href="{{ route('users.payments', $user->id) }}"
+                class="btn btn-danger text-white font-weight-bold shadow-sm me-4"
                 @if (count($payments) <= 0) disabled @endif
             >
                 <i class="bi bi-arrow-clockwise"></i>
@@ -16,10 +16,9 @@
             <div class="input-group">
                 <label class="me-2">Buscar por mes</label>
                 <select class="form-control">
-                    <option>Todos</option>  
-                    <option>Diciembre</option>
-                    <option>Noviembre</option>
-                    <option>Septiembre</option>
+                    @foreach($months as $month)
+                        <option value="{{ $month }}">{{ $month }}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -40,12 +39,12 @@
                 </thead>
                 @foreach ($payments as $payment)
                     <tr class="table-light">
-                        <th>{{ $payment->amount }}</th>
-                        <th>{{ $payment->concept }}</th>
-                        <th>{{ $payment->date_made_payment }}</th>
-                        <th>{{ $payment->identification }}</th>
-                        <th>{{ $payment->exchange_rate }}</th>
-                        <th>{{ $payment->currency }}</th>
+                        <td>{{ $payment->amount }}</td>
+                        <td>{{ $payment->concept }}</td>
+                        <td>{{ $payment->date_made_payment }}</td>
+                        <td>{{ $payment->identification }}</td>
+                        <td>{{ $payment->exchange_rate }}</td>
+                        <td>{{ $payment->currency }}</td>
                     </tr>
                 @endforeach
             </table>

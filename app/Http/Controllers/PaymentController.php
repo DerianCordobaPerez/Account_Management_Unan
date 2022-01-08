@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\DateHelper;
 use App\Helpers\ExchangeRateHelper;
 use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
@@ -9,7 +10,6 @@ use App\Models\Concept;
 use App\Models\Currency;
 use App\Models\Payment;
 use App\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -17,6 +17,7 @@ use SoapFault;
 
 class PaymentController extends Controller
 {
+    use DateHelper;
 
     /**
      * @var ViewHelper
