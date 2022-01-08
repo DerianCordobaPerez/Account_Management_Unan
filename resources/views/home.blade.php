@@ -51,7 +51,7 @@
                     </x-accordion>
 
                     <x-slot name="footer">
-                        <a class="text-blue" href="{{ route('payments.index') }}">
+                        <a class="text-blue" href="{{ route('users.payments', auth()->user()->id) }}">
                             Ver todas
                         </a>
                     </x-slot>
@@ -62,8 +62,17 @@
         <!-- Last bill card -->
         <div class="col-md-6">
             <div class="row">
-                <div class="col-md-8">
-                    <form class="d-flex justify-content-start bg-transparent p-0">
+                <div class="col-md-5">
+                    <div class="d-flex justify-content-center align-middle px-2 rounded-3 bg-light pt-2 pb-0 text-center">
+                        <p class="fw-bold text-blue">
+                            <i class="bi bi-info-circle"></i>
+                            Cambio dolar: {{$exchangeRate}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-7 d-flex justify-content-end">
+                    <form class="bg-transparent p-0">
                         <div class="input-group mb-4 w-100">
                             <label>
                                 <input type="email" class="form-control" placeholder="Barra de busqueda"/>
@@ -76,15 +85,9 @@
                         </div>
                     </form>
                 </div>
-
-                <div class="col-md-4">
-                    <div class="d-flex justify-content-end">
-                        <p class="fw-bold text-danger">Tasa de cambio: {{$exchangeRate}}</p>
-                    </div>
-                </div>
             </div>
 
-            <x-card title="Ultima factura">
+            <x-card title="Ultimo pago">
                 <div class="mb-3">
                     <h2 class="text-blue fs-1">C$ {{$latestPayment->amount}}</h2>
                 </div>
@@ -94,6 +97,7 @@
                         <p>Numero de pago</p>
                         <p>Fecha de registro</p>
                         <p>Fecha de Pago</p>
+                        <p>Periodo</p>
                         <p>Estado</p>
                     </div>
 
@@ -101,6 +105,7 @@
                         <p>{{$latestPayment->id}}</p>
                         <p>{{$latestPayment->payment_registration_date}}</p>
                         <p>{{$latestPayment->date_made_payment}}</p>
+                        <p>{{$period}}</p>
                         <p class="text-{{$latestPayment->status === 'Pendiente' ? 'danger' : 'success'}}">
                             {{$latestPayment->status}}
                         </p>

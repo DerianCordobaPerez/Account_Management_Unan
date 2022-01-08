@@ -10,6 +10,8 @@ use Illuminate\View\View;
 
 class ConceptController extends Controller
 {
+
+
     private ViewHelper $viewHelper;
 
     public function __construct()
@@ -35,7 +37,7 @@ class ConceptController extends Controller
 
         return $this->viewHelper->render(
             'concepts.index',
-            ['concepts' => $concepts]
+            ['concepts' => $concepts],
             ['admin']
         );
     }

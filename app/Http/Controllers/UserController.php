@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\DateHelper;
 use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    use DateHelper;
+
     private RedirectHelper $redirectHelper;
     private ViewHelper $viewHelper;
 
@@ -129,16 +131,17 @@ class UserController extends Controller
 
     public function payments(User $user): RedirectResponse|View
     {
-        $name = explode(' ', $user->names)[0];
+        [$name] = explode(' ', $user->names);
 
         return $this->viewHelper->render(
             'users.payments',
             [
                 'name' => $name,
                 'user' => $user,
-                'payments' => $user->payments
+                'payments' => $user->payments,
+                'months' => $this->spanishMonths
             ],
-            ['admin']
+            ['cajero', 'usuario']
         );
     }
 
