@@ -2,12 +2,14 @@
 
 namespace App\Helpers;
 
+use Carbon\Carbon;
+
 trait DateHelper
 {
     /**
      * @var array|string[]
      */
-    public array $spanishMonths = [
+    protected array $spanishMonths = [
         'January' => 'Enero',
         'February' => 'Febrero',
         'March' => 'Marzo',
@@ -35,5 +37,35 @@ trait DateHelper
     public function getPeriod($date): string
     {
         return $this->getMonth(date('F', strtotime($date))) . ' ' . $this->getYear($date);
+    }
+
+    public function getFirstDayOfLastMonth(): string
+    {
+        return Carbon::now()->startOfMonth()->subMonth();
+    }
+
+    public function getFirstDayOfLastThreeMonths(): string
+    {
+        return Carbon::now()->startOfMonth()->subMonth(3);
+    }
+
+    public function getFirstDayOfLastTwoMonths(): string
+    {
+        return Carbon::now()->startOfMonth()->subMonth(2);
+    }
+
+    public function getLastDayOfLastThreeMonths(): string
+    {
+        return Carbon::now()->startOfMonth();
+    }
+
+    public function getPeriodsForLastThreeMonths(): array
+    {
+        $periods = [];
+        $periods[] = $this->getPeriod($this->getFirstDayOfLastMonth());
+        $periods[] = $this->getPeriod($this->getFirstDayOfLastTwoMonths());
+        $periods[] = $this->getPeriod($this->getFirstDayOfLastThreeMonths());
+
+        return $periods;
     }
 }
