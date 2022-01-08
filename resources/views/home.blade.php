@@ -33,7 +33,6 @@
                                 <h5>Durante los ultimos 3 meses</h5>
                             </div>
                         @endif
-
                     </x-accordion>
 
                     <x-slot name="footer">
