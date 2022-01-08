@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Helpers\DateHelper;
 use App\Helpers\ExchangeRateHelper;
 use App\Helpers\ViewHelper;
+use App\Models\Concept;
+use App\Models\Payment;
 use App\Models\Role;
+use App\Models\User;
 use Carbon\Traits\Date;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -57,8 +60,11 @@ class HomeController extends Controller
             return $this->viewHelper->render(
                 'admin.index',
                 [
-                    'roles' => Role::select()->whereNotIn('name', ['admin', 'Admin'])->get(),
                     'title' => 'Panel de administración',
+                    'concepts' => Concept::all()->count(),
+                    'payments' => Payment::all()->count(),
+                    'users' => User::where('active', true)->count(),
+                    'roles' => Role::where('name', '!=', 'admin')->count(),
                 ],
             );
         }
