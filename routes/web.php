@@ -28,6 +28,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Concept routes
     Route::resource('concepts', ConceptController::class)->except(['show']);
 
+    // Search user
+    Route::get('/users/search/identification', [UserController::class, 'search'])->name('users.search');
+
     // Show payments by user
     Route::get('/users/{user}/payments', [UserController::class, 'payments'])->name('users.payments');
 
