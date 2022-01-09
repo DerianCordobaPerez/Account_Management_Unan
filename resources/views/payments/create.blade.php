@@ -21,11 +21,15 @@
                                 <!-- Concept field -->
                                 <div class="mt-2">
                                     <x-form.select name="concept" id="concepts" key="name" label="Concepto" :options="$concepts" />
+
+                                    @foreach($concepts as $concept)
+                                        <input type="hidden" disabled id="amount-{{$loop->index}}" name="concepts[]" value="{{$concept->price}}">
+                                    @endforeach
                                 </div>
 
                                 <!-- Amount field -->
                                 <div class="mt-2">
-                                    <x-form.input name="amount" id="amount" label="Monto" type="number" />
+                                    <x-form.input name="amount" id="amount" label="Monto por concepto" type="number" :disabled="true" />
                                 </div>
 
                                 <!-- Amount in letters field -->
