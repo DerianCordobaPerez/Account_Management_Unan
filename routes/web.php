@@ -14,18 +14,19 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     // Home routes
     Route::get('/', [HomeController::class, 'home'])->name('home');
-    Route::get('/about', [HomeController::class, 'about'])->name('about');
 
     // User routes
     Route::resources([
         'users' => UserController::class,
         'payments' => PaymentController::class,
-        'concepts' => ConceptController::class,
         'currencies' => CurrencyController::class,
     ]);
 
-    // Role routes except show
+    // Role routes
     Route::resource('roles', RoleController::class)->except(['show']);
+
+    // Concept routes
+    Route::resource('concepts', ConceptController::class)->except(['show']);
 
     // Show payments by user
     Route::get('/users/{user}/payments', [UserController::class, 'payments'])->name('users.payments');
@@ -46,4 +47,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Delete permanently roles
     Route::delete('/roles/{role}/force', [RoleController::class, 'force'])->name('roles.force');
+
+    // Show trashed concepts
+    Route::get('/concepts/trashed', [ConceptController::class, 'trashed'])->name('concepts.trashed');
+    Route::put('/concepts/{concept}/restore', [ConceptController::class, 'restore'])->name('concepts.restore');
+
+    // Delete permanently concepts
+    Route::delete('/concepts/{concept}/force', [ConceptController::class, 'force'])->name('concepts.force');
 });
