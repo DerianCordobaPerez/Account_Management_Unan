@@ -1,6 +1,4 @@
-@extends('layouts.app', ['title' => 'Iniciar sesión'])
-
-@section('content')
+<x-layout title="Iniciar sesión">
     <div class="container contact-form">
         <div class="contact-image">
             <img src="{{ asset('img/logos/UNAN.png')}}" alt="Unan"/>
@@ -25,6 +23,5 @@
                 @endif
             </div>
         </x-form>
-
     </div>
-@endsection
+</x-layout>
