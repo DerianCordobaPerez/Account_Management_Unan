@@ -34,7 +34,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Abreviación</th>
                         <th scope="col">País</th>
-                        <th scope="col">Acciones</th>
+                        <th class="w-25" scope="col">Acciones</th>
                     </tr>
                 </thead>
 
@@ -50,11 +50,19 @@
                                     <i class="fas fa-edit"></i>
                                     editar
                                 </a>
-                                <form class="p-0" action="{{ route('currencies.destroy', $currency->id) }}" method="POST">
-                                    @csrf @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">
-                                        <i class="fas fa-trash"></i>
-                                        Eliminar
+                                <form class="p-0"
+                                      action="{{ route($currency->is_active ? 'currencies.disable' : 'currencies.enable', $currency->id) }}"
+                                      method="POST"
+                                >
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-{{$currency->is_active ? 'danger' : 'secondary'}}">
+                                        @if($currency->is_active)
+                                            <i class="bi bi-lock-fill"></i>
+                                            Deshabilitar
+                                        @else
+                                            <i class="bi bi-unlock-fill"></i>
+                                            Habilitar
+                                        @endif
                                     </button>
                                 </form>
                             </div>

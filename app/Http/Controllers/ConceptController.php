@@ -44,7 +44,7 @@ class ConceptController extends Controller
         return $this->viewHelper->render(
             'concepts.index',
             ['concepts' => $concepts],
-            ['admin']
+            ['cajero']
         );
     }
 
@@ -155,4 +155,57 @@ class ConceptController extends Controller
             return redirect()->route('concepts.index')->with('success', 'Concepto eliminado correctamente.');
         });
     }
+
+    /**
+     * Display trash of the resource.
+     *
+     * @return View|RedirectResponse
+     */
+    public function trashed(): View|RedirectResponse
+    {
+        $concepts = Concept::onlyTrashed()->orderBy('id')->paginate(10);
+
+        return $this->viewHelper->render(
+            'concepts.trashed',
+            ['concepts' => $concepts],
+            ['admin']
+        );
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     *
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function restore($id): RedirectResponse
+    {
+        return $this->redirectHelper->redirect(['admin'], function () use ($id) {
+            // Restore concept
+            $concept = Concept::onlyTrashed()->find($id);
+            $concept->restore();
+
+            // Redirect to the index page
+            return redirect()->route('concepts.trashed')->with('success', 'Concepto restaurado correctamente.');
+        });
+    }
+
+    /**
+     * Force deletes the specified resource from storage.
+     *
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function force($id): RedirectResponse
+    {
+        return $this->redirectHelper->redirect(['admin'], function () use ($id) {
+            // Force delete concept
+            $concept = Concept::onlyTrashed()->find($id);
+            $concept->forceDelete();
+
+            // Redirect to the index page
+            return redirect()->route('concepts.trashed')->with('success', 'Concepto eliminado correctamente.');
+        });
+    }
+
 }

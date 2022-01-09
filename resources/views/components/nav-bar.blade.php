@@ -43,29 +43,28 @@
                                         Roles
                                     </a>
                                 </li>
-
-                                <li>
-                                    <a class="dropdown-item" aria-current="true" href="{{route('users.index')}}">
-                                        <i class="bi bi-person-circle"></i>
-                                        Usuarios
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item" href="{{route('concepts.index') }}">
-                                        <i class="bi bi-card-text"></i>
-                                        Conceptos
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item" href="{{route('currencies.index') }}">
-                                        <i class="bi bi-coin"></i>
-                                        Monedas
-                                    </a>
-                                </li>
-
                             @endif
+
+                            <li>
+                                <a class="dropdown-item" aria-current="true" href="{{route('users.index')}}">
+                                    <i class="bi bi-person-circle"></i>
+                                    Usuarios
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="{{route('concepts.index') }}">
+                                    <i class="bi bi-card-text"></i>
+                                    Conceptos
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="{{route('currencies.index') }}">
+                                    <i class="bi bi-coin"></i>
+                                    Monedas
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 @endif

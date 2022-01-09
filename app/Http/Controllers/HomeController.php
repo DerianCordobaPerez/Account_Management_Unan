@@ -56,6 +56,10 @@ class HomeController extends Controller
      */
     public function home(): View|RedirectResponse
     {
+        if(auth()->user()->authorize('cajero')) {
+            return redirect()->route('payments.index');
+        }
+
         if(auth()->user()->isAdmin()) {
             return $this->viewHelper->render(
                 'admin.index',
