@@ -58,6 +58,7 @@ const convertNumberToWord = (origin, from) => {
 amount.addEventListener('keyup', () => convertNumberToWord(amount, 'amount_in_letters'))
 
 const initialValues = () => {
+    amount.value = document.getElementById(`amount-${conceptSelect.selectedIndex}`).value
     conceptTd.innerText = conceptSelect.options[conceptSelect.selectedIndex].text
     amountInLetters.value = numberToLetters(amount.value)
     amountTd.innerText = amount.value
@@ -67,14 +68,12 @@ const initialValues = () => {
 
 document.addEventListener('DOMContentLoaded', initialValues)
 
-amount.addEventListener('keyup', () => {
+conceptSelect.addEventListener('change', () => {
+    conceptTd.innerText = conceptSelect.options[conceptSelect.selectedIndex].text
+    amount.value = document.getElementById(`amount-${conceptSelect.selectedIndex}`).value
     amountTd.innerText = `${amount.value}`
     amountInLetters.value = numberToLetters(amount.value)
     amountInLetterTd.innerText = amountInLetters.value
-})
-
-conceptSelect.addEventListener('change', () => {
-    conceptTd.innerText = conceptSelect.options[conceptSelect.selectedIndex].text
 })
 
 currencySelect.addEventListener('change', () => {
@@ -126,6 +125,7 @@ cashierIdentification.addEventListener('keyup', () => {
 
 stepTwo.addEventListener('click', () => {
     amountInLetters.disabled = false
+    amount.disabled = false
     allTdStepTwo.forEach(td => td.removeAttribute('hidden'))
 })
 
@@ -135,4 +135,5 @@ stepThree.addEventListener('click', () => {
 
 stepBackOne.addEventListener('click', () => {
     amountInLetters.disabled = true
+    amount.disabled = true
 })
