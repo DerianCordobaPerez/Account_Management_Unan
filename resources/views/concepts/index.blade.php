@@ -1,16 +1,32 @@
-@extends('layouts.app', ['title' => 'Gestion de conceptos'])
+@extends('layouts.app', ['title' => 'Gestión de conceptos'])
 
 @section('content')
     <div class="row">
-        <div class="col-md-4 d-flex justify-content-start">
-            <a href="{{ route('concepts.create') }}" class="btn bg-blue-gradient btn-sm text-white mb-2 font-weight-bold shadow-sm">
-                <i class="fas fa-plus"></i>
-                Nuevo concepto
-            </a>
+        <div class="col-md-2 d-flex align-items-center justify-content-start">
+            <div class="dropdown">
+                <button class="btn bg-blue-gradient text-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Acciones sobre conceptos
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li>
+                        <a class="dropdown-item" href="{{route('concepts.create')}}">
+                            <i class="fas fa-plus"></i>
+                            Nuevo concepto
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="{{route('concepts.trashed')}}">
+                            <i class="bi bi-archive"></i>
+                            Conceptos eliminados
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div class="col-md-8 d-flex justify-content-end">
-            <form action="{{route('concepts.index')}}" method="GET" class="bg-transparent p-0 w-100">
+        <div class="col-md-10 d-flex justify-content-end">
+            <form action="{{route('concepts.index')}}" method="GET" class="bg-transparent p-0 w-75">
                 <div class="input-group">
                     <input class="form-control border-end-0 border" name="search"
                            id="search-concept-id" type="search"
@@ -43,7 +59,17 @@
                         <td class="fw-bold">#{{$concept->id}}</td>
                         <td>{{$concept->name}}</td>
                         <td>{{$concept->price}}</td>
-                        <td>{{$concept->description}}</td>
+                        <td>
+                            @if(strlen($concept->description) > 0)
+                                @if(strlen($concept->description) > 50)
+                                    {{substr($concept->description, 0, 50)}}...
+                                @else
+                                    {{$concept->description}}
+                                @endif
+                            @else
+                                <span class="text-muted">No contiene nínguna descripción</span>
+                            @endif
+                        </td>
                         <td>
                             <div class="d-flex justify-content-start gap-2">
                                 <a href="{{ route('concepts.edit', $concept->id) }}" class="btn btn-sm btn-primary mr-2">
