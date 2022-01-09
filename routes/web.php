@@ -54,4 +54,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Delete permanently concepts
     Route::delete('/concepts/{concept}/force', [ConceptController::class, 'force'])->name('concepts.force');
+
+    // Enable currency
+    Route::post('/currencies/{currency}/enable', [CurrencyController::class, 'enable'])->name('currencies.enable');
+
+    // Disable currency
+    Route::post('/currencies/{currency}/disable', [CurrencyController::class, 'disable'])->name('currencies.disable');
 });

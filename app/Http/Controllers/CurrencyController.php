@@ -125,11 +125,31 @@ class CurrencyController extends Controller
      * @param Currency $currency
      * @return RedirectResponse
      */
-    public function destroy(Currency $currency)
+    public function destroy(Currency $currency): RedirectResponse
     {
         return $this->redirectHelper->redirect('admin', function() use ($currency) {
             $currency->delete();
             return redirect()->route('currencies.index')->with('success', 'Moneda eliminada correctamente');
+        });
+    }
+
+    public function enable(Currency $currency): RedirectResponse
+    {
+        return $this->redirectHelper->redirect(['admin'], function() use($currency) {
+            $currency->update([
+                'is_active' => true,
+            ]);
+            return redirect()->route('currencies.index')->with('success', 'Moneda habilitada correctamente');
+        });
+    }
+
+    public function disable(Currency $currency): RedirectResponse
+    {
+        return $this->redirectHelper->redirect(['admin'], function() use($currency) {
+            $currency->update([
+                'is_active' => false,
+            ]);
+            return redirect()->route('currencies.index')->with('success', 'Moneda deshabilitada correctamente');
         });
     }
 }
