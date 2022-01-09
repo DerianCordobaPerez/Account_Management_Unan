@@ -36,7 +36,7 @@ class CurrencyController extends Controller
         return $this->viewHelper->render(
             'currencies.index',
             ['currencies' => Currency::all()],
-            ['admin']
+            ['cajero']
         );
     }
 
