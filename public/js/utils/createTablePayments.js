@@ -107,6 +107,10 @@ identification.addEventListener('keyup', () => {
     identificationTd.innerText = identification.value
 })
 
+identification.addEventListener('blur', () => {
+    identificationTd.innerText = identification.value
+})
+
 receiptNumber.addEventListener('keyup', () => {
     receiptNumberTd.innerText = receiptNumber.value
 })

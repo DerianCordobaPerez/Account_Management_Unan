@@ -55,7 +55,7 @@
 
                 @foreach($payments as $payment)
                     <tr class="table-light">
-                        <td class="fw-bold">#{{$payment->id}}</td>
+                        <td class="fw-bold">#{{$payment->receipt_number}}</td>
                         <td>{{$payment->user->names}}</td>
                         <td>{{$payment->payment_registration_date}}</td>
                         <td>{{$payment->currency}}</td>

@@ -7,6 +7,7 @@ use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -127,6 +128,12 @@ class UserController extends Controller
             $user->delete();
             return redirect()->route('users.index')->with('success', 'Usuario eliminado correctamente');
         });
+    }
+
+    public function search(Request $request): JsonResponse
+    {
+        $users = User::search($request->search)->orderBy('identification')->get()->pluck('identification');
+        return response()->json($users);
     }
 
     public function payments(User $user): RedirectResponse|View

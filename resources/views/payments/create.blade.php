@@ -97,7 +97,7 @@
                                 <div class="mb-3">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <x-form.input name="identification" id="identification" label="Identificación / RUC" type="text" />
+                                            <x-form.input name="identification" id="identification" label="Identificación / RUC" type="text" class="search" />
                                         </div>
 
                                         <div class="col-md-6">
@@ -154,7 +154,21 @@
 @endsection
 
 @section("js")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script src="{{asset('js/utils/convertNumberToWord.js')}}"></script>
     <script src="{{ asset('js/utils/multipleForm.js') }}"></script>
     <script src="{{asset('js/utils/createTablePayments.js')}}"></script>
+
+    <script type="text/javascript">
+        const route = "{{route('users.search')}}";
+        $('input.search').typeahead({
+            source: function (query, process) {
+                return $.get(route, { query: query }, function (data) {
+                    return process(data);
+                });
+            }
+        });
+    </script>
+
 @endsection
