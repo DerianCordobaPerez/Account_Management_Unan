@@ -1,7 +1,4 @@
-@extends('layouts.app', ['title' => "Usuario: $user->names"])
-
-@section('content')
-
+<x-layout title="{{'Usuario: '.$user->names}}">
     <section class="py-5">
         <div class="container">
             <div class="row">
@@ -14,7 +11,7 @@
 
                         <footer class="py-4 mt-4 border-top border-bottom">
                             <p><span class="text-blue">Nombre:</span> {{ $user->names }}</p>
-                        <p><span class="text-blue">Email:</span> {{ $user->email }}</p>
+                            <p><span class="text-blue">Email:</span> {{ $user->email }}</p>
                         </footer>
 
                         <div class="d-flex align-items-center justify-content-between">
@@ -31,4 +28,4 @@
             </div>
         </div>
     </section>
-@endsection
+</x-layout>

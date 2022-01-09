@@ -1,6 +1,4 @@
-@extends('layouts.app' , ['title' => 'Creacion de conceptos'])
-
-@section('content')
+<x-layout title="Creación de conceptos">
     <form action="{{route('concepts.store')}}" method="POST" class="form bg-white p-2">
         @csrf
         <h2 class="title-form"> Creacion de conceptos</h2>
@@ -32,4 +30,4 @@
             </button>
         </div>
     </form>
-@endsection
+</x-layout>

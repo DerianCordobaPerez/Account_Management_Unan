@@ -1,7 +1,4 @@
-@extends('layouts.app' , ['title' => 'Registro de Moneda'])
-
-@section('content')
-
+<x-layout title="Edición de Moneda">
     <form action="{{route('currencies.update', $currency->id)}}" method="POST" class="form">
         @csrf @method('PUT')
         <h2 class="title-form">Edición de Moneda</h2>
@@ -41,5 +38,5 @@
             </button>
         </div>
     </form>
-@endsection
+</x-layout>
 

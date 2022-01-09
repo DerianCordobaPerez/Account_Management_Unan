@@ -1,6 +1,4 @@
-@extends('layouts.app' , ['title' => 'Registro de Moneda'])
-
-@section('content')
+<x-layout title="Registro de Moneda">
     <form action="{{route('currencies.store')}}" method="POST" class="form bg-white p-2">
         @csrf
         <h2 class="title-form">Registro de Moneda</h2>
@@ -40,4 +38,4 @@
             </button>
         </div>
     </form>
-@endsection
+</x-layout>

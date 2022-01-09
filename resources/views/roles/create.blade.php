@@ -1,6 +1,4 @@
-@extends('layouts.app', ['title' => 'Creacion de Roles'])
-
-@section('content')
+<x-layout title="Creación de Roles">
     <form action="{{route('roles.store')}}" method="POST" class="form shadow">
         @csrf
         <h2 class="title-form">Creacion de roles</h2>
@@ -33,8 +31,4 @@
             <a href="{{url()->previous()}}" class="btn btn-dark">Regresar</a>
         </div>
     </form>
-@endsection
-
-@section('js')
-    <script src="{{asset('js/utils/validateCheckboxs.js')}}"></script>
-@endsection
+</x-layout>

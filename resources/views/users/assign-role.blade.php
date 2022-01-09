@@ -1,6 +1,4 @@
-@extends('layouts.app', ['title' => 'Modificación de roles'])
-
-@section('content')
+<x-layout title="Modificación de roles">
     <form action="{{route('users.store.role', $user->id)}}" method="POST" class="form">
         @csrf
         <h2 class="title-form">Modificación de roles</h2>
@@ -71,4 +69,4 @@
             </div>
         </div>
     </form>
-@endsection
+</x-layout>

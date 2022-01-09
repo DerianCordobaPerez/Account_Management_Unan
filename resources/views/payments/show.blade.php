@@ -1,7 +1,3 @@
-@extends('layouts.app', ['title' => 'Pago '.$user->names])
+<x-layout title="{{'Pago '.$user->names}}">
 
-@section('content')
-
-    
-
-@endsection
+</x-layout>

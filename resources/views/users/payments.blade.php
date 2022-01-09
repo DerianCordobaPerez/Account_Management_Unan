@@ -1,11 +1,9 @@
-@extends('layouts.app', ['title' => 'Pagos: '.$name])
-
-@section('content')
+<x-layout title="{{'Pagos: '.$name}}">
     <div class="row">
         <div class="col-md-8">
             <a href="{{ route('users.payments', $user->id) }}"
-                class="btn btn-danger text-white font-weight-bold shadow-sm me-4"
-                @if (count($payments) <= 0) disabled @endif
+               class="btn btn-danger text-white font-weight-bold shadow-sm me-4"
+               @if (count($payments) <= 0) disabled @endif
             >
                 <i class="bi bi-arrow-clockwise"></i>
                 Limpiar busqueda
@@ -28,14 +26,14 @@
         <div class="table-responsive mt-2">
             <table id="users-table" class="table table-striped table-bordered sortable align-middle">
                 <thead class="bg-blue-gradient text-white">
-                    <tr>
-                        <th scope="col">Monto</th>
-                        <th scope="col">Concepto</th>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Identificación</th>
-                        <th scope="col">Tasa de cambio</th>
-                        <th scope="col">Moneda</th>
-                    </tr>
+                <tr>
+                    <th scope="col">Monto</th>
+                    <th scope="col">Concepto</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Identificación</th>
+                    <th scope="col">Tasa de cambio</th>
+                    <th scope="col">Moneda</th>
+                </tr>
                 </thead>
                 @foreach ($payments as $payment)
                     <tr class="table-light">
@@ -54,4 +52,4 @@
             No hay pagos registrados.
         </h4>
     @endif
-@endsection
+</x-layout>
