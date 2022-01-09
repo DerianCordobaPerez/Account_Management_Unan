@@ -1,6 +1,4 @@
-@extends('layouts.app', ['title' => 'Gestión de usuarios'])
-
-@section('content')
+<x-layout title="Gestión de usuarios">
     {{Breadcrumbs::render()}}
 
     <div class="row">
@@ -36,14 +34,14 @@
         <div class="table-responsive mt-2">
             <table id="users-table" class="table table-striped table-bordered sortable align-middle">
                 <thead class="bg-blue-gradient text-white">
-                    <tr>
-                        <th scope="col">Identificación</th>
-                        <th scope="col">Nombres</th>
-                        <th scope="col">Apellidos</th>
-                        <th scope="col">Teléfono</th>
-                        <th scope="col">Correo</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
+                <tr>
+                    <th scope="col">Identificación</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Acciones</th>
+                </tr>
                 </thead>
 
                 @foreach($users as $user)
@@ -89,4 +87,4 @@
             No hay usuarios registrados.
         </h4>
     @endif
-@endsection
+</x-layout>

@@ -1,6 +1,4 @@
-@extends('layouts.app', ['title' => 'Gestion de conceptos'])
-
-@section('content')
+<x-layout title="Gestión de conceptos">
     @if($concepts->count() > 0)
         <div class="table-responsive mt-2">
             <table id="concept-table" class="table table-striped table-bordered sortable align-middle">
@@ -52,5 +50,5 @@
             No hay coceptos eliminados
         </h4>
     @endif
-@endsection
+</x-layout>
 

@@ -1,6 +1,4 @@
-@extends('layouts.app', ['title' => 'Gestión de roles'])
-
-@section('content')
+<x-layout title="Gestión de roles">
     {{Breadcrumbs::render()}}
 
     <div class="row">
@@ -69,12 +67,12 @@
         <div class="table-responsive mt-2">
             <table id="roles-table" class="table table-striped table-bordered sortable align-middle">
                 <thead class="bg-blue-gradient text-white">
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Asignaciones</th>
-                        <th scope="col" class="w-25">Acciones</th>
-                    </tr>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Asignaciones</th>
+                    <th scope="col" class="w-25">Acciones</th>
+                </tr>
                 </thead>
 
                 @foreach($roles as $role)
@@ -132,8 +130,8 @@
             No hay roles registrados.
         </h4>
     @endif
-@endsection
 
-@section('js')
-    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
-@endsection
+    @section('js')
+        <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    @endsection
+</x-layout>

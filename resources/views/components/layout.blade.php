@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>UNAN: {{$title ?? 'Inicio'}}</title>
+    <title>UNAN: {{$title}}</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png"  href="{{ asset('img/logos/favicon.png') }}" />
@@ -21,13 +21,13 @@
     <div id="app">
         <!-- Navbar -->
         @auth
-            <x-nav-bar title="{{$title ?? 'Inicio'}}" />
+            <x-nav-bar title="{{$title}}" />
         @endauth
 
         <!-- Main -->
         <main id="main" class="container">
             <x-alert />
-            @yield('content')
+            {{$slot}}
         </main>
 
         <!-- Footer -->
@@ -41,5 +41,4 @@
     <script src="https://kit.fontawesome.com/0496ae07d8.js" crossorigin="anonymous"></script>
     @yield('js')
 </body>
-
 </html>

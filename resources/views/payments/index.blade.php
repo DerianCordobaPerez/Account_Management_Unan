@@ -1,6 +1,4 @@
-@extends('layouts.app', ['title' => "Historial de pagos"])
-
-@section('content')
+<x-layout title="Historial de pagos">
     {{Breadcrumbs::render()}}
 
     <div class="row">
@@ -43,14 +41,14 @@
         <div class="table-responsive mt-2">
             <table id="payment-table" class="table table-striped table-bordered sortable align-middle">
                 <thead class="bg-blue-gradient text-white">
-                    <tr>
-                        <th scope="col">Numero de pago</th>
-                        <th scope="col">Cliente</th>
-                        <th scope="col">Fecha de registro</th>
-                        <th scope="col">Moneda</th>
-                        <th scope="col">Monto</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
+                <tr>
+                    <th scope="col">Numero de pago</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Fecha de registro</th>
+                    <th scope="col">Moneda</th>
+                    <th scope="col">Monto</th>
+                    <th scope="col">Acciones</th>
+                </tr>
                 </thead>
 
                 @foreach($payments as $payment)
@@ -79,8 +77,8 @@
             No hay pagos registrados
         </h4>
     @endif
-@endsection
 
-@section('js')
-    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
-@endsection
+    @section('js')
+        <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    @endsection
+</x-layout>

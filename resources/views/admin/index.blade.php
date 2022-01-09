@@ -1,6 +1,4 @@
-@extends('layouts.app', ['title' => 'Panel de administración'])
-
-@section('content')
+<x-layout title="Panel de administración">
     <div class="row mb-4">
         <div class="col-md-4">
             <x-card title='Conceptos'>
@@ -96,5 +94,4 @@
             </x-card>
         </div>
     </div>
-
-@endsection
+</x-layout>

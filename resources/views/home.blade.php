@@ -1,7 +1,4 @@
-@extends('layouts.app', ['title' => $title])
-
-@section('content')
-
+<x-layout :title="$title">
     <div class="row">
         <!-- User information card -->
         <div class="col-md-6">
@@ -103,4 +100,4 @@
             </x-card>
         </div>
     </div>
-@endsection
+</x-layout>

@@ -1,6 +1,4 @@
-@extends('layouts.app', ['title' => 'Gestión de conceptos'])
-
-@section('content')
+<x-layout title="Gestión de conceptos">
     <div class="row">
         <div class="col-md-2 d-flex align-items-center justify-content-start">
             <div class="dropdown">
@@ -94,4 +92,4 @@
             No hay coceptos agregados
         </h4>
     @endif
-@endsection
+</x-layout>
