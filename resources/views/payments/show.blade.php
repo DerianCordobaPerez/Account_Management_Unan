@@ -75,12 +75,21 @@
                     <td>{{ $payment->amount }}</td>
                 </tr>
                 <tr class="bg-blue-gradient text-white">
-                    <th scope="col" colspan="2">Subtotales de los cargos del mes actual</th>
+                    <th scope="col" colspan="2">Subtotales de los cargos del pago actual</th>
                     <th scope="col">{{ $payment->amount }}</th>
                     <th scope="col">0.0</th>
                     <th scope="col">{{ $payment->amount }}</th>
                 </tr>
             </table>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-between">    
+                <div class="input-group mb-4">
+                    <span class="input-group-text bg-blue-gradient text-white">Total en {{$payment->currency}}</span>
+                    <input type="text" class="form-control table-light" value="{{ $payment->amount}}" readonly>
+                </div>
+            </div>
         </div>
     </div>
 </x-layout>
