@@ -141,3 +141,5 @@ stepBackOne.addEventListener('click', () => {
     amountInLetters.disabled = true
     amount.disabled = true
 })
+
+$(document).ready(() => $('#identification').attr('autocomplete', 'off'))
