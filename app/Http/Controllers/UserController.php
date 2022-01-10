@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\DateHelper;
 use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
+use App\Models\Payment;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -136,16 +137,23 @@ class UserController extends Controller
         return response()->json($users);
     }
 
-    public function payments(User $user): RedirectResponse|View
+    public function payments(Request $request, User $user): RedirectResponse|View
     {
         [$name] = explode(' ', $user->names);
+
+        // Check if the request search query is set
+        if($request->has('month')) {
+            $payments = $user->payments()->whereMonth('payment_registration_date', $request->month)->paginate(10);
+        } else {
+            $payments = $user->payments()->orderBy('created_at', 'desc')->paginate(10);
+        }
 
         return $this->viewHelper->render(
             'users.payments',
             [
                 'name' => $name,
                 'user' => $user,
-                'payments' => $user->payments,
+                'payments' => $payments,
                 'months' => $this->spanishMonths
             ],
             ['cajero', 'usuario']
