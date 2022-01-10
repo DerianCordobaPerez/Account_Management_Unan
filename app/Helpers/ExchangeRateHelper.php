@@ -17,6 +17,8 @@ class ExchangeRateHelper
      */
     private string $api;
 
+    private mixed $exchangeRate;
+
     /**
      * @var array
      */
@@ -62,8 +64,22 @@ class ExchangeRateHelper
      */
     public function get(): mixed
     {
-        $result = $this->getClient()->RecuperaTC_Dia($this->getData());
-        return $result->RecuperaTC_DiaResult;
+        return $this->exchangeRate->RecuperaTC_DiaResult;
+    }
+
+    public function set(): int
+    {
+        $command = 0;
+        echo 'Dia '.date('d').' del mes '.date('m').' del año '.date('Y')." Cambio del dolar a cordoba: C$";
+        try {
+            $this->exchangeRate = $this->getClient()->RecuperaTC_Dia($this->getData());
+            echo $this->get();
+        } catch (SoapFault $e) {
+            echo $e->getMessage();
+            $command = 1;
+        }
+
+        return $command;
     }
 
     /**
@@ -128,5 +144,13 @@ class ExchangeRateHelper
     private function setClient(mixed $client): void
     {
         $this->client = $client;
+    }
+
+    /**
+     * @throws SoapFault
+     */
+    public function query(): mixed
+    {
+        return $this->build()->get();
     }
 }

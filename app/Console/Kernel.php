@@ -7,15 +7,21 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
+    protected $commands = [
+        Commands\DailyCallExchangeRate::class,
+    ];
+
     /**
      * Define the application's command schedule.
      *
-     * @param \Illuminate\Console\Scheduling\Schedule $schedule
+     * @param Schedule $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('call:exchange-rate')
+            ->dailyAt('01:43')
+            ->appendOutputTo('call-exchange-rate.log');
     }
 
     /**
