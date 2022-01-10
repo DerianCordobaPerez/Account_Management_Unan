@@ -103,7 +103,7 @@ class HomeController extends Controller
                 'exchangeRate' => $this->exchangeRateHelper->build()->get(),
                 'title' => 'Panel principal',
                 'latestPayment' => $latestPayment,
-                'period' => $this->getPeriod($latestPayment->payment_registration_date),
+                'period' => $this->getPeriod($latestPayment->payment_registration_date ?? null),
                 'periods' => $periods,
                 'totalAmountByMonth' => $totalAmountByMonth,
             ],

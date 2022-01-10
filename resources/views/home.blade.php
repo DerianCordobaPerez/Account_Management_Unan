@@ -70,33 +70,40 @@
             </div>
 
             <x-card title="Ultimo pago">
-                <div class="mb-3">
-                    <h2 class="text-blue fs-1">C$ {{$latestPayment->amount}}</h2>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 text-blue">
-                        <p>Numero de pago</p>
-                        <p>Fecha de Pago</p>
-                        <p>Fecha de registro</p>
-                        <p>Periodo</p>
-                        <p>Estado</p>
+                @isset($latestPayment)
+                    <div class="mb-3">
+                        <h2 class="text-blue fs-1">C$ {{$latestPayment->amount}}</h2>
                     </div>
 
-                    <div class="col-md-6">
-                        <p>{{$latestPayment->receipt_number}}</p>
-                        <p>{{$latestPayment->date_made_payment}}</p>
-                        <p>{{$latestPayment->payment_registration_date}}</p>
-                        <p>{{$period}}</p>
-                        <p class="text-{{$latestPayment->status === 'Pendiente' ? 'danger' : 'success'}}">
-                            {{$latestPayment->status}}
-                        </p>
-                    </div>
-                </div>
+                    <div class="row">
+                        <div class="col-md-6 text-blue">
+                            <p>Numero de pago</p>
+                            <p>Fecha de Pago</p>
+                            <p>Fecha de registro</p>
+                            <p>Periodo</p>
+                            <p>Estado</p>
+                        </div>
 
-                <x-slot name="footer">
-                    <a href="{{route('payments.show', $latestPayment->id)}}" class="text-blue">Ver factura</a>
-                </x-slot>
+                        <div class="col-md-6">
+                            <p>{{$latestPayment->receipt_number}}</p>
+                            <p>{{$latestPayment->date_made_payment}}</p>
+                            <p>{{$latestPayment->payment_registration_date}}</p>
+                            <p>{{$period}}</p>
+                            <p class="text-{{$latestPayment->status === 'Pendiente' ? 'danger' : 'success'}}">
+                                {{$latestPayment->status}}
+                            </p>
+                        </div>
+                    </div>
+
+                    <x-slot name="footer">
+                        <a href="{{route('payments.show', $latestPayment->id)}}" class="text-blue">Ver factura</a>
+                    </x-slot>
+                @else
+                    <div class="text-center text-gray-500 text-sm">
+                        <h3>No se ha realizado níngun recibo de pago</h3>
+                        <h5>Al realizar un pago bajo cualquier concepto se mostrara como ultimo recibo de pago</h5>
+                    </div>
+                @endisset
             </x-card>
         </div>
     </div>
