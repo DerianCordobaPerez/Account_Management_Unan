@@ -56,7 +56,8 @@
             <table class="table table-striped table-bordered sortable align-middle">
                 <thead class="bg-blue-gradient text-white">
                     <tr class="text-center">
-                        <th scope="col" colspan="5">Detalles de los componentes del pago {{ $payment->receipt_number }}</th>
+                        <th scope="col" colspan="5">Detalles de los componentes del pago
+                            {{ $payment->receipt_number }}</th>
                     </tr>
                     <tr>
                         <th scope="col">Concepto</th>
@@ -72,6 +73,12 @@
                     <td>{{ $payment->amount }}</td>
                     <td>0.0</td>
                     <td>{{ $payment->amount }}</td>
+                </tr>
+                <tr class="bg-blue-gradient text-white">
+                    <th scope="col" colspan="2">Subtotales de los cargos del mes actual</th>
+                    <th scope="col">{{ $payment->amount }}</th>
+                    <th scope="col">0.0</th>
+                    <th scope="col">{{ $payment->amount }}</th>
                 </tr>
             </table>
         </div>
