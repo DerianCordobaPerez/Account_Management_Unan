@@ -11,14 +11,25 @@
         </div>
 
         <div class="col-md-4 d-flex align-items-center">
-            <div class="input-group">
-                <label class="me-2">Buscar por mes</label>
-                <select class="form-control">
-                    @foreach($months as $month)
-                        <option value="{{ $month }}">{{ $month }}</option>
-                    @endforeach
-                </select>
-            </div>
+            <form action="{{route('users.payments', $user->id)}}" method="GET" class="bg-transparent p-0">
+                <div class="input-group">
+                    <label for="month" class="me-2">Buscar por mes</label>
+                    <select id="month" name="month" class="form-control">
+                        @foreach($months as $month)
+                            <option value="{{ ++$loop->index }}"
+                                @if($loop->index == request('month') ?? -1) selected @endif
+                            >
+                                {{ $month }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    <button class="btn bg-blue-gradient text-white">
+                        <i class="bi bi-search"></i>
+                        Buscar
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 

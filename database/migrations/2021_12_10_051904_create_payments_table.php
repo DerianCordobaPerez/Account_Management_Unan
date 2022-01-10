@@ -18,8 +18,8 @@ class CreatePaymentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('concept');
             $table->string('amount');
-            $table->dateTime('date_made_payment');
-            $table->string('payment_registration_date');
+            $table->timestamp('date_made_payment');
+            $table->timestamp('payment_registration_date');
             $table->string('amount_in_letters');
             $table->string('observation');
             $table->string('payment_received');
