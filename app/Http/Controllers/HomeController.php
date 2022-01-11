@@ -9,7 +9,9 @@ use App\Models\Concept;
 use App\Models\Payment;
 use App\Models\Role;
 use App\Models\User;
+use App\Services\ExchangeRateService;
 use Carbon\Traits\Date;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use SoapFault;
@@ -27,14 +29,15 @@ class HomeController extends Controller
     private ViewHelper $viewHelper;
 
     /**
-     * @var ExchangeRateHelper
+     * @var mixed
      */
-    private ExchangeRateHelper $exchangeRateHelper;
+    private mixed $exchangeRate;
 
     /**
      * Create a new controller instance.
      *
      * @return void
+     * @throws BindingResolutionException
      */
     public function __construct()
     {
@@ -45,7 +48,7 @@ class HomeController extends Controller
         $this->viewHelper = ViewHelper::getInstance();
 
         // Inject the exchange rate helper
-        $this->exchangeRateHelper = ExchangeRateHelper::getInstance();
+        $this->exchangeRate = app()->make(ExchangeRateService::class);
     }
 
     /**
@@ -100,7 +103,7 @@ class HomeController extends Controller
         return $this->viewHelper->render(
             'home',
             [
-                'exchangeRate' => $this->exchangeRateHelper->build()->get(),
+                'exchangeRate' => $this->exchangeRate->get(),
                 'title' => 'Panel principal',
                 'latestPayment' => $latestPayment,
                 'period' => $this->getPeriod($latestPayment->payment_registration_date ?? null),

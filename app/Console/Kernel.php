@@ -7,10 +7,6 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    protected $commands = [
-        Commands\DailyCallExchangeRate::class,
-    ];
-
     /**
      * Define the application's command schedule.
      *
@@ -20,7 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('call:exchange-rate')
-            ->dailyAt('01:43')
+            ->dailyAt('23:34')
             ->appendOutputTo('call-exchange-rate.log');
     }
 
