@@ -10,6 +10,8 @@ use App\Models\Concept;
 use App\Models\Currency;
 use App\Models\Payment;
 use App\Models\User;
+use App\Services\ExchangeRateService;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -26,13 +28,11 @@ class PaymentController extends Controller
 
     private RedirectHelper $redirectHelper;
 
-    /**
-     * @var ExchangeRateHelper
-     */
-    private ExchangeRateHelper $exchangeRateHelper;
+    private mixed $exchangeRate;
 
     /**
      * Create a new controller instance.
+     * @throws BindingResolutionException
      */
     public function __construct()
     {
@@ -46,7 +46,7 @@ class PaymentController extends Controller
         $this->redirectHelper = RedirectHelper::getInstance();
 
         // Inject the exchange rate helper
-        $this->exchangeRateHelper = ExchangeRateHelper::getInstance();
+        $this->exchangeRate = app()->make(ExchangeRateService::class);
     }
 
     /**
@@ -101,7 +101,7 @@ class PaymentController extends Controller
         return $this->viewHelper->render(
             'payments.create',
             [
-                'exchangeRate' => $this->exchangeRateHelper->build()->get(),
+                'exchangeRate' => $this->exchangeRate->get(),
                 'currencies' => Currency::where('is_active', true)->get(),
                 'concepts' => Concept::all(),
                 'types' => ['Estudiante', 'Trabajador', 'Otro'],
@@ -123,10 +123,11 @@ class PaymentController extends Controller
             // Get user by identification
             $user = User::where('identification', $request->identification)->first();
 
-            var_dump($request->all());
-
             // Create the payment
-            Payment::create(array_merge($request->all(),['user_id' => $user->id, 'exchange_rate' => "35.53"]));
+            Payment::create(array_merge($request->all(), [
+                'user_id' => $user->id,
+                'exchange_rate' => $this->exchangeRate->get(),
+            ]));
 
             // Redirect to the payments list
             return redirect()->route('payments.index')->with('success', 'Pago registrado correctamente');

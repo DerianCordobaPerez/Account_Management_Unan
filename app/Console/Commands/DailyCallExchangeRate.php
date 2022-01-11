@@ -3,7 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Helpers\ExchangeRateHelper;
+use App\Services\ExchangeRateService;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use SoapFault;
 
 class DailyCallExchangeRate extends Command
 {
@@ -35,10 +38,12 @@ class DailyCallExchangeRate extends Command
      * Execute the console command.
      *
      * @return int
+     * @throws BindingResolutionException
+     * @throws SoapFault
      */
     public function handle(): int
     {
-        $exchangeRate = ExchangeRateHelper::getInstance();
-        return $exchangeRate->build()->set();
+        $exchangeRateService = app()->make(ExchangeRateService::class);
+        return $exchangeRateService->build()->set();
     }
 }
