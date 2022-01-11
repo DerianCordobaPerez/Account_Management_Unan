@@ -1,5 +1,5 @@
 <x-layout title="Edición de conceptos">
-    <form action="{{route('concepts.update', $concept->id)}}" method="POST" class="form bg-white p-2">
+    <form action="{{route('concepts.update', $concept->id)}}" method="POST" class="form bg-white p-4">
         @csrf
         @method('PUT')
 

@@ -1,5 +1,5 @@
 <x-layout title="Modificación de Roles">
-    <form action="{{route('roles.update', $role->id)}}" method="POST" class="form shadow">
+    <form action="{{route('roles.update', $role->id)}}" method="POST" class="form shadow bg-light p-4">
         @csrf
         @method('PUT')
 
@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="btn-group mt-2 d-flex gap-2">
+        <div class="btn-group mt-4 d-flex gap-2 w-50 m-auto">
             <button type="submit" class="btn btn-success">Actualizar</button>
             <a href="{{url()->previous()}}" class="btn btn-dark">Regresar</a>
         </div>

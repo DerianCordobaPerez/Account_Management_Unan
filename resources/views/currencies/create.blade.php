@@ -1,5 +1,5 @@
 <x-layout title="Registro de Moneda">
-    <form action="{{route('currencies.store')}}" method="POST" class="form bg-white p-2">
+    <form action="{{route('currencies.store')}}" method="POST" class="form bg-white p-4">
         @csrf
         <h2 class="title-form">Registro de Moneda</h2>
         <h4 class="data-form">

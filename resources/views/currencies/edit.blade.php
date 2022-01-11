@@ -1,5 +1,5 @@
 <x-layout title="Edición de Moneda">
-    <form action="{{route('currencies.update', $currency->id)}}" method="POST" class="form">
+    <form action="{{route('currencies.update', $currency->id)}}" method="POST" class="form bg-light p-4">
         @csrf @method('PUT')
         <h2 class="title-form">Edición de Moneda</h2>
         <h4 class="data-form">
@@ -33,8 +33,8 @@
 
         <div class="mb-3  text-center">
             <button type="submit" value="Enviar" class="btn btn-success w-25">
-                <i class="bi bi-arrow-right"></i>
                 Enviar
+                <i class="bi bi-arrow-right"></i>
             </button>
         </div>
     </form>

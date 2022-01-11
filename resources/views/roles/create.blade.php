@@ -1,5 +1,5 @@
 <x-layout title="Creación de Roles">
-    <form action="{{route('roles.store')}}" method="POST" class="form shadow">
+    <form action="{{route('roles.store')}}" method="POST" class="form shadow bg-light p-4">
         @csrf
         <h2 class="title-form">Creacion de roles</h2>
         <h4 class="data-form">
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="btn-group mt-2 d-flex gap-2">
+        <div class="btn-group d-flex gap-2 w-50 m-auto mt-4">
             <button type="submit" class="btn btn-success">Crear</button>
             <a href="{{url()->previous()}}" class="btn btn-dark">Regresar</a>
         </div>
