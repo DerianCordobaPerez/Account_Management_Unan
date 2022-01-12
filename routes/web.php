@@ -63,4 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Disable currency
     Route::post('/currencies/{currency}/disable', [CurrencyController::class, 'disable'])->name('currencies.disable');
+
+    // Stream payments pdf
+    Route::get('/payments/{payment}/pdf', [PaymentController::class, 'pdf'])->name('payments.pdf');
 });

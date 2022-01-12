@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\ExchangeRate;
 use SoapClient;
 use SoapFault;
 
@@ -9,7 +10,7 @@ class ExchangeRateService
 {
     use ApiTrait;
 
-    private mixed $exchangeRate;
+    protected mixed $exchangeRate;
 
     /**
      * @throws SoapFault
@@ -39,7 +40,7 @@ class ExchangeRateService
         return $this;
     }
 
-    public function get(): mixed
+    public function get()
     {
         return $this->exchangeRate->RecuperaTC_DiaResult;
     }

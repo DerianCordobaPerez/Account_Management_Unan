@@ -2,10 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Helpers\ExchangeRateHelper;
+use App\Models\ExchangeRate;
 use App\Services\ExchangeRateService;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Facades\App;
 use SoapFault;
 
 class DailyCallExchangeRate extends Command
@@ -39,11 +40,19 @@ class DailyCallExchangeRate extends Command
      *
      * @return int
      * @throws BindingResolutionException
-     * @throws SoapFault
      */
     public function handle(): int
     {
-        $exchangeRateService = app()->make(ExchangeRateService::class);
-        return $exchangeRateService->build()->set();
+        $exchangeRateService = App::make(ExchangeRateService::class);
+        $value = $exchangeRateService->set();
+
+        if(ExchangeRate::all()->count() > 0) {
+            // Delete all records
+            ExchangeRate::truncate();
+        }
+
+        ExchangeRate::create(['value' => $exchangeRateService->get()]);
+
+        return $value;
     }
 }

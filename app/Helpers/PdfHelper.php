@@ -106,7 +106,7 @@ class PdfHelper
      */
     public function stream(string $filename = 'document.pdf'): Response
     {
-        if (!str_contains($filename, '.pdf'))
+        if (!str_ends_with($filename, '.pdf'))
             $filename .= '.pdf';
 
         return $this->pdf->stream($filename);

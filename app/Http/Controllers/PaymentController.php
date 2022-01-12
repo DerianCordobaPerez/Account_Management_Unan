@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\DateHelper;
-use App\Helpers\ExchangeRateHelper;
+use App\Helpers\PdfHelper;
 use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
 use App\Models\Concept;
 use App\Models\Currency;
+use App\Models\ExchangeRate;
 use App\Models\Payment;
 use App\Models\User;
 use App\Services\ExchangeRateService;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
 use SoapFault;
 
@@ -28,11 +32,10 @@ class PaymentController extends Controller
 
     private RedirectHelper $redirectHelper;
 
-    private mixed $exchangeRate;
+    private PdfHelper $pdfHelper;
 
     /**
      * Create a new controller instance.
-     * @throws BindingResolutionException
      */
     public function __construct()
     {
@@ -45,8 +48,8 @@ class PaymentController extends Controller
         // Inject the redirect helper
         $this->redirectHelper = RedirectHelper::getInstance();
 
-        // Inject the exchange rate helper
-        $this->exchangeRate = app()->make(ExchangeRateService::class);
+        // Inject the pdf helper
+        $this->pdfHelper = PdfHelper::getInstance();
     }
 
     /**
@@ -101,7 +104,7 @@ class PaymentController extends Controller
         return $this->viewHelper->render(
             'payments.create',
             [
-                'exchangeRate' => $this->exchangeRate->get(),
+                'exchangeRate' => ExchangeRate::first()->value,
                 'currencies' => Currency::where('is_active', true)->get(),
                 'concepts' => Concept::all(),
                 'types' => ['Estudiante', 'Trabajador', 'Otro'],
@@ -126,7 +129,7 @@ class PaymentController extends Controller
             // Create the payment
             Payment::create(array_merge($request->all(), [
                 'user_id' => $user->id,
-                'exchange_rate' => $this->exchangeRate->get(),
+                'exchange_rate' => ExchangeRate::first()->value,
             ]));
 
             // Redirect to the payments list
@@ -153,7 +156,7 @@ class PaymentController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Payment $payment
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(Payment $payment)
     {
@@ -165,7 +168,7 @@ class PaymentController extends Controller
      *
      * @param Request $request
      * @param Payment $payment
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, Payment $payment)
     {
@@ -176,10 +179,16 @@ class PaymentController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Payment $payment
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(Payment $payment)
     {
         //
+    }
+
+    public function pdf(Payment $payment): Response
+    {
+
+        return $this->pdfHelper->download();
     }
 }
