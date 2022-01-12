@@ -59,7 +59,7 @@
                         <td>{{$payment->currency}}</td>
                         <td>{{$payment->amount}}</td>
                         <td>
-                            <a class="btn bg-blue-gradient text-white btn-sm" href="{{route('payments.show', $payment->id)}}">
+                            <a class="btn bg-blue-gradient text-white btn-sm" href="{{route('payments.pdf', $payment->id)}}">
                                 <i class="bi bi-printer"></i>
                                 Imprimir
                             </a>
