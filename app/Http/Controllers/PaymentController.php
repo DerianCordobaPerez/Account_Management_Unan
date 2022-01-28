@@ -3,20 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\DateHelper;
-use App\Helpers\PdfHelper;
 use App\Helpers\RedirectHelper;
 use App\Helpers\ViewHelper;
 use App\Models\Concept;
 use App\Models\Currency;
-use App\Models\ExchangeRate;
 use App\Models\Payment;
 use App\Models\User;
 use App\Repositories\RepositoryInterface;
+use PDF;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
-use SoapFault;
 
 class PaymentController extends Controller
 {
@@ -29,7 +27,6 @@ class PaymentController extends Controller
 
     private RedirectHelper $redirectHelper;
 
-    private PdfHelper $pdfHelper;
 
     private RepositoryInterface $repository;
 
@@ -46,9 +43,6 @@ class PaymentController extends Controller
 
         // Inject the redirect helper
         $this->redirectHelper = RedirectHelper::getInstance();
-
-        // Inject the pdf helper
-        $this->pdfHelper = PdfHelper::getInstance();
 
         // Inject the repository
         $this->repository = $repository;
@@ -82,7 +76,6 @@ class PaymentController extends Controller
      * Show the form for creating a new resource.
      *
      * @return RedirectResponse|View
-     * @throws SoapFault
      */
     public function create(): View|RedirectResponse
     {
@@ -185,13 +178,14 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
+
     }
 
-    public function pdf(Payment $payment): RedirectResponse
+    public function pdf(Payment $payment): RedirectResponse|Response
     {
         return $this->redirectHelper->redirect(['cajero'], function() use($payment) {
-            $this->pdfHelper->loadView('payments.show', ['payment' => $payment]);
-            return $this->pdfHelper->download('pago-'.$payment->id.'.pdf');
+            $pdf = PDF::loadView('payments.show', ['payment' => $payment]);
+            return $pdf->download('pago-'.$payment->id.'.pdf');
         });
     }
 }
