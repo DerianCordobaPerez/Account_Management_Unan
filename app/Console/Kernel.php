@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('call:exchange-rate')
-            ->dailyAt('08:00');
+            ->dailyAt('02:00');
     }
 
     /**
