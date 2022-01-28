@@ -10,6 +10,7 @@ use App\Models\ExchangeRate;
 use App\Models\Payment;
 use App\Models\Role;
 use App\Models\User;
+use App\Repositories\RepositoryInterface;
 use App\Services\ExchangeRateService;
 use Carbon\Traits\Date;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -30,18 +31,23 @@ class HomeController extends Controller
      */
     private ViewHelper $viewHelper;
 
+    private RepositoryInterface $repository;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(RepositoryInterface $repository)
     {
         // Require auth middleware
         $this->middleware('auth');
 
         // Inject the view helper
         $this->viewHelper = ViewHelper::getInstance();
+
+        // Inject the repository
+        $this->repository = $repository;
     }
 
     /**
@@ -96,7 +102,7 @@ class HomeController extends Controller
         return $this->viewHelper->render(
             'home',
             [
-                'exchangeRate' => ExchangeRate::first()->value,
+                'exchangeRate' => $this->repository->get(),
                 'title' => 'Panel principal',
                 'latestPayment' => $latestPayment,
                 'period' => $this->getPeriod($latestPayment->payment_registration_date ?? null),

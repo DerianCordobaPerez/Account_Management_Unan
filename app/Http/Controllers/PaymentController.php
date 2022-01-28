@@ -11,13 +11,10 @@ use App\Models\Currency;
 use App\Models\ExchangeRate;
 use App\Models\Payment;
 use App\Models\User;
-use App\Services\ExchangeRateService;
-use Barryvdh\DomPDF\PDF;
-use Illuminate\Contracts\Container\BindingResolutionException;
+use App\Repositories\RepositoryInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
 use SoapFault;
 
@@ -34,10 +31,12 @@ class PaymentController extends Controller
 
     private PdfHelper $pdfHelper;
 
+    private RepositoryInterface $repository;
+
     /**
      * Create a new controller instance.
      */
-    public function __construct()
+    public function __construct(RepositoryInterface $repository)
     {
         // Require auth middleware
         $this->middleware('auth');
@@ -50,6 +49,9 @@ class PaymentController extends Controller
 
         // Inject the pdf helper
         $this->pdfHelper = PdfHelper::getInstance();
+
+        // Inject the repository
+        $this->repository = $repository;
     }
 
     /**
@@ -104,7 +106,7 @@ class PaymentController extends Controller
         return $this->viewHelper->render(
             'payments.create',
             [
-                'exchangeRate' => ExchangeRate::first()->value,
+                'exchangeRate' => $this->repository->get(),
                 'currencies' => Currency::where('is_active', true)->get(),
                 'concepts' => Concept::all(),
                 'types' => ['Estudiante', 'Trabajador', 'Otro'],
@@ -129,7 +131,7 @@ class PaymentController extends Controller
             // Create the payment
             Payment::create(array_merge($request->all(), [
                 'user_id' => $user->id,
-                'exchange_rate' => ExchangeRate::first()->value,
+                'exchange_rate' => $this->repository->get(),
             ]));
 
             // Redirect to the payments list
@@ -183,12 +185,13 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
     }
 
-    public function pdf(Payment $payment): Response
+    public function pdf(Payment $payment): RedirectResponse
     {
-
-        return $this->pdfHelper->download();
+        return $this->redirectHelper->redirect(['cajero'], function() use($payment) {
+            $this->pdfHelper->loadView('payments.show', ['payment' => $payment]);
+            return $this->pdfHelper->download('pago-'.$payment->id.'.pdf');
+        });
     }
 }
