@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Repositories\ExchangeRate\ExchangeRateCacheRepository;
+use App\Repositories\ExchangeRate\ExchangeRateRepository;
+use App\Repositories\RepositoryInterface;
 use App\Services\ExchangeRateService;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
@@ -15,9 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(ExchangeRateService::class, function ($app) {
-            return new ExchangeRateService();
-        });
+        $this->app->bind(RepositoryInterface::class, ExchangeRateCacheRepository::class);
     }
 
     /**

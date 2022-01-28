@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
+        "ext-fileinfo": "*",
         "ext-soap": "*",
         "algolia/algoliasearch-client-php": "^3.2",
         "askedio/laravel-soft-cascade": "^8.1",
@@ -20,8 +21,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/scout": "^9.3",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.3",
-      "ext-fileinfo": "*"
+        "laravel/ui": "^3.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

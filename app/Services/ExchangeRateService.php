@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\ExchangeRate;
+use Exception;
 use SoapClient;
 use SoapFault;
 
@@ -13,7 +13,7 @@ class ExchangeRateService
     protected mixed $exchangeRate;
 
     /**
-     * @throws SoapFault
+     * @throws Exception
      */
     public function __construct() {
         $this->build()->set();
@@ -40,18 +40,20 @@ class ExchangeRateService
         return $this;
     }
 
-    public function get()
+    public function get(): mixed
     {
         return $this->exchangeRate->RecuperaTC_DiaResult;
     }
 
-    public function set(): int
+    /**
+     * @throws Exception
+     */
+    public function set()
     {
         try {
             $this->exchangeRate = $this->getClient()->RecuperaTC_Dia($this->getData());
-            return 1;
         } catch (SoapFault $e) {
-            return 0;
+            throw new Exception($e->getMessage());
         }
     }
 }
