@@ -72,7 +72,7 @@
                             <div class="d-flex justify-content-start gap-2">
                                 <a href="{{ route('concepts.edit', $concept->id) }}" class="btn btn-sm btn-primary mr-2">
                                     <i class="fas fa-edit"></i>
-                                    editar
+                                    Editar
                                 </a>
                                 <form class="p-0" action="{{ route('concepts.destroy', $concept->id) }}" method="POST">
                                     @csrf @method('DELETE')

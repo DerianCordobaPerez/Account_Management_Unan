@@ -131,12 +131,6 @@ class UserController extends Controller
         });
     }
 
-    public function search(Request $request): JsonResponse
-    {
-        $users = User::search($request->search)->orderBy('identification')->get()->pluck('identification');
-        return response()->json($users);
-    }
-
     public function payments(Request $request, User $user): RedirectResponse|View
     {
         [$name] = explode(' ', $user->names);
